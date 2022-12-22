@@ -4,6 +4,7 @@ const ProfileMini = () => {
   return (
     <div>
       <div className="container profile-size">
+        {/* image */}
         <div className="mb-3">
           <Link to="#">
             <img
@@ -14,10 +15,14 @@ const ProfileMini = () => {
               height="50px"
             />
           </Link>
+
+          {/* Nickname */}
           <span>
             <Link className="profile-text">PolarBearInKyonggi</Link>
           </span>
         </div>
+
+        {/* profile Button */}
         <div>
           <Link className="btn btn-primary rounded-pill" to="#">
             Profile
