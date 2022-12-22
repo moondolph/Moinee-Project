@@ -46,7 +46,7 @@
 }
 
 
-.footer-text {
+.left-text {
   text-align: left;
 }
 
@@ -62,10 +62,28 @@
   margin: 0 30px;
 }
 
+
 .footerContents-Contact-Us{
   width: 20%;
   display: inline-block;
   text-decoration: none;
   float: left;
   margin: 0 5px;
+}
+
+.profile-text {
+  text-decoration: none;
+}
+
+.profile-size {
+  width: 250px;
+}
+
+.profile-right {
+  text-align: right;
+}
+
+.sortList-size {
+  width: 100px;
+  text-align: right;
 }

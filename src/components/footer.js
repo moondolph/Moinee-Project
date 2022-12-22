@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div>
       {/* FooterTitle */}
-      <div className="card mb-2 footer-text">
+      <div className="card mb-2 left-text">
         <div className="card-header site-Title-footer">
           <img
             src="https://cdn-icons-png.flaticon.com/512/151/151864.png"
