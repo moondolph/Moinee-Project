@@ -40,3 +40,32 @@
 .site-Title {
   font-size: 25px;
 }
+
+.site-Title-footer {
+  font-size: 40px;
+}
+
+
+.footer-text {
+  text-align: left;
+}
+
+.footerIntro{
+  display: flex;
+  list-style: none;
+}
+
+.footerContents{
+  width: 50%;
+  display: inline-block;
+  float: left;
+  margin: 0 30px;
+}
+
+.footerContents-Contact-Us{
+  width: 20%;
+  display: inline-block;
+  text-decoration: none;
+  float: left;
+  margin: 0 5px;
+}
