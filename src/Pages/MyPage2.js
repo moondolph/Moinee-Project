@@ -8,7 +8,7 @@ export default function MyPage2() {
             <div className="contentWrap">
                 <div className="inputTitle">프로필사진</div>
                 <div className="inputWrap">
-                <div class="wrapper"><div class="circle"></div></div>
+                <div id="wrapper"><div id="spinner"></div></div>
                 </div>
 
 

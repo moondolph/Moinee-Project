@@ -94,14 +94,24 @@
     border: 1px solid #e2e0e0;
 }
 
-.circle {
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+#spinner {
+  animation: spin 2s linear infinite;
+}
+/* 아래는 위에서 설정한 기본 설정 */
+#spinner {
   margin: 0 auto;
   width: 100px;
   height: 100px;
-  border: 15px solid rgb(178, 198, 151);
+  border: 15px solid rgba(163, 151, 198, 0.2);
+  border-top: 15px solid rgba(163, 151, 198, 1);
   border-radius: 50%;
 }
-.wrapper {
+/* 아래는 기본 래퍼 설정 */
+#wrapper {
   margin: 0 auto;
   padding: 30px;
   max-width: 1170px;
