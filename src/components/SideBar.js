@@ -2,19 +2,11 @@ import { Link } from "react-router-dom";
 
 const SideBar = () => {
     return (
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <Link class="nav-link active" aria-current="page" to="#">Sports/Activity</Link>
-            </li>
-            <li class="nav-item">
-                <Link class="nav-link" to="#">Trip/Going Out</Link>
-            </li>
-            <li class="nav-item">
-                <Link class="nav-link" to="#">Study Groups</Link>
-            </li>
-            <li class="nav-item">
-                <Link class="nav-link" to="#">Flashmob</Link>
-            </li>
+        <ul class="list-group list-group-flush">
+            <Link class="list-group-item list-group-item-action" to="#">Sports/Activity</Link>
+            <Link class="list-group-item list-group-item-action" to="#">Trip/Going Out</Link>
+            <Link class="list-group-item list-group-item-action" to="#">Study Groups</Link>
+            <Link class="list-group-item list-group-item-action" to="#">Flashmob</Link>
         </ul>
 
     );
