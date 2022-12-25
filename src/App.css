@@ -42,63 +42,92 @@
 }
 
 /* ----------- */
-.page {
-    position: absolute;
-	top: 0;
-	bottom: 0;
-	width: 100%;
+.page {         /*전체 기본 와꾸*/
+  position: absolute;       /*상위요소인 body를 기준으로 배치*/
+  left: 50%;                /*왼쪽 끝에서 50%만큼 떨어뜨리고*/
+	transform: translate(-50%, 0);  /*왼쪽으로 자신의 가로 크기의 50%만큼 이동시키면 딱 중앙에 위치한다*/
+	
+  top: 0;                   /*위에 붙이고*/
+	bottom: 0;                /*아래에 붙이고*/
+	width: 100%;              /*가로폭은 최대로*/
 	max-width: 500px;
-    padding: 0 20px;
+  padding: 10px 20px;       /*상하 좌우 */
+  
 
-	left: 50%;
-	transform: translate(-50%, 0);
+  background-color: #1E90FF;
 
-    background-color: #1E90FF;
-
-	overflow: hidden;
-    display: flex;
-    flex-direction: column;
+	overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 
 .titleWrap {
-    margin-top: 87px;
+    margin-top: 30px;
     font-size: 26px;
-	font-weight: bold;
-	color: #262626;
+	  font-weight: bold;
+	  color: #262626;
     text-align: center;
-}
+    border-radius: 10px;
+    border: 3px solid whitesmoke;
+  }
 
 .contentWrap {
-    margin-top: 26px;
+    margin-top: 5px;
     flex: 1;
 }
 
 .inputTitle {
-    font-size: 12px;
+    font-size: 20px;
 	font-weight: 600;
 	color: #262626;
+  margin-top: 10px ;
 }
 
 .inputWrap {
     display: flex;
+    
     border-radius: 8px;
     padding: 16px;
     margin-top: 8px;
     background-color: white;
     border: 1px solid #e2e0e0;
 }
+
+.circle {
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  border: 15px solid rgb(178, 198, 151);
+  border-radius: 50%;
+}
+.wrapper {
+  margin: 0 auto;
+  padding: 30px;
+  max-width: 1170px;
+}
+
+.location {
+  width:100%;
+}
+
+.date, .gender, .interest,  .capacity { /*여러 태그 선택할때는 ,로 */
+  margin: auto;
+}
+
+
+
 .inputWrap:focus-within {
     border: 1px solid #9e30f4;
 }
 
 .input {
-    width: 100%;
-    outline: none;
-	border: none;
+    width:100%;
+    outline: #ef0000;
+	  border: #9e30f4;
     height: 17px;
     font-size: 14px;
-	font-weight: 400;
+	  font-weight: 400;
 }
 
 .input::placeholder {
@@ -107,12 +136,13 @@
 }
 
 .bottomButton {
-    width: 100%;
-	height: 48px;
+    margin-top:20px;
+    width: 50%;
+	  height: 48px;
     border: none;
     font-weight: bold;
     border-radius: 64px;
-    background-color: #9e30f4;
+    background-color: red;
     color: white;
     margin-bottom: 16px;
     cursor: pointer;

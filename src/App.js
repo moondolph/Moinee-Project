@@ -3,25 +3,19 @@ import "./App.css";
 import NavigationBar from "./components/NavigationBar";
 import NavBar from "./components/NavBar";
 
+import Login from "./Pages/Login";
+import SignUp from "./Pages/SignUp";
+import SignUp2 from "./Pages/SignUp2";
+import CreateRoom from "./Pages/CreateRoom";
+import MyPage2 from "./Pages/MyPage2";
+
 function App() {
   return (
     <div className="App">
-      <NavigationBar />
-      <NavBar />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MyPage2 />
+    
+      
+      
     </div>
   );
 }
