@@ -16,9 +16,16 @@ import SimpleRoomPicture from "./components/SimpleRoomPicture";
 import SimpleRoomText from "./components/SimpleRoomText";
 import MainContents from "./components/MainContents";
 
+import Login from "./Pages/Login";
+import SignUp from "./Pages/SignUp";
+import SignUp2 from "./Pages/SignUp2";
+import CreateRoom from "./Pages/CreateRoom";
+import MyPage2 from "./Pages/MyPage2";
+
 function App() {
   return (
     <div className="App">
+<<<<<<< HEAD
       <NavigationBar />
       <NavBar />
       <Profile />
@@ -52,6 +59,16 @@ function App() {
       <SimpleRoomParticipants />
       <MainContents />
       */}
+=======
+      {/* <Login/> */}
+      {/* <SignUp/> */}
+      {/* <SignUp2/> */}
+      {/* <CreateRoom /> */}
+      { <MyPage2 />  }
+      
+      
+      
+>>>>>>> sim
     </div>
   );
 }
