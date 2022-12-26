@@ -25,27 +25,20 @@ import MyPage2 from "./Pages/MyPage2";
 function App() {
   return (
     <div className="App">
-<<<<<<< HEAD
       <NavigationBar />
       <NavBar />
       <Profile />
       <ProfileMini />
       <SortList />
 
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* 주용 로그인 페이지 시작 */}
+      {/* <Login/> */}
+      <SignUp/>
+      {/* <SignUp2/> */}
+      {/* <CreateRoom /> */}
+      {/* { <MyPage2 />  } */}
+      {/* 주용 로그인 페이지 끝 */ }
+      
       <Pagination />
       <Footer />
 
@@ -59,16 +52,11 @@ function App() {
       <SimpleRoomParticipants />
       <MainContents />
       */}
-=======
-      {/* <Login/> */}
-      {/* <SignUp/> */}
-      {/* <SignUp2/> */}
-      {/* <CreateRoom /> */}
-      { <MyPage2 />  }
       
       
       
->>>>>>> sim
+      
+      
     </div>
   );
 }

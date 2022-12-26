@@ -6,7 +6,7 @@ const User = {
 
 export default function SignUp2() {
   return (
-    <div className="page">
+    <div className="page container">
 
       <div className="titleWrap">
         회원가입

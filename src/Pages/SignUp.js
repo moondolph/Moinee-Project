@@ -1,6 +1,6 @@
 export default function Signup() {
   return (
-    <div className="page">
+    <div className="page container">
       <div className="titleWrap">
         ※회원가입※
       </div>
@@ -64,15 +64,15 @@ export default function Signup() {
           />
         </div>
 
+        <div>
+          <button className="bottomButton">
+            다음
+          </button>
+        </div>
 
 
       </div>
 
-      <div>
-        <button className="bottomButton">
-          다음
-        </button>
-      </div>
     </div>
   );
 }

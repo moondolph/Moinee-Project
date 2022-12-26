@@ -1,6 +1,6 @@
 export default function MyPage2() {
     return (
-        <div className="page">
+        <div className="page container">
             <div className="titleWrap">
                 ※프로필수정※
             </div>

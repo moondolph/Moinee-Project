@@ -55,7 +55,7 @@ export default function Login() {
     */
 
     return (
-      <div className="page">
+      <div className="page container">
         <div className="titleWrap">
           로그인
         </div>

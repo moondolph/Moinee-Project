@@ -40,7 +40,7 @@ export default function CreateRoom() {
   };
   */
   return (
-    <div className="page">
+    <div className="page container">
       
       <div className="contentWrap">
         
