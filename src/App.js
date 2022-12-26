@@ -7,7 +7,8 @@ import Profile from "./components/Profile";
 import ProfileMini from "./components/ProfileMini";
 import Pagination from "./components/Pagination";
 import SortList from "./components/SortList";
-import SideBar from "./components/SideBar";
+import SideBarMain from "./components/SideBarMain";
+import SideBarRoom from "./components/SideBarRoom";
 import RoomArticle from "./components/RoomArticle";
 import RoomComment from "./components/RoomComment";
 import SimpleRoomParticipants from "./components/SimpleRoomParticipants";
@@ -18,7 +19,8 @@ import MainContents from "./components/MainContents";
 function App() {
   return (
     <div className="App">
-      <SideBar />
+      <SideBarMain />
+      <SideBarRoom />
       <RoomArticle />
       <RoomComment />
       <SimpleRoomPicture />

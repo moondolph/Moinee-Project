@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const SideBar = () => {
+const SideBarMain = () => {
     return (
         <ul class="list-group list-group-flush">
             <Link class="list-group-item list-group-item-action" to="#">Sports/Activity</Link>
@@ -12,4 +12,4 @@ const SideBar = () => {
     );
 };
 
-export default SideBar;
+export default SideBarMain;
