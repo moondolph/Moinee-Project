@@ -2,30 +2,41 @@
 
 const SideBarRoom = () => {
     return (
-	<div class="text-start">
-        <span class="h5">참여인원</span>
-        <hr/>
-        <img 
-        src='images\profilePicture.png'
-        class="rounded-circle" 
-        style={{width:'40px'}} 
-        alt="room preview" />
-        &nbsp;이한수<br/>
-        <img 
-        src='images\profilePicture.png'
-        class="rounded-circle" 
-        style={{width:'40px'}} 
-        alt="room preview" />
-        &nbsp;이한수<br/>
-        <img 
-        src='images\profilePicture.png'
-        class="rounded-circle" 
-        style={{width:'40px'}} 
-        alt="room preview" />
-        &nbsp;이한수<br/>
+        <div class="container text-start">
+            <span class="h5">참여인원</span>
+            <hr /><br/>
+                <div class="row">
+                    <div class="col-3" style={{width:"50px"}}>
+                            <img
+                                src='images\profilePicture.png'
+                                class="unifyProfilePicture"
+                                alt="host"
+                            />
+                    </div>
+                    <div class="col fs-5">이한수 (방장)</div>
+                </div>
+                <div class="row">
+                    <div class="col-3" style={{width:"50px"}}>
+                            <img
+                                src='images\profilePicture.png'
+                                class="unifyProfilePicture"
+                                alt="participant"
+                                />
+                    </div>
+                    <div class="col fs-5">이한수</div>
+                </div>
+                <div class="row">
+                    <div class="col-3" style={{width:"50px"}}>
+                            <img
+                                src='images\profilePicture.png'
+                                class="unifyProfilePicture"
+                                alt="participant"
+                                />
+                    </div>
+                    <div class="col fs-5">이한수</div>
+                </div>
 
-
-    </div>
+        </div>
     );
 };
 
