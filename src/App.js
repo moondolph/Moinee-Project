@@ -32,8 +32,8 @@ function App() {
       <SortList />
 
       {/* 주용 로그인 페이지 시작 */}
-      {/* <Login/> */}
-      <SignUp/>
+      <Login/>
+      {/* <SignUp/> */}
       {/* <SignUp2/> */}
       {/* <CreateRoom /> */}
       {/* { <MyPage2 />  } */}
