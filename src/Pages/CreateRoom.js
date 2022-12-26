@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 
 export default function CreateRoom() {
+  /* 기능 박는 부분
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
 
@@ -37,16 +38,15 @@ export default function CreateRoom() {
       setPwValid(false);
     }
   };
-
-
+  */
   return (
     <div className="page">
-      <input type="file"></input>
-      <div className="titleWrap">
-        방 생성
-      </div>
       
       <div className="contentWrap">
+        
+        <div className="titleWrap">
+        방 생성
+        </div>
 
         <div className="inputTitle">제목</div>
         <div className="inputWrap">
@@ -54,9 +54,8 @@ export default function CreateRoom() {
             className="input"
             type="text"
             placeholder="제목을 입력하세요"
-            value={email}
-            onChange={handleEmail} />
-        </div>
+             />
+        </div >
 
         <div className="inputTitle">태그</div>
         <div className="inputWrap">
@@ -84,8 +83,8 @@ export default function CreateRoom() {
             className="location"
             type="text"
             placeholder="장소를 입력하세요"
-            value={email}
-            onChange={handleEmail} />
+            
+             />
         </div>
 
         <div className="inputTitle">제한인원</div>
@@ -110,11 +109,13 @@ export default function CreateRoom() {
             type="text"
             placeholder="모임 설명" />
         </div>
-      </div>
+      
+        <div>
+          <button className="bottomButton">확인</button>
+        </div>
+      
+        </div>
 
-      <div>
-        <button disabled={notAllow} className="bottomButton">확인</button>
-      </div>
 
     </div>
   );

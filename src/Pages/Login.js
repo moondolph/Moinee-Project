@@ -7,6 +7,7 @@ const User = {
 
 
 export default function Login() {
+    /* 기능박는부분. 아직 공부 안된 상태고. 아직 안 써서 주석처리 
     const [id, setid] = useState('');
     const [pw, setPw] = useState('');
 
@@ -51,6 +52,7 @@ export default function Login() {
         alert("등록되지 않은 회원입니다.");
       }
     };
+    */
 
     return (
       <div className="page">
@@ -67,15 +69,9 @@ export default function Login() {
               className="input"
               type="text"
               placeholder="아이디를 입력하세요"
-              value={id}
-              onChange={handleid}
             />
           </div>
-          <div className="errorMessageWrap">
-            {!idValid && id.length > 0 && (
-              <div>올바른 아이디를 입력해주세요.</div>
-            )}
-          </div>
+          
 
           <div style={{ marginTop: "26px" }} className="inputTitle">
             비밀번호
@@ -85,19 +81,20 @@ export default function Login() {
               className="input"
               type="password"
               placeholder="영문, 숫자, 특수문자 포함 8자 이상"
-              value={pw}
-              onChange={handlePw}
             />
           </div>
-          <div className="errorMessageWrap">
-            {!pwValid && pw.length > 0 && (
-              <div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
-            )}
-          </div>
-        </div>
+          
 
-        <div>
-          <button onClick={onClickConfirmButton} disabled={notAllow} className="bottomButton">
+
+          <div className="loginOptionWrap">
+            <span>&nbsp;&nbsp;회원가입&nbsp;&nbsp;</span>
+            <span>&nbsp;&nbsp;아이디찾기&nbsp;&nbsp;</span>
+            <span>&nbsp;&nbsp;비밀번호찾기&nbsp;&nbsp;</span>
+          </div>
+
+        </div>
+        <div className="mt-5">
+          <button className="bottomButton">
             확인
           </button>
         </div>

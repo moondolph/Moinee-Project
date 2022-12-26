@@ -12,8 +12,12 @@ import MyPage2 from "./Pages/MyPage2";
 function App() {
   return (
     <div className="App">
-      <MyPage2 />
-    
+      {/* <Login/> */}
+      {/* <SignUp/> */}
+      {/* <SignUp2/> */}
+      {/* <CreateRoom /> */}
+      { <MyPage2 />  }
+      
       
       
     </div>
