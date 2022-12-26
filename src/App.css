@@ -39,6 +39,25 @@
 
 .site-Title {
   font-size: 25px;
+} 
+
+/* ---------------이하 주용 css---------------*/
+
+.page {         
+  /* position: absolute;       
+  left: 50%;                
+  top: 50%;                 
+	transform: translate(-50%, -50%);   */
+   
+                     
+	width: 100%;              /*가로폭은 최대로*/
+	max-width: 750px;
+  padding: 10px 20px;       /*상하 좌우*/
+
+
+  background-color: #CCE5FF;
+	overflow: auto;
+  
 }
 
 .site-Title-footer {
@@ -87,6 +106,121 @@
   width: 100px;
   text-align: right;
 }
+
+.loginOptionWrap{
+  margin-top:30px;
+  font-size: 15px;
+  font-weight: bold;
+  color:azure;
+}
+
+
+.titleWrap {
+    margin-top: 30px;
+    font-size: 26px;
+	  font-weight: bold;
+	  color: #262626;
+    text-align: center;
+    border-radius: 10px;
+    border: 3px solid whitesmoke;
+  }
+
+.contentWrap {
+    margin-top: 40px;
+    
+    height:400px;
+    flex: 1;
+}
+
+.inputTitle {
+    font-size: 20px;
+	font-weight: 600;
+	color: #262626;
+  margin-top: 10px ;
+}
+
+.inputWrap {
+    display: flex;
+    
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 8px;
+    background-color: white;
+    border: 1px solid #e2e0e0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+#spinner {
+  animation: spin 2s linear infinite;
+}
+/* 아래는 위에서 설정한 기본 설정 */
+#spinner {
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  border: 15px solid rgba(163, 151, 198, 0.2);
+  border-top: 15px solid rgba(163, 151, 198, 1);
+  border-radius: 50%;
+}
+/* 아래는 기본 래퍼 설정 */
+#wrapper {
+  margin: 0 auto;
+  padding: 30px;
+  max-width: 1170px;
+}
+
+.location {
+  width:100%;
+}
+
+.date, .gender, .interest,  .capacity { /*여러 태그 선택할때는 ,로 */
+  margin: auto;
+}
+
+
+
+.inputWrap:focus-within {
+    border: 1px solid #9e30f4;
+}
+
+.input {
+    width:100%;
+    outline: #ef0000;
+	  border: #9e30f4;
+    height: 17px;
+    font-size: 14px;
+	  font-weight: 400;
+}
+
+.input::placeholder {
+    color: #262626;
+    text-align: center;
+}
+
+
+
+.bottomButton {
+    margin-top:10px;
+    width: 50%;
+	  height: 60px;
+    border: none;
+    font-weight: bold;
+    border-radius: 64px;
+    background-color: #e2e0e0;
+    color: #262626;
+    margin-bottom: 16px;
+    cursor: pointer;
+    
+}
+
+.bottomButton:disabled {
+    background-color: floralwhite;
+    color: #262626;
+}
+
 
 /* 하위 태그 좌우 정렬시키기 */
 .justifySpaceBetween {
