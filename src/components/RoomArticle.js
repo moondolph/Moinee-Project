@@ -4,7 +4,7 @@ const RoomArticle = () => {
         <div class="text-start">
             <p>중구 회현동<br />
             2022. 12. 16 토요일</p>
-            <p class="fs-4">X-mas 이브엔 야별도주, 서울에서 밤에 별 보러 가자</p>
+            <h4>X-mas 이브엔 야별도주, 서울에서 밤에 별 보러 가자</h4>
             <hr />
             <p>36 7</p>
             <img src='images\grayBox.png' class="img-fluid" alt="room description" />

@@ -9,13 +9,22 @@ import Pagination from "./components/Pagination";
 import SortList from "./components/SortList";
 import SideBar from "./components/SideBar";
 import RoomArticle from "./components/RoomArticle";
+import RoomComment from "./components/RoomComment";
+import SimpleRoomParticipants from "./components/SimpleRoomParticipants";
+import SimpleRoomPicture from "./components/SimpleRoomPicture";
+import SimpleRoomText from "./components/SimpleRoomText";
+import MainContents from "./components/MainContents";
 
 function App() {
   return (
     <div className="App">
       <SideBar />
       <RoomArticle />
-      
+      <RoomComment />
+      <SimpleRoomPicture />
+      <SimpleRoomText />
+      <SimpleRoomParticipants />
+      <MainContents />
     </div>
   );
 }
