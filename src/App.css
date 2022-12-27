@@ -227,6 +227,11 @@
   display: flex;
   justify-content: space-between;
 }
+/* 하위 태그 적당히 정렬시키기 */
+.justifySpaceAround {
+  display: flex;
+  justify-content: space-around;
+}
 
 /* 메인화면 컨텐츠에 사용 */
 .unifyContentPicture {
