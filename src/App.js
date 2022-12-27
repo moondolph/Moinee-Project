@@ -7,6 +7,7 @@ import Profile from "./components/Profile";
 import ProfileMini from "./components/ProfileMini";
 import Pagination from "./components/Pagination";
 import SortList from "./components/SortList";
+
 import SideBarMain from "./components/SideBarMain";
 import SideBarRoom from "./components/SideBarRoom";
 import RoomArticle from "./components/RoomArticle";
@@ -15,6 +16,7 @@ import SimpleRoomParticipants from "./components/SimpleRoomParticipants";
 import SimpleRoomPicture from "./components/SimpleRoomPicture";
 import SimpleRoomText from "./components/SimpleRoomText";
 import MainContents from "./components/MainContents";
+import JoinRoomButton from "./components/JoinRoomButton";
 
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
@@ -25,33 +27,34 @@ import MyPage2 from "./Pages/MyPage2";
 function App() {
   return (
     <div className="App">
-      <NavigationBar />
-      <NavBar />
-      <Profile />
-      <ProfileMini />
-      <SortList />
+      {/* <NavigationBar /> */}
+      {/* <NavBar /> */}
+      {/* <Profile /> */}
+      {/* <ProfileMini /> */}
+      {/* <SortList /> */}
 
       {/* 주용 로그인 페이지 시작 */}
       {/* <Login/> */}
       {/* <SignUp/> */}
       {/* <SignUp2/> */}
       {/* <CreateRoom /> */}
-      { <MyPage2 />  }
+      {/* { <MyPage2 />  } */}
       {/* 주용 로그인 페이지 끝 */ }
       
-      <Pagination />
-      <Footer />
+      {/* <Pagination /> */}
+      {/* <Footer /> */}
 
-      {/* HansooComponents
-      <SideBarMain />
-      <SideBarRoom />
-      <RoomArticle />
-      <RoomComment />
-      <SimpleRoomPicture />
-      <SimpleRoomText />
-      <SimpleRoomParticipants />
-      <MainContents />
-      */}
+      {/* HansooComponents*/}
+      {/* <SideBarMain /> */}
+      {/* <SideBarRoom /> */}
+      {/* <RoomArticle /> */}
+      {/* <RoomComment /> */}
+      {/* <JoinRoomButton /> */}
+      {/* <SimpleRoomPicture /> */}
+      {/* <SimpleRoomText /> */}
+      {/* <SimpleRoomParticipants /> */}
+      {/* <MainContents /> */}
+      
       
       
       
