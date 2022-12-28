@@ -2,6 +2,7 @@ package com.iljo.social_room.jpa;
 
 import javax.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
 @Data
@@ -31,6 +32,6 @@ public class CommentEntity {
     private String content;
 
     @Column(nullable = false)
-//    @ColumnDefault("sysdate")
+    @ColumnDefault("sysdate")
     private String date;
 }

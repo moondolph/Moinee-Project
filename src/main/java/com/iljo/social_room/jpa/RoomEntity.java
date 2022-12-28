@@ -1,18 +1,21 @@
 package com.iljo.social_room.jpa;
 
 import javax.persistence.*;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
-
 import java.io.Serializable;
 
 @Data
 @Entity
 @Table(name = "Social_Room")
 @DynamicInsert // Insert시 null값 제외하고 쿼리문 실행
-
-public class RoomEntity implements Serializable{
+@AllArgsConstructor
+@NoArgsConstructor
+public class RoomEntity{
     /**
      * room_id :  고유 방 번호
      * host : 방 제작자
@@ -30,8 +33,8 @@ public class RoomEntity implements Serializable{
      * */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, name="room_id")
-    private Long roomid;
+    @Column
+    private Long room_id;
 
     @Id
     @Column(nullable = false, length = 20)
@@ -46,14 +49,14 @@ public class RoomEntity implements Serializable{
     @Column(nullable = false, columnDefinition = "Text")
     private String description;
 
-    @Column(nullable = false, length = 10, name="meeting_date")
-    private String meetingdate;
+    @Column(nullable = false, length = 10)
+    private String meeting_date;
 
-    @Column(nullable = false, length = 10, name="create_date")
-    private String createdate;
+    @Column(nullable = false, length = 10)
+    private String create_date;
 
-    @Column(nullable = false, name="meeting_loc")
-    private String meetingloc;
+    @Column(nullable = false)
+    private String meeting_loc;
 
     @Column(nullable = false)
     private double latitude;
@@ -61,15 +64,15 @@ public class RoomEntity implements Serializable{
     @Column(nullable = false)
     private double longitude;
 
-    @Column(nullable = false, length = 2, name="limit_member")
-    private Integer limitmember;
+    @Column(nullable = false, length = 2)
+    private Integer limit_member;
 
-    @Column(nullable = false, name="room_thumbnail")
-    private String roomthumbnail;
+    @Column(nullable = false)
+    private String room_thumbnail;
 
-    @Column(name="room_likes")
+    @Column
     @ColumnDefault("0")
-    private Integer roomlikes;
+    private Integer room_likes;
 
 
 
