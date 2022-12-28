@@ -1,10 +1,11 @@
-package com.iljo.userserver.dto;
+package com.iljo.userserver.vo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 @Data
-public class UserDto {
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ResponseUser {
     private String user_id;
 
     private String password;
