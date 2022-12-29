@@ -40,30 +40,27 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
     }
 
-    @GetMapping("/:userId")
-    public ResponseEntity<List> getUser(@PathVariable("userId") String userId){
+    @GetMapping("/{userId}")
+    public ResponseEntity<ResponseUser> getUser(@PathVariable("userId") String userId){
         ModelMapper mapper = new ModelMapper();
 
         UserDto userDto = userService.getUserByUserId(userId);
 
         ResponseUser returnValue = mapper.map(userDto ,ResponseUser.class);
 
-        List result = new ArrayList<>();
-        result.add(returnValue);
-        result.add(null);
 
-
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        return ResponseEntity.status(HttpStatus.OK).body(returnValue);
 
     }
 
-    @DeleteMapping("/:userId")
-    public String deleteUser(@PathVariable("userId") String userId){
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<String> deleteUser(@PathVariable("userId") String userId){
         userService.deleteUserByUserId(userId);
-        return "삭제";
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("삭제");
     }
 
-    @PutMapping("/:userId")
+    @PutMapping("/{userId}")
     public ResponseEntity<ResponseUser> updateUser(@PathVariable("userId") String userId, @RequestBody RequestUser user){
 
         ModelMapper mapper = new ModelMapper();
@@ -76,6 +73,16 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
     }
 
+
+    @PostMapping("/login")
+    public String login(@RequestBody RequestUser user, String userId, String password){
+
+
+
+        String result = userService.login(userId, password);
+
+        return result;
+    }
 
 
 

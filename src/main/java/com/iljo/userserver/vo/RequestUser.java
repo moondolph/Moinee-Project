@@ -23,7 +23,6 @@ public class RequestUser {
     private String name;
 
     @NotNull(message="Birthday cannot be null")
-    @Size(min = 2, message = "Birthday must be equal or grater than 8 characters")
     private String birthday;
 
     @NotNull(message="Email cannot be null")
@@ -32,7 +31,6 @@ public class RequestUser {
     private String email;
 
     @NotNull(message="Gender cannot be null")
-    @Size(min = 2, message = "Gender must be equal or grater than 8 characters")
     private String gender;
 
     @NotNull(message="Address cannot be null")

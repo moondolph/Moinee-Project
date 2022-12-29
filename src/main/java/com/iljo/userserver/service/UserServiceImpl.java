@@ -48,8 +48,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDto getUserByUserId(String userId) {
 
+        // 입력한 userId와 일치하는 user의 정보를 select해서 userEntity에 넣음
         UserEntity userEntity = userRepository.findByUserId(userId);
 
+        // userEntity를 userDto에 매핑
         UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
 
         return userDto;
@@ -58,8 +60,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void deleteUserByUserId(String userId) {
-
-        userRepository.deleteByUserId(userId);
+        // userId
+        userRepository.deleteById(userId);
 
     }
 
@@ -82,5 +84,19 @@ public class UserServiceImpl implements UserService{
         UserDto resultUserDto = mapper.map(userEntity, UserDto.class);
 
         return resultUserDto;
+    }
+
+    @Override
+    public String login(String userId, String password) {
+
+//        ModelMapper mapper = new ModelMapper();
+
+        UserEntity userEntity = userRepository.findByUserIdAndPassword(userId, password);
+
+        userEntity.getUserId();
+
+        // String result = userRepository.findByUserIdAndPassword(userId, password).getUserId();
+
+        return null;
     }
 }
