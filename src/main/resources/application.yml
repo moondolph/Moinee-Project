@@ -1,5 +1,5 @@
 server:
-  port: 8808
+  port: 11554
 
 spring:
   application:
@@ -29,4 +29,3 @@ spring:
         format_sql: true
     logging.level:
       org.hibernate.SQL: debug
-

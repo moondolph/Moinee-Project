@@ -1,4 +1,4 @@
-package com.iljo.user_evaluation.jpa;
+package com.example.userevaluation.jpa;
 
 import lombok.Data;
 
@@ -7,8 +7,15 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name = "user_evaluation")
-public class User_evaluationEntity implements Serializable {
+@Table(
+        name="UserEvaluation",
+        uniqueConstraints={
+                @UniqueConstraint(
+                        columnNames={"userId", "evaluator"}
+                )
+        }
+)
+public class UserEvaluationEntity implements Serializable {
     //직렬화 : 우리가 가지고 있는 object를 다른 네트워크에 전송하거나 db에 보관하기 위해서
     //마샬링(이란 한 객체의 메모리에서의 표현방식을 저장 또한 전송에 적합한 다른 데이터 형식으로 변환하는 과정입니다.)
     //언마샬링을 하기 위해서 사용한다.
@@ -22,13 +29,13 @@ public class User_evaluationEntity implements Serializable {
      * */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long evaluationId;
 
 
-    @Column(nullable = false, length = 20, unique = true)
-    private String user_id;
+    @Column(name = "userId",nullable = false, length = 20)
+    private String userId;
 
-    @Column(nullable = false, length = 20)
+    @Column(name = "evaluator",nullable = false, length = 20)
     private String evaluator;
 
     @Column(nullable = false)
