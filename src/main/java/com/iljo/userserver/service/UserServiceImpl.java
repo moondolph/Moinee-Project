@@ -7,9 +7,6 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -45,6 +42,9 @@ public class UserServiceImpl implements UserService{
 
     }
 
+    /**
+     * 유저 한 명의 정보를 불러오기위한 메소드
+     * */
     @Override
     public UserDto getUserByUserId(String userId) {
 
@@ -52,10 +52,35 @@ public class UserServiceImpl implements UserService{
 
         UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
 
-
-        System.out.println(userDto.getName());
-
         return userDto;
 
+    }
+
+    @Override
+    public void deleteUserByUserId(String userId) {
+
+        userRepository.deleteByUserId(userId);
+
+    }
+
+    @Override
+    public UserDto updateUserByUserId(String userId, UserDto userDto) {
+
+        ModelMapper mapper = new ModelMapper();
+
+        UserEntity userEntity = userRepository.findByUserId(userId);
+
+        userEntity.setAddress(userDto.getAddress());
+        userEntity.setName(userDto.getName());
+        userEntity.setBirthday(userDto.getBirthday());
+        userEntity.setPassword(userDto.getPassword());
+        userEntity.setLatitude(userDto.getLatitude());
+        userEntity.setLongitude(userDto.getLongitude());
+        userEntity.setThumbnail(userDto.getThumbnail());
+        userRepository.save(userEntity);
+
+        UserDto resultUserDto = mapper.map(userEntity, UserDto.class);
+
+        return resultUserDto;
     }
 }
