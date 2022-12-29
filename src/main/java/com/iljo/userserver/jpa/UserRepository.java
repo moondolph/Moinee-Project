@@ -9,8 +9,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface UserRepository extends CrudRepository<UserEntity, String> {
     UserEntity findByUserId(String userId);
 
-//    UserEntity deleteByUserId(String userId);
-
     UserEntity findByUserIdAndPassword(String userId, String password);
 
 }

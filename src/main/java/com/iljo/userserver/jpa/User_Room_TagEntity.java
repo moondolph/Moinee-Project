@@ -24,5 +24,5 @@ public class User_Room_TagEntity implements Serializable{
      * */
     @Id
     @Column(nullable = false)
-    private Long room_id;
+    private Long roomId;
 }

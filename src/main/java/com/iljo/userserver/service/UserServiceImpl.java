@@ -7,6 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -31,14 +33,17 @@ public class UserServiceImpl implements UserService{
 
         // entity를 Dto와 mapping
         UserEntity userEntity = mapper.map(userDto, UserEntity.class);
-
+        Optional<UserEntity> userEntity2 = userRepository.findById(userEntity.getUserId());
+        if (userEntity2.isPresent()){
+            return null;
+        }
         // 인터페이스 save기능을 이용해 db에 저장
-        userRepository.save(userEntity);
+        UserEntity userEntity1 = userRepository.save(userEntity);
 
         // return할 값을 좀 전에 만들은 uesrEntity를 이욯해 mapping
-        UserDto returnUserDto = mapper.map(userEntity, UserDto.class);
+//        UserDto returnUserDto = mapper.map(userEntity1, UserDto.class);
 
-        return returnUserDto;
+        return mapper.map(userEntity1, UserDto.class);
 
     }
 
@@ -93,10 +98,10 @@ public class UserServiceImpl implements UserService{
 
         UserEntity userEntity = userRepository.findByUserIdAndPassword(userId, password);
 
-        userEntity.getUserId();
+        String result = userEntity.getUserId();
 
         // String result = userRepository.findByUserIdAndPassword(userId, password).getUserId();
 
-        return null;
+        return result;
     }
 }

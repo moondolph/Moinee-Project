@@ -21,5 +21,5 @@ public class EnterEntity implements Serializable{
      * */
     @Id
     @Column(nullable = false)
-    private Long room_id;
+    private Long roomId;
 }

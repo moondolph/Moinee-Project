@@ -12,9 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -33,9 +30,10 @@ public class UserController {
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
         UserDto userDto = mapper.map(user, UserDto.class);
-        userService.createUser(userDto);
 
-        ResponseUser responseUser = mapper.map(userDto, ResponseUser.class);
+        UserDto userDto1 = userService.createUser(userDto);
+
+        ResponseUser responseUser = mapper.map(userDto1, ResponseUser.class);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
     }
@@ -75,13 +73,14 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public String login(@RequestBody RequestUser user, String userId, String password){
+    public ResponseEntity<String> login(@RequestBody RequestUser user, String userId, String password){
 
-
+        userId = user.getUserId();
+        password = user.getPassword();
 
         String result = userService.login(userId, password);
 
-        return result;
+        return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
 
