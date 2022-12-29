@@ -35,13 +35,14 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
     }
 
-    @GetMapping("/:email")
-    public ResponseEntity<ResponseUser> getUser(@PathVariable("email") String email){
-        UserDto userDto = userService.getUserByEamil(email);
+    @GetMapping("/:userId")
+    public ResponseEntity<ResponseUser> getUser(@PathVariable("userId") String userId){
+        UserDto userDto = userService.getUserByUserId(userId);
 
         ResponseUser returnValue = new ModelMapper().map(userDto ,ResponseUser.class);
 
         return ResponseEntity.status(HttpStatus.OK).body(returnValue);
+
     }
 
 

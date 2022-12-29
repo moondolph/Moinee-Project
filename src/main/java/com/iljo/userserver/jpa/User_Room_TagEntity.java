@@ -17,7 +17,7 @@ public class User_Room_TagEntity implements Serializable{
      * */
     @Id
     @Column(nullable = false, length = 20)
-    private String user_id;
+    private String userId;
 
     /**
      * 유저가 관심을 가지는 방들의 id

@@ -6,5 +6,5 @@ import com.iljo.userserver.dto.UserDto;
 public interface UserService  {
     UserDto createUser(UserDto userDto);
 
-    UserDto getUserByEamil(String email);
+    UserDto getUserByUserId(String userId);
 }

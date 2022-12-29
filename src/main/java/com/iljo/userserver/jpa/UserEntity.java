@@ -18,7 +18,7 @@ public class UserEntity implements Serializable {
      * */
     @Id
     @Column(nullable = false, length = 20)
-    private String user_id;
+    private String userId;
 
     @Column(nullable = false)
     private String password;

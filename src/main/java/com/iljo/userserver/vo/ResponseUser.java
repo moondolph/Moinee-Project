@@ -1,12 +1,14 @@
 package com.iljo.userserver.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@AllArgsConstructor
 public class ResponseUser {
-    private String user_id;
+    private String userId;
 
     private String password;
 
@@ -25,4 +27,6 @@ public class ResponseUser {
     private Double longitude;
 
     private String thumbnail;
+
+
 }

@@ -9,10 +9,10 @@ import javax.validation.constraints.Size;
 @Data
 public class RequestUser {
 
-    @NotNull(message="User_id cannot be null")
-    @Size(min = 2, message = "User_id not be less than two characters")
+    @NotNull(message="UserId cannot be null")
+    @Size(min = 2, message = "UserId not be less than two characters")
     @Email
-    private String user_id;
+    private String userId;
 
     @NotNull(message="Password cannot be null")
     @Size(min = 2, message = "Password must be equal or grater than 8 characters")

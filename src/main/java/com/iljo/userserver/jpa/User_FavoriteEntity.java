@@ -17,7 +17,7 @@ public class User_FavoriteEntity implements Serializable {
      * */
     @Id
     @Column(nullable = false, length = 20)
-    private String user_id;
+    private String userId;
 
     /**
      * 유저가 선호하는 분야

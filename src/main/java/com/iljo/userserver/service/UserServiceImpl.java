@@ -46,11 +46,14 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDto getUserByEamil(String email) {
+    public UserDto getUserByUserId(String userId) {
 
-        UserEntity userEntity = userRepository.findByEmail(email);
+        UserEntity userEntity = userRepository.findByUserId(userId);
 
         UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
+
+
+        System.out.println(userDto.getName());
 
         return userDto;
 

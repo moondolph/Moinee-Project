@@ -14,7 +14,7 @@ public class EnterEntity implements Serializable{
      * */
     @Id
     @Column(nullable = false, length = 20)
-    private String user_id;
+    private String userId;
 
     /**
      * 유저 참여하고 있는 방들의 id
