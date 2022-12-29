@@ -2,11 +2,13 @@ package com.iljo.social_room.controller;
 
 import com.iljo.social_room.dto.RoomDto;
 import com.iljo.social_room.jpa.RoomEntity;
-import com.iljo.social_room.sevice.RoomService;
+import com.iljo.social_room.service.RoomService;
 import com.iljo.social_room.vo.RequestRoom;
 import com.iljo.social_room.vo.ResponseRoom;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +19,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/social_room/")
+@RequestMapping("/social_room")
+@Slf4j
 public class RoomController {
 
-    private RoomService roomService;
 
+    private RoomService roomService;
+    @Autowired
+    public RoomController(RoomService roomService) {
+        this.roomService = roomService;
+    }
+
+    /**
+     *  Social_Room Create Method
+     */
     @PostMapping("/")
     public ResponseEntity<ResponseRoom> createRoom(@RequestBody RequestRoom room) {
         ModelMapper mapper = new ModelMapper();
@@ -29,49 +40,76 @@ public class RoomController {
         RoomDto roomDto = mapper.map(room, RoomDto.class);
         roomService.createRoom(roomDto);
         ResponseRoom responseRoom = mapper.map(roomDto, ResponseRoom.class);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseRoom);
+        return (responseRoom != null) ? ResponseEntity.status(HttpStatus.CREATED).body(responseRoom) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
+    /**
+     * Find All Social_Room List Method
+     */
     @GetMapping("/")
     public ResponseEntity<List<ResponseRoom>> getAllRooms() {
-        Iterable<RoomEntity> roomList = roomService.getRoomByAll();
+        List<RoomEntity> rooms = roomService.getRoomByAll();
 
-        List<ResponseRoom> result = new ArrayList<>();
-        roomList.forEach(v -> {
-            result.add(new ModelMapper().map(v, ResponseRoom.class));
+        List<ResponseRoom> roomList = new ArrayList<>();
+        rooms.forEach(v -> {
+            roomList.add(new ModelMapper().map(v, ResponseRoom.class));
         });
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        return ResponseEntity.status(HttpStatus.OK).body(roomList);
+
 
     };
 
-    @GetMapping("/{category}")
-    public ResponseEntity<List<ResponseRoom>> getRoomByCategory(@PathVariable String category) {
-        Iterable<RoomEntity> findByCategory = roomService.findByCategory(category);
+    /**
+     * Find Room_Info by Room_ID Method
+     */
+    @GetMapping("/{roomId}")
+    public ResponseEntity<ResponseRoom> getRoomInfo(@PathVariable Long roomId) {
+        RoomDto roomDto = roomService.getRoomInfo(roomId);
+        log.info(roomDto.toString());
+        ResponseRoom roomInfo = new ModelMapper().map(roomDto, ResponseRoom.class);
+        log.info(roomInfo.getRoomId().toString());
+        return ResponseEntity.status(HttpStatus.OK).body(roomInfo); // user list 추가
 
-        List<ResponseRoom> result = new ArrayList<>();
+    }
+    /**
+     *  Find Social_Room by category Method
+     */
+    @GetMapping("/{category}/")
+    public ResponseEntity<List<ResponseRoom>> getRoomByCategory(@PathVariable String category) {
+        List<RoomEntity> findByCategory = roomService.findByCategory(category);
+
+        List<ResponseRoom> roomList = new ArrayList<>();
         findByCategory.forEach(v -> {
-            result.add(new ModelMapper().map(v, ResponseRoom.class));
+            roomList.add(new ModelMapper().map(v, ResponseRoom.class));
         });
 
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        return ResponseEntity.status(HttpStatus.OK).body(roomList);
     }
 
-    @GetMapping("/{room_id}")
-    public ResponseEntity<ResponseRoom> getRoomInfo(@PathVariable Long room_id) {
-        RoomEntity roomEntity = roomService.getRoomInfo(room_id);
-        ResponseRoom returnValue = new ModelMapper().map(roomEntity, ResponseRoom.class);
 
-        return ResponseEntity.status(HttpStatus.OK).body(returnValue);
-
+    /**
+     * Update Room_Info Method
+     */
+    @PutMapping("/{roomId}")
+    public ResponseEntity<ResponseRoom> updateRoomInfo(@PathVariable Long roomId, @RequestBody RequestRoom room) {
+        ModelMapper mapper = new ModelMapper();
+        RoomDto roomDto = mapper.map(room, RoomDto.class);
+        RoomEntity roomEntity = roomService.updateRoomInfo(roomId, roomDto);
+        ResponseRoom updatedRoom = new ModelMapper().map(roomEntity, ResponseRoom.class);
+        return (updatedRoom != null) ? ResponseEntity.status(HttpStatus.OK).body(updatedRoom) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
-//    @PutMapping("/{room_id}")
-//    public ResponseEntity<ResponseRoom> updateRoomInfo(@PathVariable Long room_id, @RequestBody RequestRoom room) {
-//
-//
-//
-//    }
+    /**
+     * Delete Social_Room Method
+     */
+    @DeleteMapping("/{roomId}")
+    public ResponseEntity<String> deleteRoom(@PathVariable Long roomId){
+        RoomEntity deleteRoom = roomService.deleteRoom(roomId);
+        return (deleteRoom != null) ? ResponseEntity.status(HttpStatus.ACCEPTED).body("삭제성공") :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 
 }
 

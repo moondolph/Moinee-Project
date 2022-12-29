@@ -2,11 +2,14 @@ package com.iljo.social_room.jpa;
 
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public interface RoomRepository extends CrudRepository<RoomEntity, Long> {
-    Iterable<RoomEntity> findByCategory(String category);
-    RoomEntity getRoomInfo(Long room_id);
+    @Override
+    ArrayList<RoomEntity> findAll();
 
+    List<RoomEntity> findByCategory(String category);
 
 }

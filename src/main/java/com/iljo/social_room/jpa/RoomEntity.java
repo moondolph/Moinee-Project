@@ -7,15 +7,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
+
 import java.io.Serializable;
 
-@Data
+
+@Table(name="SOCIALROOM")
 @Entity
-@Table(name = "Social_Room")
+@Data
 @DynamicInsert // Insert시 null값 제외하고 쿼리문 실행
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoomEntity{
+
+public class RoomEntity {
     /**
      * room_id :  고유 방 번호
      * host : 방 제작자
@@ -31,12 +34,12 @@ public class RoomEntity{
      * room_thumbnail : 방 이미지
      * room_likes : 방 좋아요
      * */
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Long room_id;
+    private Long roomId;
 
-    @Id
     @Column(nullable = false, length = 20)
     private String host;
 
@@ -50,13 +53,13 @@ public class RoomEntity{
     private String description;
 
     @Column(nullable = false, length = 10)
-    private String meeting_date;
+    private String meetingDate;
 
     @Column(nullable = false, length = 10)
-    private String create_date;
+    private String createDate;
 
     @Column(nullable = false)
-    private String meeting_loc;
+    private String meetingLoc;
 
     @Column(nullable = false)
     private double latitude;
@@ -65,14 +68,67 @@ public class RoomEntity{
     private double longitude;
 
     @Column(nullable = false, length = 2)
-    private Integer limit_member;
+    private Integer limitMember;
 
     @Column(nullable = false)
-    private String room_thumbnail;
+    private String roomThumbnail;
 
     @Column
     @ColumnDefault("0")
-    private Integer room_likes;
+    private Integer roomLikes;
+
+   public void putRoomInfo(RoomEntity roomEntity){
+        if (roomEntity.roomId != null)
+            this.roomId = roomEntity.roomId;
+        if (roomEntity.host != null)
+            this.host = roomEntity.host;
+        if (roomEntity.title != null)
+            this.title = roomEntity.title;
+        if (roomEntity.category != null)
+            this.category = roomEntity.category;
+        if (roomEntity.description != null)
+            this.description = roomEntity.description;
+        if (roomEntity.meetingDate != null)
+            this.meetingDate = roomEntity.meetingDate;
+        if (roomEntity.createDate != null)
+            this.createDate = roomEntity.createDate;
+        if (roomEntity.meetingLoc != null)
+            this.meetingLoc = roomEntity.meetingLoc;
+        if (roomEntity.latitude != 0)
+            this.latitude = roomEntity.latitude;
+        if (roomEntity.longitude != 0)
+            this.longitude = roomEntity.longitude;
+        if (roomEntity.limitMember != null)
+            this.limitMember = roomEntity.limitMember;
+        if (roomEntity.roomThumbnail != null)
+            this.roomThumbnail = roomEntity.roomThumbnail;
+        if (roomEntity.roomLikes != null)
+            this.roomLikes = roomEntity.roomLikes;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
