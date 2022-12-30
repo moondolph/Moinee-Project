@@ -4,7 +4,7 @@ import Profile from '../components/Profile';
 
 const MyPage = () => {
   return (
-    <div>
+    <div className="page container">
         <div>
             <Profile />
         </div>

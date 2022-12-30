@@ -7,6 +7,7 @@ import SignUp2 from '../Pages/SignUp2';
 const UserRouter = () => {
   return (
     <div>
+      
       <Routes>
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/SignUp2" element={<SignUp2 />} />
