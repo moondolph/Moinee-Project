@@ -1,7 +1,6 @@
 import React from 'react'
 import MainArticle from '../components/MainArticle';
 import MainArticle2 from '../components/MainArticle2';
-import $ from "jquery";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -41,7 +40,7 @@ const Main = () => {
   return (
     <div>
         <div>
-            <div data-aos="fade-up" className='Title-Article'>
+            <div data-aos="fade-up" className='Title-Article mt-20'>
               MO-INEE
             </div>
           </div>

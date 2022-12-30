@@ -2,18 +2,18 @@
 
 const RoomShortForm = () => {
     return (
-        <div class="container border border-1 mainContentMaxWidth">
+        <div className="container border border-1 mainContentMaxWidth">
             <br/>
             <p>
-                <span class="position-relative">
+                <span className="position-relative">
                     <img
                         src='images\grayBox.png'
-                        class="unifyContentPicture"
+                        className="unifyContentPicture"
                         alt="room preview"
                     />
                 </span>
             </p>
-                <h6 class="text-start">방제목제목제목</h6>
+                <h6 className="text-start">방제목제목제목</h6>
         </div>
     );
 };

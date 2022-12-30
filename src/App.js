@@ -3,6 +3,10 @@ import {Routes, Route} from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Routers from "./Routers/Routers";
+import RoomArticle from "./components/RoomArticle";
+import SideBarRoom from "./components/SideBarRoom";
+import SimpleRoomText from  "./components/SimpleRoomText";
+import MainContents from  "./components/MainContents";
 function App() {
   return (
     <div className="App">
@@ -12,7 +16,7 @@ function App() {
           <Route path="/*" element={<Routers />} />
         </Routes>
         </div>
-        <div className="mt-3"><Footer /></div>
+        <div className="mt-3 width-100"><Footer /></div>
       
       {/* <NavigationBar /> */}
       {/* <NavBar /> */}
@@ -33,13 +37,14 @@ function App() {
 
       {/* HansooComponents*/}
       {/* <SideBarMain /> */}
-      {/* <SideBarRoom /> */}
-      {/* <RoomArticle /> */}
+      {/* <SideBarRoom /> 
+      <RoomArticle /> */}
       {/* <RoomComment /> */}
       {/* <JoinRoomButton /> */}
       {/* <SimpleRoomPicture /> */}
-      {/* <SimpleRoomText /> */}
+       {/* <SimpleRoomText /> */}
       {/* <SimpleRoomParticipants /> */}
+      
       {/* <MainContents /> */}
     </div>
   );

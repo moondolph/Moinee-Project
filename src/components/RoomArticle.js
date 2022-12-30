@@ -2,7 +2,7 @@
 
 const RoomArticle = () => {
     return (
-        <div class="container text-start">
+        <div className="container text-start">
             <div>
             <img src='images\location.png' style={{width:"10px"}} alt="location" />    
             &nbsp;중구 회현동<br />
@@ -16,13 +16,13 @@ const RoomArticle = () => {
                 &nbsp;7 {/* 댓글 개수 */}
             </p>
             <p>
-                <img src='images\grayBox.png' class="img-fluid" alt="room description" />
+                <img src='images\grayBox.png' className="img-fluid" alt="room description" />
             </p>
-            <div class="row">
-                <h3 class="col-lg-2" style={{maxWidth:"170px"}}>
+            <div className="row">
+                <h3 className="col-lg-2" style={{maxWidth:"170px"}}>
                     어떤 모임<br/>인가요?
                 </h3>
-                <div class="col-lg-9" style={{maxWidth:"870px"}}>
+                <div className="col-lg-9" style={{maxWidth:"870px"}}>
                     설명글설명글설명글설명글설명글설명글설명글설명글설명글
                     설명글설명글설명글설명글설명글설명글설명글설명글설명글
                     설명글설명글설명글설명글설명글설명글설명글설명글설명글

@@ -55,12 +55,12 @@ const NavBar = () => {
       <div>
         <Ul className="justify-content-between">
           <List className="nav-item">
-            <NavLink className="nav-link" to="#">
+            <NavLink className="nav-link" to="/Rooms">
               Room
             </NavLink>
           </List>
           <List className="nav-item">
-            <NavLink className="nav-link" to="#">
+            <NavLink className="nav-link" to="/">
               about
             </NavLink>
           </List>
@@ -70,7 +70,7 @@ const NavBar = () => {
             </NavLink>
           </List>
           <List className="nav-item">
-            <NavLink className="nav-link" to="#">
+            <NavLink className="nav-link" to="/Users/MyTag">
               MyTag
             </NavLink>
           </List>

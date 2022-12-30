@@ -5,18 +5,18 @@ import ProfileMini from '../components/ProfileMini';
 
 const SimpleRoom = () => {
     return (
-            <div class="container border border-3 p-3 bg-info bg-opacity-50">
-                <div class="row g-3">
-                    <div class="col-4">
+            <div className="container border border-3 p-3 bg-info bg-opacity-50">
+                <div className="row g-3">
+                    <div className="col-4">
                         <SimpleRoomPicture />
                     </div>
-                    <div class="col-8">
+                    <div className="col-8">
                         <SimpleRoomText />
                     </div>
-                    <div class="col-4">
+                    <div className="col-4">
                         <ProfileMini/>
                     </div>
-                    <div class="col-8">
+                    <div className="col-8">
                         <SimpleRoomParticipants />
                     </div>
                 </div>
