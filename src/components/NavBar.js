@@ -13,12 +13,12 @@ const List = styled.li`
 
 const NavBar = () => {
   return (
-    <div>
+    <div className="z-n1 fixed-top text-bg-light">
       {/* Navgiation */}
-      <nav className="navbar bg-gray">
+      <nav className="navbar bg-gray stikcy-top">
         <div className="container-fluid">
           {/* Home button */}
-          <Link className="navbar-brand site-Title" to="#">
+          <Link className="navbar-brand site-Title" to="/">
             <img
               src="https://cdn-icons-png.flaticon.com/512/151/151864.png"
               alt="Logo"

@@ -24,16 +24,19 @@ import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import SignUp2 from "./Pages/SignUp2";
 import CreateRoom from "./Pages/CreateRoom";
-import MyPage2 from "./Pages/MyPage2";
-import Routers from "./Pages/Router";
+import MyPage2 from "./components/MyPage2";
+import Routers from "./Routers/Routers";
 function App() {
   return (
     <div className="App">
-      <NavBar />
-        <Routes>
+      <div className="mb-10"><NavBar/></div>
+      <div className="mt-5 pt-5">
+        <Routes >
           <Route path="/*" element={<Routers />} />
         </Routes>
-      <Footer />
+        </div>
+        <div className="mt-3"><Footer /></div>
+      
       {/* <NavigationBar /> */}
       {/* <NavBar /> */}
       {/* <Profile /> */}

@@ -1,3 +1,4 @@
+// room thumbnail 및 설명 부분
 
 const RoomArticle = () => {
     return (
