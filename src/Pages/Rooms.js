@@ -23,7 +23,7 @@ const Rooms = () => {
             .map((a, i) => a + i)
             .map((a2, i) => {
               return (
-                <div key={i} className="ms-3 mb-5">
+                <div key={i} className="ms-3 mb-5 width-22">
                   <MainContents />
                 </div>
               );
