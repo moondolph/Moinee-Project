@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 const Profile = () => {
   return (
     <div>
+      {/* Image */}
       <div className="container profile-size">
         <div className="mb-3">
           <Link to="#">
@@ -14,10 +15,14 @@ const Profile = () => {
               height="50px"
             />
           </Link>
+
+          {/* Nickname */}
           <Link className="profile-text" to="#">
             PolarBearInKyonggi
           </Link>
         </div>
+
+        {/* info */}
         <div className="container">
           <table>
             <tr>
