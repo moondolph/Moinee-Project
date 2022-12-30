@@ -2,7 +2,7 @@
 // 왼쪽 위에 위치하는 사진부분입니다.
 const SimpleRoomPicture = () => {
     return (
-	<div class="container text-start">
+	<div class="container text-center">
         <p>
             <img 
                 src='/images\grayBox.png' 
