@@ -1,12 +1,15 @@
 package com.iljo.userserver.jpa;
 
 import javax.persistence.*;
+
+import com.iljo.userserver.dto.EnterID;
 import lombok.Data;
 import java.io.Serializable;
 
 @Data
 @Entity
 @Table(name = "enter")
+@IdClass(EnterID.class)
 public class EnterEntity implements Serializable{
 
     /**

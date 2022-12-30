@@ -33,10 +33,13 @@ public class EnterController {
         ModelMapper mapper = new ModelMapper();
 
         EnterDto enterDto = mapper.map(roomId, EnterDto.class);
+        enterDto.setUserID(userId);
 
-        enterService.enterRoom()
+        EnterDto enterDto1 = enterService.enterRoom(enterDto);
 
-        return null;
+        ResponseEnter responseEnter = mapper.map(enterDto1, ResponseEnter.class);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseEnter);
     }
 
 
