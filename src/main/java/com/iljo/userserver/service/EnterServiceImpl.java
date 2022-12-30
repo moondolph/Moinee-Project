@@ -4,6 +4,7 @@ import com.iljo.userserver.dto.EnterDto;
 import com.iljo.userserver.jpa.EnterEntity;
 import com.iljo.userserver.jpa.EnterRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,6 +12,8 @@ public class EnterServiceImpl implements EnterService{
 
     EnterRepository enterRepository;
 
+
+    @Autowired
     public EnterServiceImpl(EnterRepository enterRepository) {
         this.enterRepository = enterRepository;
     }
@@ -29,7 +32,7 @@ public class EnterServiceImpl implements EnterService{
     }
 
     @Override
-    public EnterDto getEntersByUserId(String userId) {
+    public EnterDto getEnterByUserId(String userId) {
         return null;
     }
 

@@ -1,8 +1,8 @@
 package com.iljo.userserver.dto;
 
-import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EnterID implements Serializable {
+public class RoomTagID implements Serializable {
 
     private String userId;
     private Long roomId;

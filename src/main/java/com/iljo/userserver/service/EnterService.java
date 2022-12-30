@@ -5,7 +5,7 @@ import com.iljo.userserver.dto.EnterDto;
 public interface EnterService {
     EnterDto enterRoom(EnterDto enterDto);
 
-    EnterDto getEntersByUserId(String userId);
+    EnterDto getEnterByUserId(String userId);
 
     void leaveTheRoom(String userId);
 

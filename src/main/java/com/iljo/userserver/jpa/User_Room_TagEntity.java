@@ -1,6 +1,8 @@
 package com.iljo.userserver.jpa;
 
 import javax.persistence.*;
+
+import com.iljo.userserver.dto.RoomTagID;
 import lombok.Data;
 import java.io.Serializable;
 
@@ -10,6 +12,7 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "user_room_tag")
+@IdClass(RoomTagID.class)
 public class User_Room_TagEntity implements Serializable{
 
     /**
