@@ -5,15 +5,15 @@ const SimpleRoomPicture = () => {
 	<div class="container text-start">
         <p>
             <img 
-                src='images\grayBox.png' 
+                src='/images\grayBox.png' 
                 class="unifySimplePicture"
                 alt="room preview" 
             />
         </p>
-        <img src='images\facebook.png' width={"30px"} alt="facebook" />&nbsp;
-        <img src='images\twitter.png' width={"30px"} alt="twitter" />&nbsp;
-        <img src='images\kakaostory.png' width={"30px"} alt="kakaostory" />&nbsp;
-        <img src='images\instargram.png' width={"30px"} alt="instargram" />
+        <img src='/images\facebook.png' width={"30px"} alt="facebook" />&nbsp;
+        <img src='/images\twitter.png' width={"30px"} alt="twitter" />&nbsp;
+        <img src='/images\kakaostory.png' width={"30px"} alt="kakaostory" />&nbsp;
+        <img src='/images\instargram.png' width={"30px"} alt="instargram" />
     </div>
     );
 };
