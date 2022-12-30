@@ -1,8 +1,10 @@
 import logo from "./logo.svg";
 import "./App.css";
+import { Router, Routes, Route, BrowserRouter } from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+
 import Profile from "./components/Profile";
 import ProfileMini from "./components/ProfileMini";
 import Pagination from "./components/Pagination";
@@ -23,10 +25,15 @@ import SignUp from "./Pages/SignUp";
 import SignUp2 from "./Pages/SignUp2";
 import CreateRoom from "./Pages/CreateRoom";
 import MyPage2 from "./Pages/MyPage2";
-
+import Routers from "./Pages/Router";
 function App() {
   return (
     <div className="App">
+      <NavBar />
+        <Routes>
+          <Route path="/*" element={<Routers />} />
+        </Routes>
+      <Footer />
       {/* <NavigationBar /> */}
       {/* <NavBar /> */}
       {/* <Profile /> */}
@@ -39,8 +46,8 @@ function App() {
       {/* <SignUp2/> */}
       {/* <CreateRoom /> */}
       {/* { <MyPage2 />  } */}
-      {/* 주용 로그인 페이지 끝 */ }
-      
+      {/* 주용 로그인 페이지 끝 */}
+
       {/* <Pagination /> */}
       {/* <Footer /> */}
 
@@ -54,12 +61,6 @@ function App() {
       {/* <SimpleRoomText /> */}
       {/* <SimpleRoomParticipants /> */}
       {/* <MainContents /> */}
-      
-      
-      
-      
-      
-      
     </div>
   );
 }

@@ -13,7 +13,7 @@ const MainContents = () => {
                     />
                     {/* 좋아요 배지 */}
                     <span class="position-absolute top-90 start-100 translate-middle badge rounded-pill text-bg-light">
-                        <img src='images\likeNotPushed.png' style={{width:"15px"}}/>
+                        <img alt="좋아요" src='images\likeNotPushed.png' style={{width:"15px"}}/>
                         {/* 좋아요 개수 */}&nbsp;36
                     </span>
                 </span>
