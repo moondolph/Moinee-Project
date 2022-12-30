@@ -5,7 +5,7 @@ import ProfileMini from '../components/ProfileMini';
 
 const SimpleRoom = () => {
     return (
-            <div class="container border border-3 p-3" >
+            <div class="container border border-3 p-3 bg-info bg-opacity-50">
                 <div class="row g-3">
                     <div class="col-4">
                         <SimpleRoomPicture />
