@@ -1,8 +1,5 @@
 import React from 'react';
 import MainContents from '../components/MainContents';
-import SideBarMain from '../components/SideBarMain';
-import Pagination from '../components/Pagination';
-import SortList from '../components/SortList';
 import TagUsersProfile from '../components/TagUsersProfile';
 
 const MyTag = () => {
