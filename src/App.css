@@ -1,5 +1,36 @@
 .mb-10 {
-  margin-bottom: 100px;
+  margin-bottom: 200px;
+}
+
+.Title-Article{
+  font-size: 200px;
+  text-shadow: #3420e7 5px 5px 5px;
+}
+
+.main-total{
+  margin-top: 300px;
+  margin-bottom: 300px;
+}
+
+.main-div{
+  background-color: rgb(255, 255, 255, 0.9);
+}
+
+.mainArticle{
+  background-color: rgb(255, 255, 255);
+  
+}
+
+.mainArticle-div {
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+}
+.main-text{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+      vertical-align: center;
 }
 
 .App {
