@@ -5,6 +5,7 @@ import SignUp from '../Pages/SignUp';
 import SignUp2 from '../Pages/SignUp2';
 import MyPage01 from '../Pages/MyPage01';
 import Login from '../Pages/Login';
+import MyTag from '../Pages/MyTag';
 
 const UserRouter = () => {
   return (
@@ -16,6 +17,7 @@ const UserRouter = () => {
         <Route path="/MyPage" element={<MyPage />} />
         <Route path="/MyPage01" element={<MyPage01 />}/>
         <Route path="/Login" element={<Login/>}/>
+        <Route path="/MyTag" element={<MyTag />}/>
       </Routes>
     </div>
   );

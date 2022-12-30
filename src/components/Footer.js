@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div>
+    <div className="text-bg-light">
       {/* FooterTitle */}
       <div className="card mb-2 left-text">
         <div className="card-header site-Title-footer">
@@ -42,9 +42,9 @@ const Footer = () => {
           {/* Contact Us */}
           <div className="card-body footerContents">
             <h3 className="card-title">Contact Us</h3>
-            <p />
-            <p />
-            <p className="card-text">
+            <div />
+            <div />
+            <div className="card-text">
               <h5>
                 <b>Email</b> : xxxxxxxx@gmail.com
               </h5>
@@ -75,7 +75,7 @@ const Footer = () => {
                   github
                 </Link>
               </div>
-            </p>
+            </div>
           </div>
         </div>
       </div>

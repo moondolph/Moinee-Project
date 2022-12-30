@@ -2,38 +2,38 @@
 
 const SideBarRoom = () => {
     return (
-        <div class="container text-start">
-            <span class="h5">참여인원</span>
+        <div className="container text-start">
+            <span className="h5">참여인원</span>
             <hr /><br/>
-                <div class="row">
-                    <div class="col-3" style={{width:"50px"}}>
+                <div className="row">
+                    <div className="col-3" style={{width:"50px"}}>
                             <img
                                 src='images\profilePicture.png'
-                                class="unifyProfilePicture"
+                                className="unifyProfilePicture"
                                 alt="host"
                             />
                     </div>
-                    <div class="col fs-5">이한수 (방장)</div>
+                    <div className="col fs-5">이한수 (방장)</div>
                 </div>
-                <div class="row">
-                    <div class="col-3" style={{width:"50px"}}>
+                <div className="row">
+                    <div className="col-3" style={{width:"50px"}}>
                             <img
                                 src='images\profilePicture.png'
-                                class="unifyProfilePicture"
+                                className="unifyProfilePicture"
                                 alt="participant"
                                 />
                     </div>
-                    <div class="col fs-5">이한수</div>
+                    <div className="col fs-5">이한수</div>
                 </div>
-                <div class="row">
-                    <div class="col-3" style={{width:"50px"}}>
+                <div className="row">
+                    <div className="col-3" style={{width:"50px"}}>
                             <img
                                 src='images\profilePicture.png'
-                                class="unifyProfilePicture"
+                                className="unifyProfilePicture"
                                 alt="participant"
                                 />
                     </div>
-                    <div class="col fs-5">이한수</div>
+                    <div className="col fs-5">이한수</div>
                 </div>
 
         </div>

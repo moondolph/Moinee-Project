@@ -2,11 +2,11 @@
 // 왼쪽 위에 위치하는 사진부분입니다.
 const SimpleRoomPicture = () => {
     return (
-	<div class="container text-center">
+	<div className="container text-center">
         <p>
             <img 
                 src='/images\grayBox.png' 
-                class="unifySimplePicture"
+                className="unifySimplePicture"
                 alt="room preview" 
             />
         </p>
