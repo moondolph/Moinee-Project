@@ -1,6 +1,8 @@
 package com.iljo.userserver.jpa;
 
 import javax.persistence.*;
+
+import com.iljo.userserver.dto.FavoriteID;
 import lombok.Data;
 import java.io.Serializable;
 
@@ -10,6 +12,7 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "user_favorite")
+@IdClass(FavoriteID.class)
 public class User_FavoriteEntity implements Serializable {
 
     /**

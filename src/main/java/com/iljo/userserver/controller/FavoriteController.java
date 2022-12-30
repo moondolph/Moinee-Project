@@ -1,5 +1,6 @@
 package com.iljo.userserver.controller;
 
+import com.iljo.userserver.service.FavoriteService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user/{userId}/user_favorite")
 public class FavoriteController {
 
+    private FavoriteService favoriteService;
 
-
-
-
+    public FavoriteController(FavoriteService favoriteService) {
+        this.favoriteService = favoriteService;
+    }
 
 
 
