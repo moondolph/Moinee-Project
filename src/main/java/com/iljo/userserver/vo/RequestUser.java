@@ -10,23 +10,21 @@ import javax.validation.constraints.Size;
 public class RequestUser {
 
     @NotNull(message="UserId cannot be null")
-    @Size(min = 2, message = "UserId not be less than two characters")
-    @Email
+    @Size(min = 6, max=20, message = "UserId not be less than six characters")
     private String userId;
 
     @NotNull(message="Password cannot be null")
-    @Size(min = 2, message = "Password must be equal or grater than 8 characters")
+    @Size(min = 8, message = "Password must be equal or grater than 8 characters")
     private String password;
 
     @NotNull(message="Name cannot be null")
-    @Size(min = 2, message = "Name not be less than two characters")
+    @Size(min = 2, max = 6, message = "Name not be less than two characters")
     private String name;
 
     @NotNull(message="Birthday cannot be null")
     private String birthday;
 
     @NotNull(message="Email cannot be null")
-    @Size(min = 2, message = "Email not be less than two characters")
     @Email
     private String email;
 
@@ -37,16 +35,13 @@ public class RequestUser {
     @Size(min = 2, message = "Address must be equal or grater than 8 characters")
     private String address;
 
-    @NotNull(message="Latitude cannot be null")
-    @Size(min = 2, message = "Latitude must be equal or grater than 8 characters")
+    @NotNull()
     private Double latitude;
 
-    @NotNull(message="Longitude cannot be null")
-    @Size(min = 2, message = "Longitude must be equal or grater than 8 characters")
+    @NotNull()
     private Double longitude;
 
     @NotNull(message="Thumbnail cannot be null")
-    @Size(min = 2, message = "Thumbnail must be equal or grater than 8 characters")
     private String thumbnail;
 
 

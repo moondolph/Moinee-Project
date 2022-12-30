@@ -23,6 +23,9 @@ public class UserController {
         this.userService = userService;
     }
 
+    /**
+     * 회원가입을 위한 controller
+     * */
     @PostMapping("/")
     public ResponseEntity<ResponseUser> createUser(@RequestBody RequestUser user) {
         ModelMapper mapper = new ModelMapper();
@@ -38,6 +41,10 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
     }
 
+
+    /**
+     * userId에 해당하는 회원정보를 불러오기 위한 controller
+     * */
     @GetMapping("/{userId}")
     public ResponseEntity<ResponseUser> getUser(@PathVariable("userId") String userId){
         ModelMapper mapper = new ModelMapper();
@@ -51,6 +58,9 @@ public class UserController {
 
     }
 
+    /**
+     * 회원정보를 삭제하기 위한 controller
+     * */
     @DeleteMapping("/{userId}")
     public ResponseEntity<String> deleteUser(@PathVariable("userId") String userId){
         userService.deleteUserByUserId(userId);
@@ -58,20 +68,26 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("삭제");
     }
 
+    /**
+     * 회원정보를 수정하기 위한 controller
+     * */
     @PutMapping("/{userId}")
     public ResponseEntity<ResponseUser> updateUser(@PathVariable("userId") String userId, @RequestBody RequestUser user){
 
         ModelMapper mapper = new ModelMapper();
 
         UserDto userDto = mapper.map(user, UserDto.class);
-        userService.updateUserByUserId(userId, userDto);
+        // userService.updateUserByUserId(userId, userDto);
 
-        ResponseUser responseUser = mapper.map(userDto, ResponseUser.class);
+        ResponseUser responseUser = mapper.map(userService.updateUserByUserId(userId, userDto), ResponseUser.class);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
     }
 
 
+    /**
+     * 로그인을 위한 controller
+     * */
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody RequestUser user, String userId, String password){
 

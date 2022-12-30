@@ -63,20 +63,33 @@ public class UserServiceImpl implements UserService{
 
     }
 
+    /**
+     * 유저 한 명의 정보를 삭제하기위한 메소드
+     * */
     @Override
     public void deleteUserByUserId(String userId) {
-        // userId
+        // id값에 해당하는 user의 정보를 지움
         userRepository.deleteById(userId);
 
     }
 
+    /**
+     * 유저 한명의 정보를 수정하기 위한 메소드
+     * */
     @Override
     public UserDto updateUserByUserId(String userId, UserDto userDto) {
 
         ModelMapper mapper = new ModelMapper();
 
+        // userId에 해당하는 user를 불러와서 entity에 담는다
         UserEntity userEntity = userRepository.findByUserId(userId);
 
+//        Optional<UserEntity> userEntity2 = userRepository.findById(userEntity.getUserId());
+//        if (userEntity2.isEmpty()){
+//            return null;
+//        }
+
+        // 수정한 정보를 바탕으로 userentity의 각 속성에 넣는다.(email과 userId는 변경 불가)
         userEntity.setAddress(userDto.getAddress());
         userEntity.setName(userDto.getName());
         userEntity.setBirthday(userDto.getBirthday());
@@ -91,6 +104,9 @@ public class UserServiceImpl implements UserService{
         return resultUserDto;
     }
 
+    /**
+     * 로그인을 위한 메소드
+     * */
     @Override
     public String login(String userId, String password) {
 
