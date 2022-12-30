@@ -13,7 +13,7 @@ const SimpleRoomParticipants = () => {
             {/* 방 입장버튼 */}
             <Link to="#" class="btn btn-primary" type="submit">입장하기</Link>&nbsp;
             {/* 좋아요 버튼 */}
-            <img src='images\likeNotPushed.png' style={{width:"30px", marginInline:"10px 5%"}} alt="like" />
+            <img src='/images\likeNotPushed.png' style={{width:"30px", marginInline:"10px 5%"}} alt="like" />
         </p>
     </div>
     );
