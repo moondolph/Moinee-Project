@@ -43,4 +43,17 @@ public class UserEvaluationEntity implements Serializable {
 
     @Column(nullable = false, length = 10)
     private String createAt;
+
+    public void putEvaluationInfo(UserEvaluationEntity userEvaluationEntity) {
+        if (userEvaluationEntity.getEvaluationId() != null)
+            this.evaluationId = userEvaluationEntity.getEvaluationId();
+        if (userEvaluationEntity.getUserId() != null)
+            this.userId = userEvaluationEntity.getUserId();
+        if (userEvaluationEntity.getEvaluator() != null)
+            this.evaluator = userEvaluationEntity.getEvaluator();
+        if (userEvaluationEntity.getGrade() != null)
+            this.grade = userEvaluationEntity.getGrade();
+        if (userEvaluationEntity.getCreateAt() != null)
+            this.createAt = userEvaluationEntity.getCreateAt();
+    }
 }

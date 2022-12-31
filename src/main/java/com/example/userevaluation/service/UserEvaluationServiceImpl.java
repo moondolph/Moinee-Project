@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 @Service
 @Log4j
@@ -73,37 +72,30 @@ public class UserEvaluationServiceImpl implements UserEvaluationService {
     @Override
     @Transactional
     public UserEvaluationDto  updateUserEvaluationByEvaluationId(Long evaluationId,
-//                                                                 Integer grade, String createAt
                                                          UserEvaluationDto userEvaluationDto
     ) {
-        Optional<UserEvaluationEntity> userEvaluation =
-                userEvaluationRepository.findById(evaluationId);
+        ModelMapper mapper = new ModelMapper();
+        UserEvaluationEntity userEvaluationEntity =
+                mapper.map(userEvaluationDto, UserEvaluationEntity.class);
+        log.info(evaluationId.toString());
+
+        UserEvaluationEntity userEvaluation =
+                userEvaluationRepository.findById(evaluationId).get();
+
+        System.out.println(userEvaluation.getGrade());
+
+        if (userEvaluation == null || evaluationId != userEvaluation.getEvaluationId()){
+            return null;
+        }
+
+        userEvaluation.putEvaluationInfo(userEvaluationEntity);
+        UserEvaluationEntity returnEntity = userEvaluationRepository.save(userEvaluation);
 
 
-        System.out.println(userEvaluationDto.getGrade());
-        UserEvaluationEntity userEvaluationEntity = userEvaluation.get();
+        System.out.println(returnEntity.getEvaluationId());
+        System.out.println(returnEntity.getGrade());
 
-
-        userEvaluationEntity.setEvaluationId(userEvaluationDto.getEvaluationId());
-        userEvaluationEntity.setUserId(userEvaluationDto.getUserId());
-        userEvaluationEntity.setEvaluator(userEvaluationDto.getEvaluator());
-        userEvaluationEntity.setGrade(userEvaluationEntity.getGrade());
-        userEvaluationEntity.setCreateAt(userEvaluationDto.getCreateAt());
-
-//        UserEvaluationEntity resultUserEvaluation
-//                = userEvaluationRepository.saveAndFlush(userEvaluationEntity);
-
-        entityManager.flush();
-        entityManager.clear();
-
-        UserEvaluationEntity resultUserEvaluation
-                = userEvaluationRepository.findUserEvaluationEntityByEvaluationId(userEvaluationEntity.getEvaluationId());
-        System.out.println(resultUserEvaluation.getEvaluationId());
-        System.out.println(resultUserEvaluation.getGrade());
-
-      //  userEvaluationRepository.updateUserEvaluation(evaluationId,grade,createAt);
-
-        return new ModelMapper().map(resultUserEvaluation, UserEvaluationDto.class);
+        return new ModelMapper().map(returnEntity, UserEvaluationDto.class);
     }
 
     /**
