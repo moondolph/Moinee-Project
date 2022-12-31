@@ -1,6 +1,7 @@
 package com.iljo.userserver.service;
 
 import com.iljo.userserver.dto.EnterDto;
+import com.iljo.userserver.dto.EnterID;
 import com.iljo.userserver.jpa.EnterEntity;
 import com.iljo.userserver.jpa.EnterRepository;
 import org.modelmapper.ModelMapper;
@@ -12,12 +13,12 @@ public class EnterServiceImpl implements EnterService{
 
     EnterRepository enterRepository;
 
-
     @Autowired
     public EnterServiceImpl(EnterRepository enterRepository) {
         this.enterRepository = enterRepository;
     }
 
+    // 방에 입장할 때 enter 테이블에 데이터를 넣는 메소드
     @Override
     public EnterDto enterRoom(EnterDto enterDto) {
         // 맵퍼를 이용하여 엔티티에 Dto에서 받아온 값을 집어넣는다.
@@ -30,15 +31,16 @@ public class EnterServiceImpl implements EnterService{
         // 이걸 다시 리턴. 왜인지는 모르겠는걸..
         return mapper.map(enterEntity1, EnterDto.class);
     }
-
+    
     @Override
     public EnterDto getEnterByUserId(String userId) {
         return null;
     }
 
+    // 방에서 나올 때 enter 테이블에서 값을 지우는 메소드
     @Override
-    public void leaveTheRoom(String userId) {
-
+    public void leaveTheRoom(EnterID enterID) {
+        enterRepository.deleteById(enterID);
     }
 }
 

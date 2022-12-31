@@ -1,6 +1,7 @@
 package com.iljo.userserver.controller;
 
 import com.iljo.userserver.dto.FollowDto;
+import com.iljo.userserver.dto.FollowID;
 import com.iljo.userserver.service.FollowService;
 import com.iljo.userserver.vo.RequestUserId;
 import com.iljo.userserver.vo.ResponseFollow;
@@ -39,6 +40,21 @@ public class FollowController {
         ResponseFollow responseFollow = mapper.map(followDto1, ResponseFollow.class);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responseFollow);
+    }
+
+    @DeleteMapping("/")
+    public ResponseEntity<String> deleteFollow(
+            @PathVariable("userId") String userId,
+            @RequestBody RequestUserId followUserId) {
+
+        ModelMapper mapper = new ModelMapper();
+
+        FollowID followID = mapper.map(followUserId, FollowID.class);
+        followID.setUserId(userId);
+
+        followService.deleteFollow(followID);
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("deleted follow tag");
     }
 
 

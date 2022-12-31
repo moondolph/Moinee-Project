@@ -2,6 +2,7 @@ package com.iljo.userserver.service;
 
 import com.iljo.userserver.dto.EnterDto;
 import com.iljo.userserver.dto.FollowDto;
+import com.iljo.userserver.dto.FollowID;
 import com.iljo.userserver.jpa.UserRepository;
 import com.iljo.userserver.jpa.User_FollowRepository;
 import com.iljo.userserver.jpa.User_Follow_TagEntity;
@@ -37,9 +38,11 @@ public class FollowServiceImpl implements FollowService{
         return null;
     }
 
+    // 팔로우를 취소 할 때, USER_FOLLOW_TAG 테이블에서 값을 지우는 메소드
     @Override
-    public void deleteFollow(String userId) {
-
+    public void deleteFollow(FollowID followID) {
+        user_followRepository.deleteById(followID);
+        
     }
 }
 
