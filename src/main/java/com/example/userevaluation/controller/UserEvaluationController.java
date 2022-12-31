@@ -67,19 +67,15 @@ public class UserEvaluationController {
 
     @PutMapping("/{evaluationId}")
     public ResponseEntity<ResponseUserEvaluation> updateUserEvaluation(@PathVariable Long evaluationId,
-//                                                       @RequestBody Integer grade,
-//                                                       @RequestBody String createAt
                                                             @RequestBody RequestUserEvaluation req
                                                                        ){
-//ResponseEntity<ResponseUserEvaluation>
+
         UserEvaluationDto returnEvaluationDto =
                 userEvaluationService.updateUserEvaluationByEvaluationId(evaluationId,
-//                        grade, createAt);
-                mapper.map(req,UserEvaluationDto.class));
+                        mapper.map(req,UserEvaluationDto.class));
         ResponseUserEvaluation returnUserEvaluation = mapper.map(returnEvaluationDto, ResponseUserEvaluation.class);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(returnUserEvaluation);
-        //return ResponseEntity.status(HttpStatus.CREATED).body("성공");
     }
 
     @DeleteMapping ("/{evaluationId}")
