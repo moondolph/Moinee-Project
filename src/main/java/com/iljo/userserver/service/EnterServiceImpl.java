@@ -9,7 +9,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,21 +35,13 @@ public class EnterServiceImpl implements EnterService{
         return mapper.map(enterEntity1, EnterDto.class);
     }
 
-    // 입력한 userId 와 일치하는 데이터들을 불러오는 메소드
+    // 입력한 userId가 들어있는 Enter테이블의 데이터들을 불러오는 메소드
     @Override
-    public EnterDto getEnterByUserId(String userId) {
-        // 입력한 userId 에 해당하는 enter 테이블 속 데이터들을 불러오는 sql문 실행
-        EnterEntity enterEntity = enterRepository.findAllByUserId(userId);
+    public List<EnterEntity> getEnterByUserId(String userId) {
 
-        // entity 에 담긴 값을 dto 에 옮겨준다.
-        EnterDto enterDto = new ModelMapper().map(enterEntity, EnterDto.class);
+        List<EnterEntity> enterEntityList = (List<EnterEntity>) enterRepository.findAllByUserId(userId);
 
-        // enter VO를 담는 빈 리스트를 만든다.
-        List<ResponseEnter> enters = new ArrayList<>();
-
-        enterDto.set
-
-        return null;
+        return enterEntityList;
     }
 
     // 방에서 나올 때 enter 테이블에서 값을 지우는 메소드
