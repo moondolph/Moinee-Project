@@ -1,6 +1,7 @@
 package com.iljo.userserver.controller;
 
 import com.iljo.userserver.dto.RoomTagDto;
+import com.iljo.userserver.dto.RoomTagID;
 import com.iljo.userserver.service.RoomTagService;
 import com.iljo.userserver.vo.RequestRoomId;
 import com.iljo.userserver.vo.ResponseEnter;
@@ -11,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user/{userId}/user_room_tag")
@@ -43,6 +41,20 @@ public class RoomTagController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseRoomTag);
     }
 
+    @DeleteMapping("/")
+    public ResponseEntity<String> deleteRoomTag(
+            @PathVariable("userId") String userId,
+            @RequestBody RequestRoomId roomId) {
+
+        ModelMapper mapper = new ModelMapper();
+
+        RoomTagID roomTagID = mapper.map(roomId, RoomTagID.class);
+        roomTagID.setUserId(userId);
+
+        roomTagService.deleteRoomTag(roomTagID);
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("deleted the roomTag");
+    }
 
 }
 

@@ -4,9 +4,13 @@ import com.iljo.userserver.dto.EnterDto;
 import com.iljo.userserver.dto.EnterID;
 import com.iljo.userserver.jpa.EnterEntity;
 import com.iljo.userserver.jpa.EnterRepository;
+import com.iljo.userserver.vo.ResponseEnter;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class EnterServiceImpl implements EnterService{
@@ -31,9 +35,21 @@ public class EnterServiceImpl implements EnterService{
         // 이걸 다시 리턴. 왜인지는 모르겠는걸..
         return mapper.map(enterEntity1, EnterDto.class);
     }
-    
+
+    // 입력한 userId 와 일치하는 데이터들을 불러오는 메소드
     @Override
     public EnterDto getEnterByUserId(String userId) {
+        // 입력한 userId 에 해당하는 enter 테이블 속 데이터들을 불러오는 sql문 실행
+        EnterEntity enterEntity = enterRepository.findAllByUserId(userId);
+
+        // entity 에 담긴 값을 dto 에 옮겨준다.
+        EnterDto enterDto = new ModelMapper().map(enterEntity, EnterDto.class);
+
+        // enter VO를 담는 빈 리스트를 만든다.
+        List<ResponseEnter> enters = new ArrayList<>();
+
+        enterDto.set
+
         return null;
     }
 

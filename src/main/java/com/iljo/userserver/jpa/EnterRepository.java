@@ -5,8 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface EnterRepository extends CrudRepository<EnterEntity, EnterID> {
 
-
-
+    EnterEntity findAllByUserId(String userId);
 }
 
 

@@ -1,6 +1,7 @@
 package com.iljo.userserver.service;
 
 import com.iljo.userserver.dto.RoomTagDto;
+import com.iljo.userserver.dto.RoomTagID;
 import com.iljo.userserver.jpa.UserRepository;
 import com.iljo.userserver.jpa.User_Follow_TagEntity;
 import com.iljo.userserver.jpa.User_Room_TagEntity;
@@ -37,8 +38,8 @@ public class RoomTagServiceImpl implements RoomTagService{
     }
 
     @Override
-    public void deleteRoomTag(String userId) {
-
+    public void deleteRoomTag(RoomTagID roomTagID) {
+        userRoomTagRepository.deleteById(roomTagID);
     }
 }
 
