@@ -10,6 +10,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FollowServiceImpl implements FollowService{
 
@@ -33,9 +35,13 @@ public class FollowServiceImpl implements FollowService{
         return mapper.map(user_follow_tagEntity1, FollowDto.class);
     }
 
+    // 입력한 아이디에 해당하는 followUserId 를 읽는 메소드
     @Override
-    public FollowDto getFollowByUserId(String userId) {
-        return null;
+    public List<User_Follow_TagEntity> getFollowByUserId(String userId) {
+
+        List<User_Follow_TagEntity> follow_tagEntityList = user_followRepository.findAllByUserId(userId);
+
+        return follow_tagEntityList;
     }
 
     // 팔로우를 취소 할 때, USER_FOLLOW_TAG 테이블에서 값을 지우는 메소드

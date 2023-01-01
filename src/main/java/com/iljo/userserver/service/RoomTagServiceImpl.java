@@ -10,6 +10,8 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RoomTagServiceImpl implements RoomTagService{
 
@@ -33,8 +35,11 @@ public class RoomTagServiceImpl implements RoomTagService{
     }
 
     @Override
-    public RoomTagDto getRoomTagByUserId(String userId) {
-        return null;
+    public List<User_Room_TagEntity> getRoomTagByUserId(String userId) {
+
+        List<User_Room_TagEntity> userRoomTagEntityList = userRoomTagRepository.findAllByUserId(userId);
+
+        return userRoomTagEntityList;
     }
 
     @Override

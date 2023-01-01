@@ -1,11 +1,15 @@
 package com.iljo.userserver.service;
 
 import com.iljo.userserver.dto.FavoriteDto;
+import com.iljo.userserver.dto.FavoriteID;
+import com.iljo.userserver.jpa.EnterEntity;
 import com.iljo.userserver.jpa.User_FavoriteEntity;
 import com.iljo.userserver.jpa.UserRepository;
 import com.iljo.userserver.jpa.User_FavoriteRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class FavoriteServiceImpl implements FavoriteService{
@@ -30,13 +34,16 @@ public class FavoriteServiceImpl implements FavoriteService{
     }
 
     @Override
-    public FavoriteDto getFavoriteByUserId(String userId) {
-        return null;
+    public List<User_FavoriteEntity> getFavoriteByUserId(String userId) {
+
+        List<User_FavoriteEntity> userFavoriteEntityList = user_FavoriteRepository.findAllByUserId(userId);
+
+        return userFavoriteEntityList;
     }
 
     @Override
-    public void deleteFavorite(String userId) {
-
+    public void deleteFavorite(FavoriteID favoriteID) {
+        user_FavoriteRepository.deleteById(favoriteID);
     }
 }
 

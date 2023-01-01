@@ -45,13 +45,13 @@ public class EnterController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<ResponseEnter>> getRoomList (
+    public ResponseEntity<List<ResponseEnter>> getEnterList (
             @PathVariable("userId") String userId) {
         List<EnterEntity> enterEntityList = enterService.getEnterByUserId(userId);
 
         List<ResponseEnter> result = new ArrayList<>();
 
-        //지금 result는 UserEntity의 모양인 상태이므로 변환이 필수
+        //지금 result는 Entity의 모양인 상태이므로 변환이 필수
         enterEntityList.forEach(v -> {
             result.add(new ModelMapper().map(v, ResponseEnter.class));
         });

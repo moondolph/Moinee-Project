@@ -39,7 +39,7 @@ public class EnterServiceImpl implements EnterService{
     @Override
     public List<EnterEntity> getEnterByUserId(String userId) {
 
-        List<EnterEntity> enterEntityList = (List<EnterEntity>) enterRepository.findAllByUserId(userId);
+        List<EnterEntity> enterEntityList = enterRepository.findAllByUserId(userId);
 
         return enterEntityList;
     }
