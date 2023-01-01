@@ -1,0 +1,22 @@
+{
+  "name": "comment-app",
+  "version": "1.0.0",
+  "description": "ILJOcommentServer",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SeoulPolarBear/ILJOComment.git"
+  },
+  "author": "SeoulPolarBear",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SeoulPolarBear/ILJOComment/issues"
+  },
+  "homepage": "https://github.com/SeoulPolarBear/ILJOComment#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
