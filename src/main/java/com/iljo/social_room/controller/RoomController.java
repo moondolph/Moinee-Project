@@ -1,10 +1,15 @@
 package com.iljo.social_room.controller;
 
 import com.iljo.social_room.dto.RoomDto;
+import com.iljo.social_room.dto.RoomHashTagDto;
 import com.iljo.social_room.jpa.RoomEntity;
+import com.iljo.social_room.jpa.RoomHashTagEntity;
+import com.iljo.social_room.service.RoomHashTagService;
 import com.iljo.social_room.service.RoomService;
 import com.iljo.social_room.vo.RequestRoom;
+import com.iljo.social_room.vo.RequestRoomHashTag;
 import com.iljo.social_room.vo.ResponseRoom;
+import com.iljo.social_room.vo.ResponseRoomHashTag;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -25,10 +30,14 @@ public class RoomController {
 
 
     private RoomService roomService;
+    private RoomHashTagService roomHashTagService;
+
     @Autowired
-    public RoomController(RoomService roomService) {
+    public RoomController(RoomService roomService, RoomHashTagService roomHashTagService) {
         this.roomService = roomService;
+        this.roomHashTagService = roomHashTagService;
     }
+
 
     /**
      *  Social_Room Create Method
@@ -110,6 +119,55 @@ public class RoomController {
         return (deleteRoom != null) ? ResponseEntity.status(HttpStatus.ACCEPTED).body("삭제성공") :
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
+
+    //해시태그 저장하기
+    @PostMapping("/{roomId}/hashTag")
+    public ResponseEntity<ResponseRoomHashTag> createHashTag(@PathVariable Long roomId, @RequestBody String hashTag) {
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        RoomHashTagDto roomHashTagDto = new RoomHashTagDto(roomId, hashTag);
+        RoomHashTagEntity roomHashTagEntity = roomHashTagService.createHashTag(roomHashTagDto);
+        ResponseRoomHashTag responseRoomHashTag = mapper.map(
+                mapper.map(roomHashTagEntity , RoomHashTagDto.class),
+                ResponseRoomHashTag.class);
+        return (responseRoomHashTag != null) ? ResponseEntity.status(HttpStatus.CREATED).body(responseRoomHashTag) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+
+    // 해시태그 값 읽어오기
+    @GetMapping("/{roomId}/hashTag")
+    public ResponseEntity<List<ResponseRoomHashTag>> getHashTag(@PathVariable Long roomId){
+        Iterable<RoomHashTagEntity> responseRoomHashTags = roomHashTagService.findByHashTag(roomId);
+        List<ResponseRoomHashTag> responseRoomHashTagList = new ArrayList<>();
+
+        responseRoomHashTags.forEach(v -> {
+            responseRoomHashTagList.add(new ModelMapper().map(v, ResponseRoomHashTag.class));
+        });
+
+
+        return (responseRoomHashTagList != null) ? ResponseEntity.status(HttpStatus.OK).body(responseRoomHashTagList) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    // 해시태그 삭제 하기
+    @DeleteMapping("/")
+    public ResponseEntity<List<ResponseRoomHashTag>> deleteHashTag(@RequestBody List<RequestRoomHashTag> requestRoomHashTagList){
+
+        roomHashTagService.deleteHashTag(requestRoomHashTagList);
+        Iterable<RoomHashTagEntity> responseRoomHashTags =
+                roomHashTagService.findByHashTag(requestRoomHashTagList.get(0).getRoomId());
+
+        List<ResponseRoomHashTag> responseRoomHashTagList = new ArrayList<>();
+
+        responseRoomHashTags.forEach(v -> {
+            responseRoomHashTagList.add(new ModelMapper().map(v, ResponseRoomHashTag.class));
+        });
+        return ResponseEntity.status(HttpStatus.OK).body(responseRoomHashTagList);
+    }
+
+
+
 
 }
 
