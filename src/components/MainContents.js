@@ -7,13 +7,13 @@ const MainContents = () => {
             <p>
                 <span className="position-relative">
                     <img
-                        src='images\grayBox.png'
+                        src='\images\grayBox.png'
                         className="unifyContentPicture"
                         alt="room preview"
                     />
                     {/* 좋아요 배지 */}
                     <span className="position-absolute top-90 start-100 translate-middle badge rounded-pill text-bg-light">
-                        <img alt="좋아요" src='images\likeNotPushed.png' style={{width:"15px"}}/>
+                        <img alt="좋아요" src='\images\likeNotPushed.png' style={{width:"15px"}}/>
                         {/* 좋아요 개수 */}&nbsp;36
                     </span>
                 </span>

@@ -7,7 +7,7 @@ const RoomShortForm = () => {
             <p>
                 <span className="position-relative">
                     <img
-                        src='images\grayBox.png'
+                        src='\images\grayBox.png'
                         className="unifyContentPicture"
                         alt="room preview"
                     />

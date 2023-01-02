@@ -9,7 +9,7 @@ import SimpleRoomText from  "./components/SimpleRoomText";
 import MainContents from  "./components/MainContents";
 function App() {
   return (
-    <div className="App">
+    <div className="App py-3">
       <div className="mb-10"><NavBar/></div>
       <div className="mt-5 pt-5">
         <Routes >
