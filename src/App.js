@@ -21,7 +21,7 @@ import MyPage2 from "./components/MyPage2";
 import Routers from "./Routers/Routers";
 function App() {
   return (
-    <div className="App">
+    <div className="App py-3">
       <div className="mb-10"><NavBar/></div>
       <div className="mt-5 pt-5">
         <Routes >

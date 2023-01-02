@@ -8,7 +8,7 @@ const MyTag = () => {
     <div className="d-flex">
       <div className="row mt-4">
         <div className="ms-3 row">
-        <div>
+          <div>
             <h1>Room Tag</h1>
           </div>
           <hr />
