@@ -31,14 +31,14 @@ public class FollowServiceImpl implements FollowService{
         // save 기능을 이용하여 db에 저장한다.
         User_Follow_TagEntity user_follow_tagEntity1 = user_followRepository.save(user_follow_tagEntity);
 
-        // 이걸 다시 리턴. 왜인지는 모르겠는걸..
+        // 저장한 정보를 dto에 담아서 리턴한다.
         return mapper.map(user_follow_tagEntity1, FollowDto.class);
     }
 
     // 입력한 아이디에 해당하는 followUserId 를 읽는 메소드
     @Override
     public List<User_Follow_TagEntity> getFollowByUserId(String userId) {
-
+        // 입력한 아이디에 해당하는 데이터를 모두 받아와서 리스트에 담는다.
         List<User_Follow_TagEntity> follow_tagEntityList = user_followRepository.findAllByUserId(userId);
 
         return follow_tagEntityList;
