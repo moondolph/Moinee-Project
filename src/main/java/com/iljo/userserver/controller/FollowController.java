@@ -63,15 +63,12 @@ public class FollowController {
 
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping("/{user_follow_tag}")
     public ResponseEntity<String> deleteFollow(
             @PathVariable("userId") String userId,
-            @RequestBody RequestUserId followUserId) {
+            @PathVariable("user_follow_tag") String followUserId) {
 
-        ModelMapper mapper = new ModelMapper();
-
-        FollowID followID = mapper.map(followUserId, FollowID.class);
-        followID.setUserId(userId);
+        FollowID followID = new FollowID(userId, followUserId);
 
         followService.deleteFollow(followID);
 

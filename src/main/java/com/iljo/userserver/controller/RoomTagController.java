@@ -61,15 +61,12 @@ public class RoomTagController {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping("/{user_room_tag}")
     public ResponseEntity<String> deleteRoomTag(
             @PathVariable("userId") String userId,
-            @RequestBody RequestRoomId roomId) {
+            @PathVariable("user_room_tag") Long roomId) {
 
-        ModelMapper mapper = new ModelMapper();
-
-        RoomTagID roomTagID = mapper.map(roomId, RoomTagID.class);
-        roomTagID.setUserId(userId);
+         RoomTagID roomTagID = new RoomTagID(userId, roomId);
 
         roomTagService.deleteRoomTag(roomTagID);
 
