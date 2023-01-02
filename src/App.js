@@ -1,18 +1,10 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { Router, Routes, Route, BrowserRouter } from "react-router-dom";
-import NavigationBar from "./components/NavigationBar";
+import {Routes, Route} from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-
-import Profile from "./components/Profile";
-import ProfileMini from "./components/ProfileMini";
-import Pagination from "./components/Pagination";
-import SortList from "./components/SortList";
-
-import SideBarMain from "./components/SideBarMain";
+import Routers from "./Routers/Routers";
+import RoomArticle from "./components/RoomArticle";
 import SideBarRoom from "./components/SideBarRoom";
-<<<<<<< Updated upstream
 import RoomArticle from "./components/RoomArticle";
 import RoomComment from "./components/RoomComment";
 import SimpleRoomParticipants from "./components/SimpleRoomParticipants";
@@ -27,12 +19,6 @@ import SignUp2 from "./Pages/SignUp2";
 import CreateRoom from "./Pages/CreateRoom";
 import MyPage2 from "./components/MyPage2";
 import Routers from "./Routers/Routers";
-=======
-import SimpleRoomText from  "./components/SimpleRoomText";
-import MainContents from  "./components/MainContents";
-import MyPage01 from "./Pages/MyPage01";
-import Profile02 from "./Pages/Profile02";
->>>>>>> Stashed changes
 function App() {
   return (
     <div className="App">
@@ -42,7 +28,7 @@ function App() {
           <Route path="/*" element={<Routers />} />
         </Routes>
         </div>
-        <div className="mt-3"><Footer /></div>
+        <div className="mt-3 width-100"><Footer /></div>
       
       {/* <NavigationBar /> */}
       {/* <NavBar /> */}
@@ -63,13 +49,14 @@ function App() {
 
       {/* HansooComponents*/}
       {/* <SideBarMain /> */}
-      {/* <SideBarRoom /> */}
-      {/* <RoomArticle /> */}
+      {/* <SideBarRoom /> 
+      <RoomArticle /> */}
       {/* <RoomComment /> */}
       {/* <JoinRoomButton /> */}
       {/* <SimpleRoomPicture /> */}
-      {/* <SimpleRoomText /> */}
+       {/* <SimpleRoomText /> */}
       {/* <SimpleRoomParticipants /> */}
+      
       {/* <MainContents /> */}
 
       <MyPage01/>
