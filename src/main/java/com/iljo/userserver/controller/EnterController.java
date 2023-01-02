@@ -28,30 +28,37 @@ public class EnterController {
         this.enterService = enterService;
     }
 
+    // 방에 참가하기를 눌렀을 때, enter 테이블에 데이터를 저장하는 메소드
     @PostMapping("/")
     public ResponseEntity<ResponseEnter> enterRoom(
             @PathVariable("userId") String userId,
             @RequestBody RequestRoomId roomId) {
         ModelMapper mapper = new ModelMapper();
 
+        // dto에 받아온 값을 넣어준다.
         EnterDto enterDto = mapper.map(roomId, EnterDto.class);
         enterDto.setUserID(userId);
 
+        // sql문 실행
         EnterDto enterDto1 = enterService.enterRoom(enterDto);
 
+        // 입력에 성공한 값을 리턴한다.
         ResponseEnter responseEnter = mapper.map(enterDto1, ResponseEnter.class);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responseEnter);
     }
 
+    // 참여중인 방을 전부 불러오는 메소드
     @GetMapping("/")
     public ResponseEntity<List<ResponseEnter>> getEnterList (
             @PathVariable("userId") String userId) {
+        // sql문 실행
         List<EnterEntity> enterEntityList = enterService.getEnterByUserId(userId);
 
+        // 빈 List 생성
         List<ResponseEnter> result = new ArrayList<>();
 
-        //지금 result는 Entity의 모양인 상태이므로 변환이 필수
+        // List에 받아온 데이터를 맵핑해서 넣어준다.
         enterEntityList.forEach(v -> {
             result.add(new ModelMapper().map(v, ResponseEnter.class));
         });
@@ -59,16 +66,18 @@ public class EnterController {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
-
+    // 참여했던 방에서 나갈 때, 데이터를 삭제하는 메소드
     @DeleteMapping("/{room_id}")
     public ResponseEntity<String> leaveTheRoom(
             @PathVariable("userId") String userId,
             @PathVariable("room_id") Long roomId) {
-
+        // 받아온 값을 dto에 넣어준다.
         EnterID enterID = new EnterID(userId, roomId);
 
+        // sql문 실행
         enterService.leaveTheRoom(enterID);
 
+        // 확인 메시지 리턴
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("leaved the room");
     }
 

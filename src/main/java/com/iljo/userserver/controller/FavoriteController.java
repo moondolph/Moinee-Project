@@ -43,20 +43,24 @@ public class FavoriteController {
             favoriteIDList.add(new FavoriteID(userId, v));
         });
         
-        // sql 실행하라고 보내줌
+        // sql 실행하기
         favoriteService.addFavorite(favoriteIDList);
-            
+
+        // 성공 메시지 출력
         return ResponseEntity.status(HttpStatus.OK).body("added favorites");
     }
 
+    // 해당하는 ID에 해당하는 Favorite을 모두 불러오는 메소드.
     @GetMapping("/")
     public ResponseEntity<List<ResponseFavorite>> getFavoriteList (
             @PathVariable("userId") String userId) {
+        // sql 문을 실행해서 저장된 값을 읽어온다.
         List<User_FavoriteEntity> userFavoriteEntityList = favoriteService.getFavoriteByUserId(userId);
 
+        // 빈 VO리스트를 만든다.
         List<ResponseFavorite> result = new ArrayList<>();
 
-        //지금 result는 Entity의 모양인 상태이므로 변환이 필수
+        //지금 result는 Entity의 모양인 상태이므로 VO로 변환한다.
         userFavoriteEntityList.forEach(v -> {
             result.add(new ModelMapper().map(v, ResponseFavorite.class));
         });
@@ -64,13 +68,16 @@ public class FavoriteController {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
+    // 입력받은 favorite을 삭제하는 메소드
     @DeleteMapping("/{user_favorite}")
     public ResponseEntity<String> deleteFavorite(
             @PathVariable("userId") String userId,
             @PathVariable("user_favorite") String favorite) {
 
+        // URI를 통해 받아온 userID 와 favorite을 ID 객체에 담아준다.
         FavoriteID favoriteID = new FavoriteID(userId, favorite);
 
+        // sql문 실행
         favoriteService.deleteFavorite(favoriteID);
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("deleted the favorite");

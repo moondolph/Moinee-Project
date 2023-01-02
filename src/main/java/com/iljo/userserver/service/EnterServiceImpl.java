@@ -31,14 +31,14 @@ public class EnterServiceImpl implements EnterService{
         // save 기능을 이용하여 db에 저장한다.
         EnterEntity enterEntity1 = enterRepository.save(enterEntity);
 
-        // 이걸 다시 리턴. 왜인지는 모르겠는걸..
+        // 저장한 정보를 dto에 담아서 리턴한다.
         return mapper.map(enterEntity1, EnterDto.class);
     }
 
     // 입력한 userId가 들어있는 Enter테이블의 데이터들을 불러오는 메소드
     @Override
     public List<EnterEntity> getEnterByUserId(String userId) {
-
+        // 입력한 아이디에 해당하는 데이터를 모두 받아와서 리스트에 담는다.
         List<EnterEntity> enterEntityList = enterRepository.findAllByUserId(userId);
 
         return enterEntityList;

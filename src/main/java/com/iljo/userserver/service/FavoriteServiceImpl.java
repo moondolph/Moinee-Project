@@ -42,12 +42,12 @@ public class FavoriteServiceImpl implements FavoriteService{
 
     @Override
     public List<User_FavoriteEntity> getFavoriteByUserId(String userId) {
-
+        // 입력한 아이디에 해당하는 데이터를 모두 받아와서 리스트에 담는다.
         List<User_FavoriteEntity> userFavoriteEntityList = user_FavoriteRepository.findAllByUserId(userId);
 
         return userFavoriteEntityList;
     }
-
+    // 입력한 favorite에 해당하는 데이터 하나를 지운다.
     @Override
     public void deleteFavorite(FavoriteID favoriteID) {
         user_FavoriteRepository.deleteById(favoriteID);
