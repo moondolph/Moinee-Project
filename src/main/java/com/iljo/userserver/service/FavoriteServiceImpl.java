@@ -7,8 +7,11 @@ import com.iljo.userserver.jpa.User_FavoriteEntity;
 import com.iljo.userserver.jpa.UserRepository;
 import com.iljo.userserver.jpa.User_FavoriteRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,17 +23,21 @@ public class FavoriteServiceImpl implements FavoriteService{
         this.user_FavoriteRepository = user_FavoriteRepository;
     }
 
+
+
     @Override
-    public FavoriteDto addFavorite(FavoriteDto favoriteDto) {
-        // 맵퍼를 이용하여 엔티티에 Dto에서 받아온 값을 집어넣는다.
-        ModelMapper mapper = new ModelMapper();
-        User_FavoriteEntity user_FavoriteEntity = mapper.map(favoriteDto, User_FavoriteEntity.class);
+    public void addFavorite(List<FavoriteID> favoriteIDList) {
+        // dto로 받아온 ID 리스트를 엔티티에 담아주기 위해 빈 엔티티 리스트를 만든다.
+        List<User_FavoriteEntity> favoriteEntityList = new ArrayList<>();
 
-        // save 기능을 이용하여 db에 저장한다.
-        User_FavoriteEntity user_FavoriteEntity1 = user_FavoriteRepository.save(user_FavoriteEntity);
+        // 받아온 dto의 값들을 맵핑해서 entity에 담아준다.
+        favoriteIDList.forEach(v -> {
+            favoriteEntityList.add(new ModelMapper().map(v, User_FavoriteEntity.class));
+        });
 
-        // 이걸 다시 리턴. 왜인지는 모르겠는걸..
-        return mapper.map(user_FavoriteEntity1, FavoriteDto.class);
+        // saveAll 메소드를 이용해 DB에 저장하기
+        user_FavoriteRepository.saveAll(favoriteEntityList);
+
     }
 
     @Override

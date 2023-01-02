@@ -60,15 +60,12 @@ public class EnterController {
     }
 
 
-    @DeleteMapping("/")
+    @DeleteMapping("/{room_id}")
     public ResponseEntity<String> leaveTheRoom(
             @PathVariable("userId") String userId,
-            @RequestBody RequestRoomId roomId) {
+            @PathVariable("room_id") Long roomId) {
 
-        ModelMapper mapper = new ModelMapper();
-
-        EnterID enterID = mapper.map(roomId, EnterID.class);
-        enterID.setUserId(userId);
+        EnterID enterID = new EnterID(userId, roomId);
 
         enterService.leaveTheRoom(enterID);
 

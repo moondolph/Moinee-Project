@@ -7,7 +7,7 @@ import com.iljo.userserver.jpa.User_FavoriteEntity;
 import java.util.List;
 
 public interface FavoriteService {
-    FavoriteDto addFavorite(FavoriteDto favoriteDto);
+    void addFavorite(List<FavoriteID> favoriteIDList);
 
     List<User_FavoriteEntity> getFavoriteByUserId(String userId);
 
