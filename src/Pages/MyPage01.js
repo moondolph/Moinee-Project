@@ -1,4 +1,5 @@
 import RoomShortForm from "../components/RoomShortForm";
+import MainContents from "../components/MainContents";
 
 export default function MyPage01() {
     return (
@@ -49,12 +50,25 @@ export default function MyPage01() {
                 <div className="Page Room Container">
                     <RoomShortForm />
                 </div>
-                <h6> 내가 만든 방이 없습니다. </h6>
+                {/* <h6> 내가 만든 방이 없습니다. </h6> */}
                 <hr></hr>
-                <div className="Page Room Container">
+                {/* <div className="Page Room Container">
                     <RoomShortForm />
+                </div> */}
+                <div className="m-auto row w-75">
+                        <hr />
+                        {Array(8)
+                            .fill(1)
+                            .map((a, i) => a + i)
+                            .map((a2, i) => {
+                            return (
+                                <div key={i} className="ms-2 mb-5 width-22">
+                                    <MainContents />
+                                </div>
+                            );
+                            })}
                 </div>
-                <h6> 내가 가입한 방이 없습니다. </h6>
+                {/* <h6> 내가 가입한 방이 없습니다. </h6> */}
             </div>
 
         </div>
