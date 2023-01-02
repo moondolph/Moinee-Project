@@ -10,7 +10,6 @@ import MyTag from '../Pages/MyTag';
 const UserRouter = () => {
   return (
     <div>
-      
       <Routes>
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/SignUp2" element={<SignUp2 />} />
