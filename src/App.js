@@ -12,6 +12,7 @@ import SortList from "./components/SortList";
 
 import SideBarMain from "./components/SideBarMain";
 import SideBarRoom from "./components/SideBarRoom";
+<<<<<<< Updated upstream
 import RoomArticle from "./components/RoomArticle";
 import RoomComment from "./components/RoomComment";
 import SimpleRoomParticipants from "./components/SimpleRoomParticipants";
@@ -26,6 +27,12 @@ import SignUp2 from "./Pages/SignUp2";
 import CreateRoom from "./Pages/CreateRoom";
 import MyPage2 from "./components/MyPage2";
 import Routers from "./Routers/Routers";
+=======
+import SimpleRoomText from  "./components/SimpleRoomText";
+import MainContents from  "./components/MainContents";
+import MyPage01 from "./Pages/MyPage01";
+import Profile02 from "./Pages/Profile02";
+>>>>>>> Stashed changes
 function App() {
   return (
     <div className="App">
@@ -64,6 +71,9 @@ function App() {
       {/* <SimpleRoomText /> */}
       {/* <SimpleRoomParticipants /> */}
       {/* <MainContents /> */}
+
+      <MyPage01/>
+      {/* <Profile02/> */}
     </div>
   );
 }
