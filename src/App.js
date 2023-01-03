@@ -3,7 +3,6 @@ import {Routes, Route} from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Routers from "./Routers/Routers";
-import RoomArticle from "./components/RoomArticle";
 import SideBarRoom from "./components/SideBarRoom";
 import RoomArticle from "./components/RoomArticle";
 import RoomComment from "./components/RoomComment";
@@ -16,9 +15,9 @@ import JoinRoomButton from "./components/JoinRoomButton";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import SignUp2 from "./Pages/SignUp2";
+import MyPage01 from "./Pages/MyPage01";
 import CreateRoom from "./Pages/CreateRoom";
 import MyPage2 from "./components/MyPage2";
-import Routers from "./Routers/Routers";
 function App() {
   return (
     <div className="App py-3">
