@@ -9,12 +9,12 @@ const Rooms = () => {
   return (
     <div className="d-flex">
       <div className="me-4 bg-secondary ">
-        <div className="mt-5">
+        <div className="mt-5 pt-5">
           <SideBarMain />
         </div>
       </div>
       <div className="row mt-4">
-        <div className='mt-3 mb-3 d-flex justify-content-end'>
+        <div className='pt-3 mt-3 mb-3 d-flex justify-content-end'>
           <SortList />
         </div>
         <div className="ms-3 row">

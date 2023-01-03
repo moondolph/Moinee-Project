@@ -1,8 +1,10 @@
 // 메인 화면에 뜨는 방들을 구현한 페이지 입니다.
 
+import SimpleRoom from "../Pages/SimpleRoom";
+
 const MainContents = () => {
     return (
-        <div className="bg-light container border border-1 mainContentMaxWidth">
+        <div className="bg-light container border border-1 mainContentMaxWidth pop-up-parent">
             <br/>
             <p>
                 <span className="position-relative">
@@ -21,6 +23,9 @@ const MainContents = () => {
                 <h6 className="text-start">방제목제목제목</h6>
             <div className="justifySpaceBetween">
                 <span className="text-primary">무료</span><span>9.28(수) ~ 12.31(토)</span>
+            </div>
+            <div class="pop-up-child">
+                <SimpleRoom/>
             </div>
         </div>
     );
