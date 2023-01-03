@@ -29,5 +29,7 @@ public class ResponseUser {
 
     private String thumbnail;
 
+    private List<ResponseRoomId> rooms;
+
 
 }

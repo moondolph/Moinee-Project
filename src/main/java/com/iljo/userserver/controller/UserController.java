@@ -1,8 +1,11 @@
 package com.iljo.userserver.controller;
 
 import com.iljo.userserver.dto.UserDto;
+import com.iljo.userserver.jpa.EnterEntity;
+import com.iljo.userserver.service.EnterService;
 import com.iljo.userserver.service.UserService;
 import com.iljo.userserver.vo.RequestUser;
+import com.iljo.userserver.vo.ResponseRoomId;
 import com.iljo.userserver.vo.ResponseUser;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -12,16 +15,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
     private UserService userService;
 
-    @Autowired
-    public UserController(UserService userService) {
+    private EnterService enterService;
+
+    public UserController(UserService userService, EnterService enterService) {
         this.userService = userService;
+        this.enterService = enterService;
     }
+
+    @Autowired
+
 
     /**
      * 회원가입을 위한 controller
@@ -49,9 +60,19 @@ public class UserController {
     public ResponseEntity<ResponseUser> getUser(@PathVariable("userId") String userId){
         ModelMapper mapper = new ModelMapper();
 
+        List<EnterEntity> enterEntityList = enterService.getEnterByUserId(userId);
+
+        List<ResponseRoomId> result = new ArrayList<>();
+
+        // List에 받아온 데이터를 맵핑해서 넣어준다.
+        enterEntityList.forEach(v -> {
+            result.add(new ModelMapper().map(v, ResponseRoomId.class));
+        });
+
         UserDto userDto = userService.getUserByUserId(userId);
 
         ResponseUser returnValue = mapper.map(userDto ,ResponseUser.class);
+        returnValue.setRooms(result);
 
 
         return ResponseEntity.status(HttpStatus.OK).body(returnValue);
