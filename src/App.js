@@ -4,20 +4,19 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Routers from "./Routers/Routers";
 import SideBarRoom from "./components/SideBarRoom";
-import RoomArticle from "./components/RoomArticle";
 import RoomComment from "./components/RoomComment";
 import SimpleRoomParticipants from "./components/SimpleRoomParticipants";
 import SimpleRoomPicture from "./components/SimpleRoomPicture";
 import SimpleRoomText from "./components/SimpleRoomText";
 import MainContents from "./components/MainContents";
-import JoinRoomButton from "./components/JoinRoomButton";
-
+import RoomJoinButton from "./components/RoomJoinButton";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import SignUp2 from "./Pages/SignUp2";
 import MyPage01 from "./Pages/MyPage01";
 import CreateRoom from "./Pages/CreateRoom";
 import MyPage2 from "./components/MyPage2";
+import Profile02 from "./Pages/Profile02";
 function App() {
   return (
     <div className="App py-3">
@@ -58,8 +57,8 @@ function App() {
       
       {/* <MainContents /> */}
 
-      <MyPage01/>
-      {/* <Profile02/> */}
+      {/* <MyPage01/> */}
+      <Profile02/>
     </div>
   );
 }
