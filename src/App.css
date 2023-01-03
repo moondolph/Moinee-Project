@@ -320,3 +320,7 @@
     height: 220px;
     object-fit: cover;
 }
+
+.floatLeft {
+  float: left;
+}

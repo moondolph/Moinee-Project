@@ -3,6 +3,7 @@ import RoomArticle from "../components/RoomArticle";
 import RoomComment from "../components/RoomComment";
 import RoomJoinButton from "../components/RoomJoinButton"; 
 
+// 주소 : /Rooms/RoomDetail
 export default function RoomDetail() {
     return(
         <table>
