@@ -1,6 +1,6 @@
 // 방 자세히보기 페이지에서 참여하기 버튼을 누를 수 있는 컴포넌트 입니다.
 
-const JoinRoomButton = () => {
+const RoomJoinButton = () => {
     return (
 	<div className="container bg-body pt-5 pb-5">
         <hr/>
@@ -20,4 +20,4 @@ const JoinRoomButton = () => {
     );
 };
 
-export default JoinRoomButton;
+export default RoomJoinButton;
