@@ -10,7 +10,7 @@ export default function Profile02() {
                     <div class="text-center">0점</div>
                 </div>
                 <hr></hr>
-                <div className="d-flex flex-column">
+                <div className="flex-column ">
                     <div className="row mt-4">
                         <div className="ms-3 row">
                             <div>
