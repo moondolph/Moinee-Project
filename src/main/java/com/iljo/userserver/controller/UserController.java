@@ -24,18 +24,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 @Slf4j
-@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
+
 public class UserController {
 
-    private UserService userService;
+    UserService userService;
 
-    private EnterService enterService;
-
+    EnterService enterService;
     @Autowired
     public UserController(UserService userService, EnterService enterService) {
         this.userService = userService;
         this.enterService = enterService;
     }
+
+
+
 
 
 
