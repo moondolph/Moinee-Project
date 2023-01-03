@@ -1,16 +1,10 @@
 package com.iljo.userserver.controller;
 
-import com.iljo.userserver.dto.EnterID;
 import com.iljo.userserver.dto.FavoriteID;
-import com.iljo.userserver.jpa.EnterEntity;
 import com.iljo.userserver.jpa.User_FavoriteEntity;
 import com.iljo.userserver.service.FavoriteService;
-import com.iljo.userserver.vo.RequestRoomId;
-import com.iljo.userserver.vo.ResponseEnter;
 import com.iljo.userserver.vo.ResponseFavorite;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

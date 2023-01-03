@@ -2,12 +2,9 @@ package com.iljo.userserver.service;
 
 import com.iljo.userserver.dto.RoomTagDto;
 import com.iljo.userserver.dto.RoomTagID;
-import com.iljo.userserver.jpa.UserRepository;
-import com.iljo.userserver.jpa.User_Follow_TagEntity;
 import com.iljo.userserver.jpa.User_Room_TagEntity;
 import com.iljo.userserver.jpa.User_Room_TagRepository;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

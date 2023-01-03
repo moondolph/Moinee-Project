@@ -1,9 +1,7 @@
 package com.iljo.userserver.service;
 
-import com.iljo.userserver.dto.EnterDto;
 import com.iljo.userserver.dto.FollowDto;
 import com.iljo.userserver.dto.FollowID;
-import com.iljo.userserver.jpa.UserRepository;
 import com.iljo.userserver.jpa.User_FollowRepository;
 import com.iljo.userserver.jpa.User_Follow_TagEntity;
 import org.modelmapper.ModelMapper;

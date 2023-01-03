@@ -1,7 +1,6 @@
 package com.iljo.userserver.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
