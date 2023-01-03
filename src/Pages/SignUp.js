@@ -1,13 +1,13 @@
 export default function Signup() {
   return (
-    <div className="page container">
+    <div className="page container border border-light border-3">
       <div className="titleWrap">
         ※회원가입※
       </div>
 
       <div className="contentWrap">
 
-        <div className="inputTitle">이름</div>
+        <div className="inputTitle">✍️이름</div>
         <div className="inputWrap">
           <input
             className="input"
@@ -17,7 +17,7 @@ export default function Signup() {
 
         </div>
 
-        <div  className="inputTitle">아이디</div>
+        <div  className="inputTitle">🆔아이디</div>
         <div className="inputWrap">
           <input
             className="input"
@@ -27,7 +27,7 @@ export default function Signup() {
         </div>
 
         <div  className="inputTitle">
-          비밀번호
+          🅿️비밀번호
         </div>
 
         <div className="inputWrap">
@@ -39,7 +39,7 @@ export default function Signup() {
         </div>
 
         <div  className="inputTitle">
-          비밀번호확인
+          ✅비밀번호확인
         </div>
 
 
@@ -53,7 +53,7 @@ export default function Signup() {
         </div>
 
         <div  className="inputTitle">
-          이메일
+          📧이메일
         </div>
 
         <div className="inputWrap">
@@ -66,7 +66,7 @@ export default function Signup() {
 
         <div>
           <button className="bottomButton">
-            다음
+            ⏭️다음
           </button>
         </div>
 

@@ -3,6 +3,7 @@
 const JoinRoomButton = () => {
     return (
 	<div className="container bg-body pt-5 pb-5">
+        <hr/>
         <div className="justifySpaceAround" style={{minWidth:"520px"}}>
             <div>
                 <div>2022. 12. 16 토요일</div>
