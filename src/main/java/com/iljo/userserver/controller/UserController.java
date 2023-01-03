@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 @Slf4j
+@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class UserController {
 
     private UserService userService;
@@ -33,6 +36,9 @@ public class UserController {
         this.userService = userService;
         this.enterService = enterService;
     }
+
+
+
 
 
 
