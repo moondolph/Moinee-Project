@@ -2,14 +2,11 @@ package com.iljo.userserver.controller;
 
 import com.iljo.userserver.dto.RoomTagDto;
 import com.iljo.userserver.dto.RoomTagID;
-import com.iljo.userserver.jpa.EnterEntity;
 import com.iljo.userserver.jpa.User_Room_TagEntity;
 import com.iljo.userserver.service.RoomTagService;
 import com.iljo.userserver.vo.RequestRoomId;
-import com.iljo.userserver.vo.ResponseEnter;
 import com.iljo.userserver.vo.ResponseRoomTag;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -26,12 +26,12 @@ public class UserController {
 
     private EnterService enterService;
 
+    @Autowired
     public UserController(UserService userService, EnterService enterService) {
         this.userService = userService;
         this.enterService = enterService;
     }
 
-    @Autowired
 
 
     /**

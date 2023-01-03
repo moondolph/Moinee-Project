@@ -7,7 +7,6 @@ import com.iljo.userserver.service.EnterService;
 import com.iljo.userserver.vo.RequestRoomId;
 import com.iljo.userserver.vo.ResponseEnter;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

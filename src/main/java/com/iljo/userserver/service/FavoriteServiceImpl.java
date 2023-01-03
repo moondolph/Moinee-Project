@@ -1,14 +1,9 @@
 package com.iljo.userserver.service;
 
-import com.iljo.userserver.dto.FavoriteDto;
 import com.iljo.userserver.dto.FavoriteID;
-import com.iljo.userserver.jpa.EnterEntity;
 import com.iljo.userserver.jpa.User_FavoriteEntity;
-import com.iljo.userserver.jpa.UserRepository;
 import com.iljo.userserver.jpa.User_FavoriteRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
