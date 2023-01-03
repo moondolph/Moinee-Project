@@ -11,7 +11,7 @@ import java.util.List;
 public class ResponseUser {
     private String userId;
 
-    private String password;
+    private String encryptedPwd;
 
     private String name;
 

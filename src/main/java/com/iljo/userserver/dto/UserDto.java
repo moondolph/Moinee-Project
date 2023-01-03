@@ -7,7 +7,7 @@ public class UserDto {
 
     private String userId;
 
-    private String password;
+    private String encryptedPwd;
 
     private String name;
 

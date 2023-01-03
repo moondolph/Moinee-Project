@@ -5,6 +5,8 @@ import com.iljo.userserver.jpa.UserEntity;
 import com.iljo.userserver.jpa.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,11 +15,13 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService{
 
     UserRepository userRepository;
+    BCryptPasswordEncoder PasswordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        PasswordEncoder = passwordEncoder;
     }
-
 
     /**
      * 회원가입을 위한 method
@@ -34,9 +38,15 @@ public class UserServiceImpl implements UserService{
         // entity를 Dto와 mapping
         UserEntity userEntity = mapper.map(userDto, UserEntity.class);
         Optional<UserEntity> userEntity2 = userRepository.findById(userEntity.getUserId());
+
+        // 아이디값이 존재하면 null 반환
         if (userEntity2.isPresent()){
             return null;
         }
+
+        // 암호화
+        userEntity.setEncryptedPwd(PasswordEncoder.encode(userDto.getEncryptedPwd()));
+
         // 인터페이스 save기능을 이용해 db에 저장
         UserEntity userEntity1 = userRepository.save(userEntity);
 
@@ -93,7 +103,8 @@ public class UserServiceImpl implements UserService{
         userEntity.setAddress(userDto.getAddress());
         userEntity.setName(userDto.getName());
         userEntity.setBirthday(userDto.getBirthday());
-        userEntity.setPassword(userDto.getPassword());
+        // 암호화
+        userEntity.setEncryptedPwd(PasswordEncoder.encode(userDto.getEncryptedPwd()));
         userEntity.setLatitude(userDto.getLatitude());
         userEntity.setLongitude(userDto.getLongitude());
         userEntity.setThumbnail(userDto.getThumbnail());
@@ -112,7 +123,7 @@ public class UserServiceImpl implements UserService{
 
 //        ModelMapper mapper = new ModelMapper();
 
-        UserEntity userEntity = userRepository.findByUserIdAndPassword(userId, password);
+        UserEntity userEntity = userRepository.findByUserIdAndEncryptedPwd(userId, password);
 
         String result = userEntity.getUserId();
 

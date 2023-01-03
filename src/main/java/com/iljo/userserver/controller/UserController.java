@@ -7,6 +7,7 @@ import com.iljo.userserver.service.UserService;
 import com.iljo.userserver.vo.RequestUser;
 import com.iljo.userserver.vo.ResponseRoomId;
 import com.iljo.userserver.vo.ResponseUser;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +19,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/user")
+@Slf4j
 public class UserController {
 
     private UserService userService;
 
     private EnterService enterService;
 
+    @Autowired
     public UserController(UserService userService, EnterService enterService) {
         this.userService = userService;
         this.enterService = enterService;
     }
 
-    @Autowired
+
 
 
     /**
@@ -44,7 +47,7 @@ public class UserController {
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
         UserDto userDto = mapper.map(user, UserDto.class);
-
+        log.info(userDto.toString());
         UserDto userDto1 = userService.createUser(userDto);
 
         ResponseUser responseUser = mapper.map(userDto1, ResponseUser.class);
@@ -113,7 +116,7 @@ public class UserController {
     public ResponseEntity<String> login(@RequestBody RequestUser user, String userId, String password){
 
         userId = user.getUserId();
-        password = user.getPassword();
+        password = user.getEncryptedPwd();
 
         String result = userService.login(userId, password);
 
