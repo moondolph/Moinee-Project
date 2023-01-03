@@ -14,7 +14,7 @@ import java.io.Serializable;
 
 public class RoomHashTagId implements Serializable {
 
-    private String roomId;
+    private Long roomId;
     private String hashTag;
 
 }

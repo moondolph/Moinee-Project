@@ -1,6 +1,7 @@
 package com.iljo.social_room.service;
 
 import com.iljo.social_room.dto.RoomHashTagDto;
+import com.iljo.social_room.dto.RoomHashTagId;
 import com.iljo.social_room.jpa.RoomHashTagEntity;
 import com.iljo.social_room.jpa.RoomHashTagRepository;
 import com.iljo.social_room.vo.RequestRoomHashTag;
@@ -23,16 +24,19 @@ public class RoomHashTagServiceImpl implements RoomHashTagService{
     }
 
     @Override
-    public RoomHashTagEntity createHashTag(RoomHashTagDto roomHashTagDto) {
-        ModelMapper mapper = new ModelMapper();
-        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-        RoomHashTagEntity roomHashTagEntity = mapper.map(roomHashTagDto, RoomHashTagEntity.class);
+    public Iterable<RoomHashTagEntity> createHashTag(List<RequestRoomHashTag> requestRoomHashTagList) {
 
-        return roomHashTagRepository.save(roomHashTagEntity);
+        List<RoomHashTagEntity> roomHashTagEntityList = new ArrayList<>();
+        requestRoomHashTagList.forEach((rRT) -> {
+            roomHashTagEntityList.add( new ModelMapper().map(rRT, RoomHashTagEntity.class));
+        });
+
+
+        return roomHashTagRepository.saveAll(roomHashTagEntityList);
     }
 
     @Override
-    public Iterable<RoomHashTagEntity> findByHashTag(Long roomId)
+    public Iterable<RoomHashTagEntity> findByRoomId(Long roomId)
     {
         return roomHashTagRepository.findRoomHashTagEntitiesByRoomId(roomId);
     }

@@ -8,5 +8,4 @@ public class RequestRoomHashTag {
     private Long roomId;
     private String hashTag;
 
-
 }
