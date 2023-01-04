@@ -5,22 +5,26 @@ import ProfileMini from '../components/ProfileMini';
 
 const SimpleRoom = () => {
     return (
-            <div className="container border border-3 p-3 bg-info bg-opacity-50">
-                <div className="row g-3">
-                    <div className="col-4">
+        <div className="container bg-white simpleRoomSize">
+            <table className="">
+                <tr className="">
+                    <td className="pt-5">
                         <SimpleRoomPicture />
-                    </div>
-                    <div className="col-8">
+                    </td>
+                    <td className="pe-5">
                         <SimpleRoomText />
-                    </div>
-                    <div className="col-4">
-                        <ProfileMini/>
-                    </div>
-                    <div className="col-8">
+                    </td>
+                </tr>
+                <tr className="">
+                    <td className="">
+                        <ProfileMini />
+                    </td>
+                    <td className="pe-5">
                         <SimpleRoomParticipants />
-                    </div>
-                </div>
-            </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
     );
 };
 export default SimpleRoom;

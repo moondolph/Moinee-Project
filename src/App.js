@@ -1,5 +1,5 @@
 import "./App.css";
-import {Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Routers from "./Routers/Routers";
@@ -17,17 +17,19 @@ import MyPage01 from "./Pages/MyPage01";
 import CreateRoom from "./Pages/CreateRoom";
 import MyPage2 from "./components/MyPage2";
 import Profile02 from "./Pages/Profile02";
+import axios from "axios";
+import SimpleRoom from "./Pages/SimpleRoom";
 function App() {
   return (
     <div className="App py-3">
-      <div className="mb-10"><NavBar/></div>
-      <div className="mt-5 pt-5">
+      <div className="mb-10"><NavBar /></div>
+      <div className="pt-5">
         <Routes >
           <Route path="/*" element={<Routers />} />
         </Routes>
-        </div>
-        <div className="mt-3 width-100"><Footer /></div>
-      
+      </div>
+      <div className="mt-3 width-100"><Footer /></div>
+      <SimpleRoom/>
       {/* <NavigationBar /> */}
       {/* <NavBar /> */}
       {/* <Profile /> */}
@@ -52,13 +54,13 @@ function App() {
       {/* <RoomComment /> */}
       {/* <JoinRoomButton /> */}
       {/* <SimpleRoomPicture /> */}
-       {/* <SimpleRoomText /> */}
+      {/* <SimpleRoomText /> */}``
       {/* <SimpleRoomParticipants /> */}
-      
+
       {/* <MainContents /> */}
 
       {/* <MyPage01/> */}
-      <Profile02/>
+      <Profile02 />
     </div>
   );
 }
