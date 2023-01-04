@@ -1,25 +1,85 @@
-import logo from './logo.svg';
 import './App.css';
-
+import axios from 'axios';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+  //------------------------------User---------------------------------------------
+  const User = require("./Data/User");
+  const testUser = () => {
+    console.log(User)
+    };
+
+  //---------------------------------------------------------------------------------------
+
+  //------------------------------Room---------------------------------------------
+  const Room = require("./Data/User");
+  const testRoom = () => {
+    console.log(Room)
+    };
+
+  //---------------------------------------------------------------------------------------
+
+  //------------------------------User db insert--------------------------------------
+  const UserInsert = () => {
+    
+    User.forEach((arr) => {
+      setTimeout(() =>{
+      axios
+        .post("http://127.0.0.1:8808/user/", arr, {
+          headers: {
+            withCredentials: true,
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+        })
+      .catch((error) => console.log(error.message))
+      }, 10)
+    });
+  }
+    //--------------------------------------------------------------------------------------------
+
+    //------------------------------Room db insert-----------------------------------------------
+    const RoomInsert = () => {
+    
+    User.forEach((arr) => {
+      //  axios.defaults.withCredentials = true;
+      //console.log(arr);
+      // setTimeout(() =>{
+      axios
+        .post("http://127.0.0.1:8808/user/", arr, {
+          headers: {
+            withCredentials: true,
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+        });
+      //.catch((error) => console.log(error.message))
+      //}, 10)
+    });
+  }
+
+    //--------------------------------------------------------------------------------------------
+    return (
+      <div className="App">
+
+        {/* ------------------------User ------------------------------*/}
+        <div>
+        <h1>User Insert</h1>
+        <button onClick={testUser}>check</button>
+        <button onClick={UserInsert}>button</button>
+        </div>
+        {/* -------------------------Room-------------------------- */}
+        <div>
+        <h1>Room Insert</h1>
+        <button onClick={testRoom}>check</button>
+        <button onClick={RoomInsert}>button</button>
+        </div>
+      </div>
+    );
+  };
+  
 
 export default App;
