@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 // 메인 화면에 있는 콘텐츠에 커서를 올렸을 때 표시되는 창의
 // 오른쪽 아래에 위치하는 인원수, 요금, 입장 버튼 부분입니다.
 const SimpleRoomParticipants = () => {
@@ -11,9 +11,11 @@ const SimpleRoomParticipants = () => {
         </p>
         <p className="text-end">
             {/* 방 입장버튼 */}
-            <Link to="#" className="btn btn-primary" type="submit">입장하기</Link>&nbsp;
+            <NavLink to="/Rooms/RoomDetail/" className="nav-link btn btn-primary" type="submit">입장하기&nbsp;</NavLink>
             {/* 좋아요 버튼 */}
-            <img src='/images\likeNotPushed.png' style={{width:"30px", marginInline:"10px 5%"}} alt="like" />
+            <NavLink to="#">
+                <img src='/images\likeNotPushed.png' style={{width:"30px", marginInline:"10px 5%"}} alt="like" />
+            </NavLink>
         </p>
     </div>
     );

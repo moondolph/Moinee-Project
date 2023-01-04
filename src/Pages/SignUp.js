@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 export default function Signup() {
   return (
     <div className="page container border border-light border-3">
@@ -65,9 +67,11 @@ export default function Signup() {
         </div>
 
         <div>
-          <button className="bottomButton">
-            ⏭️다음
-          </button>
+          <NavLink className="nav-link" to="/Users/SignUp2">
+            <button className="bottomButton">
+              ⏭️다음
+            </button>
+          </NavLink>
         </div>
 
 

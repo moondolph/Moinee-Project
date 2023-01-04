@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom';
 
 const User = {
   id: 'test@example.com',
@@ -87,9 +88,9 @@ export default function Login() {
 
 
           <div className="loginOptionWrap">
-            <span>&nbsp;&nbsp;회원가입&nbsp;&nbsp;</span>
-            <span>&nbsp;&nbsp;아이디찾기&nbsp;&nbsp;</span>
-            <span>&nbsp;&nbsp;비밀번호찾기&nbsp;&nbsp;</span>
+            <span><NavLink className="nav-link" to="/Users/SignUp">&nbsp;&nbsp;회원가입&nbsp;&nbsp;</NavLink></span>
+            <span><NavLink className="nav-link" to="#">&nbsp;&nbsp;아이디찾기&nbsp;&nbsp;</NavLink></span>
+            <span><NavLink className="nav-link" to="#">&nbsp;&nbsp;비밀번호찾기&nbsp;&nbsp;</NavLink></span>
           </div>
 
         </div>

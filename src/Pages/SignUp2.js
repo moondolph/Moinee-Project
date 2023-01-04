@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 
 const User = {
   id: 'test@example.com',
@@ -48,12 +49,16 @@ export default function SignUp2() {
 
 
           <div>
-            <button className="bottomButton mt-5">
-              ⬅️이전
-            </button>
-            <button className="bottomButton mt-5">
-              🆗확인
-            </button>
+            <NavLink className="nav-link" to="/Rooms/">
+              <button className="bottomButton mt-5">
+                ⬅️이전
+              </button>
+            </NavLink>
+            <NavLink className="nav-link" to="/Rooms/">
+              <button className="bottomButton mt-5">
+                🆗확인
+              </button>
+            </NavLink>
           </div>
         </div>
       </form>
