@@ -1,27 +1,43 @@
 package com.iljo.userserver.service;
 
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.storage.*;
 import com.iljo.userserver.dto.UserDto;
 import com.iljo.userserver.jpa.UserEntity;
 import com.iljo.userserver.jpa.UserRepository;
+import com.iljo.userserver.vo.RequestUser;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService{
 
+    Environment env;
     UserRepository userRepository;
     BCryptPasswordEncoder PasswordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+    public UserServiceImpl(Environment env, UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+        this.env = env;
         this.userRepository = userRepository;
         PasswordEncoder = passwordEncoder;
     }
+
 
     /**
      * 회원가입을 위한 method
@@ -130,5 +146,32 @@ public class UserServiceImpl implements UserService{
         // String result = userRepository.findByUserIdAndPassword(userId, password).getUserId();
 
         return result;
+    }
+
+    @Override
+    public BlobInfo uploadFileToGCS(RequestUser requestUser) {
+        try{
+            String keyFileName = env.getProperty("spring.cloud.gcp.credentials.location");
+
+            InputStream keyFile = ResourceUtils.getURL(keyFileName).openStream();
+            Storage storage = StorageOptions.newBuilder().setProjectId("iljo-bucket1")
+                    .setCredentials(GoogleCredentials.fromStream(keyFile))
+                    .build().getService();
+
+            BlobId blobId = BlobId.of("https://console.cloud.google.com/storage/browser/iljo-bucket1", requestUser.getThumbnail());
+            BlobInfo blobInfo = BlobInfo.newBuilder(blobId)
+                    .setAcl(new ArrayList<>(Arrays.asList(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER))))
+                    .build();
+
+            Blob blob = storage
+                    .create(blobInfo, new FileInputStream(requestUser.getThumbnail()));
+
+            return blob;
+        }catch(IOException e){
+            log.error(e.getMessage());
+            log.info("코딩 ㅈ 같다.");
+            e.printStackTrace();
+        }
+        return null;
     }
 }

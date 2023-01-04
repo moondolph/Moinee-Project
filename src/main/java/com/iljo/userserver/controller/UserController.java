@@ -1,5 +1,7 @@
 package com.iljo.userserver.controller;
 
+import com.google.cloud.storage.Blob;
+import com.google.cloud.storage.BlobInfo;
 import com.iljo.userserver.dto.UserDto;
 import com.iljo.userserver.jpa.EnterEntity;
 import com.iljo.userserver.service.EnterService;
@@ -36,15 +38,6 @@ public class UserController {
         this.enterService = enterService;
     }
 
-
-
-
-
-
-
-
-
-
     /**
      * 회원가입을 위한 controller
      * */
@@ -54,6 +47,12 @@ public class UserController {
 
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
+        BlobInfo blobInfo = userService.uploadFileToGCS(user);
+        log.info("blogInfo : ", blobInfo);
+
+        if(blobInfo == null){
+            return null;
+        }
         UserDto userDto = mapper.map(user, UserDto.class);
         log.info(userDto.toString());
         UserDto userDto1 = userService.createUser(userDto);
