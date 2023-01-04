@@ -65,7 +65,7 @@ const NavBar = () => {
             </NavLink>
           </List>
           <List className="nav-item">
-            <NavLink className="nav-link" to="#">
+            <NavLink className="nav-link" to="/Users/MyPage02">
               MyRoom
             </NavLink>
           </List>
@@ -76,12 +76,12 @@ const NavBar = () => {
           </List>
           {/* Login about List */}
           <List className="nav-item">
-            <NavLink className="nav-link" to="#">
+            <NavLink className="nav-link" to="/Users/Login">
               Login
             </NavLink>
           </List>
           <List className="nav-item">
-            <NavLink className="nav-link" to="#">
+            <NavLink className="nav-link" to="Users/SignUp">
               Sign-up
             </NavLink>
           </List>

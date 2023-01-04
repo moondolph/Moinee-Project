@@ -206,6 +206,11 @@
 }
 
 .loginOptionWrap{
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 300px;
   margin-top:30px;
   font-size: 15px;
   font-weight: bold;
@@ -392,7 +397,7 @@
 /* 전체 목록에서 커서 올렸을 때 별도의 화면을 보여주기 위한 CSS */
 .pop-up-parent{position: relative;}
 .pop-up-child {
-  z-index: 1; position: absolute; top:0px; left: 226px; 
+  z-index: 1; position: absolute; top:0px; left: 200px; 
   visibility: hidden; opacity: 0; transition: opacity 0.5s;}
 .pop-up-parent:hover .pop-up-child { visibility: visible; opacity: 1;}
 
