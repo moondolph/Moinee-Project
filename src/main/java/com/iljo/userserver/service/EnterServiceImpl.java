@@ -4,7 +4,6 @@ import com.iljo.userserver.dto.EnterDto;
 import com.iljo.userserver.dto.EnterID;
 import com.iljo.userserver.jpa.EnterEntity;
 import com.iljo.userserver.jpa.EnterRepository;
-import com.iljo.userserver.vo.ResponseEnter;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
