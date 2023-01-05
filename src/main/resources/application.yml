@@ -1,5 +1,14 @@
 server:
-  port: 11554
+  port: 0
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
 
 spring:
   application:
@@ -9,8 +18,8 @@ spring:
 #    port : 5672
 #    username : guest
 #    password : guest
-  h2 :
-    console :
+  h2:
+    console:
 #      enabled : true
       settings:
         web-allow-others : true
@@ -29,3 +38,5 @@ spring:
         format_sql: true
     logging.level:
       org.hibernate.SQL: debug
+
+
