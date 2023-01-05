@@ -1,6 +1,11 @@
 package com.iljo.social_room.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
 @Data
 public class RequestRoom {
 
@@ -9,8 +14,10 @@ public class RequestRoom {
     private String title;
     private String category;
     private String description;
-    private String meetingDate;
-    private String createDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private Date meetingDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private Date createDate;
     private String meetingLoc;
     private double latitude;
     private double longitude;

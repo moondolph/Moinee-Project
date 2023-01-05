@@ -52,10 +52,9 @@ public class RoomServiceImpl implements RoomService{
     }
 
     @Override
-    public RoomDto getRoomInfo(Long roomId){
+    public RoomEntity getRoomInfo(Long roomId){
         RoomEntity roomEntity = roomRepository.findById(roomId).orElse(null);
-        ModelMapper mapper = new ModelMapper();
-        return mapper.map(roomEntity, RoomDto.class);
+        return roomEntity;
     }
 
    @Override

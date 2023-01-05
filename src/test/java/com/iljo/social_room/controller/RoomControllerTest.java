@@ -15,6 +15,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.xml.transform.Result;
 
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -32,16 +34,16 @@ class RoomControllerTest {
         String title = "Donec semper sapien a libero.";
         String category = "번개모임";
         String content = "Integer non velit. Donec diam neque,";
-        String meetingDate = "2023-01-24";
-        String createDate = "2022-12-01";
+        Date meetingDate = new Date();
+        Date createDate = new Date();
         String meetingLoc = "충청남도 광주시 강남대0길";
         double latitude = 12.289736;
         double longitude = 10.3525964;
         Integer limitMember = 19;
         String roomThumbnail = "http://dummyimage.com/171x100.png/cc0000/ffffff";
-        Integer roomLikes = 168;
+        Integer roomLikes = null;
 
-        RoomDto roomDto = new RoomDto(roomId, host, title, category, content, meetingDate, createDate, meetingLoc, latitude, longitude, limitMember, roomThumbnail, roomLikes);
+        RoomDto roomDto = new RoomDto(host, title, category, content, meetingDate, createDate, meetingLoc, latitude, longitude, limitMember, roomThumbnail);
 
         RoomEntity roomEntity = roomService.createRoom(roomDto);
 
@@ -55,4 +57,5 @@ class RoomControllerTest {
         assertEquals(roomEntityExpected.toString(), roomEntity.toString());
 
     }
+
 }

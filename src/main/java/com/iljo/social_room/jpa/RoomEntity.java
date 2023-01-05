@@ -9,6 +9,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 @Table(name="SOCIALROOM")
@@ -17,7 +18,6 @@ import java.io.Serializable;
 @DynamicInsert // Insert시 null값 제외하고 쿼리문 실행
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class RoomEntity {
     /**
      * room_id :  고유 방 번호
@@ -43,7 +43,7 @@ public class RoomEntity {
     @Column(nullable = false, length = 20)
     private String host;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false)
     private String title;
 
     @Column(nullable = false, length = 10)
@@ -52,11 +52,11 @@ public class RoomEntity {
     @Column(nullable = false, columnDefinition = "Text")
     private String description;
 
-    @Column(nullable = false, length = 10)
-    private String meetingDate;
+    @Column(nullable = false)
+    private Date meetingDate;
 
-    @Column(nullable = false, length = 10)
-    private String createDate;
+    @Column(nullable = false)
+    private Date createDate;
 
     @Column(nullable = false)
     private String meetingLoc;
@@ -73,8 +73,7 @@ public class RoomEntity {
     @Column(nullable = false)
     private String roomThumbnail;
 
-    @Column
-    @ColumnDefault("0")
+    @Column(columnDefinition = "Integer default 0")
     private Integer roomLikes;
 
    public void putRoomInfo(RoomEntity roomEntity){

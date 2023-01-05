@@ -15,8 +15,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -44,6 +46,7 @@ public class RoomController {
      *  Social_Room Create Method
      */
     @PostMapping("/")
+    @Transactional
     public ResponseEntity<ResponseRoom> createRoom(@RequestBody RequestRoom room) {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -75,10 +78,8 @@ public class RoomController {
      */
     @GetMapping("/{roomId}")
     public ResponseEntity<ResponseRoom> getRoomInfo(@PathVariable Long roomId) {
-        RoomDto roomDto = roomService.getRoomInfo(roomId);
-        log.info(roomDto.toString());
-        ResponseRoom roomInfo = new ModelMapper().map(roomDto, ResponseRoom.class);
-        log.info(roomInfo.getRoomId().toString());
+        RoomEntity roomEntity = roomService.getRoomInfo(roomId);
+        ResponseRoom roomInfo = new ModelMapper().map(roomEntity, ResponseRoom.class);
         return ResponseEntity.status(HttpStatus.OK).body(roomInfo); // user list 추가
 
     }
@@ -102,6 +103,7 @@ public class RoomController {
      * Update Room_Info Method
      */
     @PutMapping("/{roomId}")
+    @Transactional
     public ResponseEntity<ResponseRoom> updateRoomInfo(@PathVariable Long roomId, @RequestBody RequestRoom room) {
         ModelMapper mapper = new ModelMapper();
         RoomDto roomDto = mapper.map(room, RoomDto.class);
@@ -115,6 +117,7 @@ public class RoomController {
      * Delete Social_Room Method
      */
     @DeleteMapping("/{roomId}")
+    @Transactional
     public ResponseEntity<String> deleteRoom(@PathVariable Long roomId){
         RoomEntity deleteRoom = roomService.deleteRoom(roomId);
         return (deleteRoom != null) ? ResponseEntity.status(HttpStatus.ACCEPTED).body("삭제성공") :
@@ -123,6 +126,7 @@ public class RoomController {
 
     //해시태그 저장하기
     @PostMapping("/{roomId}/hashTag")
+    @Transactional
     public ResponseEntity<List<ResponseRoomHashTag>> createHashTag(@PathVariable Long roomId, @RequestBody List<RequestRoomHashTag> requestRoomHashTagList) {
 //        ModelMapper mapper = new ModelMapper();
 //        RoomHashTagId roomHashTagId = mapper.map(hashTag,RoomHashTagId.class);
@@ -156,6 +160,7 @@ public class RoomController {
 
     // 해시태그 삭제 하기
     @DeleteMapping("/{roomId}/hashTag")
+    @Transactional
     public ResponseEntity<List<ResponseRoomHashTag>> deleteHashTag(@RequestBody List<RequestRoomHashTag> requestRoomHashTagList, @PathVariable Long roomId){
 
         roomHashTagService.deleteHashTag(requestRoomHashTagList);

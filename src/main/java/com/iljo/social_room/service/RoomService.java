@@ -10,7 +10,7 @@ public interface RoomService {
     RoomEntity createRoom(RoomDto roomDto);
     List<RoomEntity> getRoomByAll();
     List<RoomEntity> findByCategory(String category);
-    RoomDto getRoomInfo(Long roomId);
+    RoomEntity getRoomInfo(Long roomId);
     RoomEntity updateRoomInfo(Long roomId, RoomDto roomDto);
     RoomEntity deleteRoom(Long roomId);
 }
