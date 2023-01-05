@@ -29,8 +29,11 @@ const NavBar = () => {
             MO-INEE
           </Link>
 
-          {/* Search Bar */}
+          {/* Search Bar and MakeRoomButton*/}
           <form className="d-flex" role="search">
+            <NavLink className="nav-link" to="/Rooms/CreateRoom">
+              <button className="btn btn-primary" style={{marginRight:"20px", width:"120px"}}>모임 만들기</button>
+            </NavLink>
             <div className="input-group">
               <span className="input-group-text" id="basic-addon1">
                 <img
