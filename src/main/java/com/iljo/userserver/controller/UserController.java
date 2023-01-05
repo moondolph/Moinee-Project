@@ -18,6 +18,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 @Slf4j
-
+//@CrossOrigin(origins = "127.0.0.1:8808")
 public class UserController {
 
     UserService userService;
@@ -42,9 +43,10 @@ public class UserController {
      * 회원가입을 위한 controller
      * */
     @PostMapping("/")
+    @Transactional
     public ResponseEntity<ResponseUser> createUser(@RequestBody RequestUser user) {
         ModelMapper mapper = new ModelMapper();
-
+        System.out.println(user instanceof Object);
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
         BlobInfo blobInfo = userService.uploadFileToGCS(user);
@@ -54,9 +56,10 @@ public class UserController {
             return null;
         }
         UserDto userDto = mapper.map(user, UserDto.class);
+        log.info(user.toString());
         log.info(userDto.toString());
         UserDto userDto1 = userService.createUser(userDto);
-
+        log.info(userDto1.toString());
         ResponseUser responseUser = mapper.map(userDto1, ResponseUser.class);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
@@ -93,6 +96,7 @@ public class UserController {
      * 회원정보를 삭제하기 위한 controller
      * */
     @DeleteMapping("/{userId}")
+    @Transactional
     public ResponseEntity<String> deleteUser(@PathVariable("userId") String userId){
         userService.deleteUserByUserId(userId);
 
@@ -103,6 +107,7 @@ public class UserController {
      * 회원정보를 수정하기 위한 controller
      * */
     @PutMapping("/{userId}")
+    @Transactional
     public ResponseEntity<ResponseUser> updateUser(@PathVariable("userId") String userId, @RequestBody RequestUser user){
 
         ModelMapper mapper = new ModelMapper();
@@ -120,6 +125,7 @@ public class UserController {
      * 로그인을 위한 controller
      * */
     @PostMapping("/login")
+    @Transactional
     public ResponseEntity<String> login(@RequestBody RequestUser user, String userId, String password){
 
         userId = user.getUserId();
