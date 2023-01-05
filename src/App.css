@@ -405,3 +405,12 @@
   width:1000px;
   height: 600px;
 }
+
+.centerAlign {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 댓글창에 커서 올리면 늘어나는 css */
+.commentInput {width: 90%; height: 0px; visibility: hidden; transition: height 0.5s; resize:both; transition: resize initial initial 0.5s;}
+.commentSection:hover .commentInput {visibility: visible; height: 150px; resize: none;}

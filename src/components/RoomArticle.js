@@ -1,7 +1,6 @@
 // room thumbnail 및 설명 부분
 import axios from "axios";
 import { useEffect, useState } from "react";
-import * as ReactDOM from 'react-dom';
 const hashTagList = [
     {
         hashTag: "야외"
@@ -20,17 +19,16 @@ const hashTagList = [
 const RoomArticle = () => {
 
     const [roomInfo, setRoomInfo] = useState([]);
-    const getRoomInfo = async()=>{
-        const roomInfo = await axios.get("http://localhost:3001/testObject").then((response)=>{
+    const getRoomInfo = async () => {
+        await axios.get("http://localhost:3001/testObject").then((response) => {
             setRoomInfo(response.data)
         }
         )
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         getRoomInfo();
     }, [])
-    console.log(roomInfo)
 
     return (
         <div className="container text-start pb-5 pt-3 bg-body">
