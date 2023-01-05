@@ -1,7 +1,14 @@
+const commentDataList = [
+    {
+        
+    }
+] 
 const RoomComment = () => {
     return (
         <div className="container bg-body">
-            <div className="fs-3 text-start">모임이 궁금하다면 댓글을 남겨보세요</div>
+                <div className="fs-3 mb-3 ps-3 text-start">모임이 궁금하다면 댓글을 남겨보세요</div>
+                <div style={{textAlign:"right"}}><button className="btn btn-primary me-5">댓글 작성하기</button></div>
+
             <div className="row">
                 <div className="col-2">
                 </div>
