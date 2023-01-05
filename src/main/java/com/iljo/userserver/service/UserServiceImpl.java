@@ -15,7 +15,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -147,21 +149,25 @@ public class UserServiceImpl implements UserService{
 
         return result;
     }
-
+    /**
+     * gcs파일 업로드
+     * */
     @Override
     public BlobInfo uploadFileToGCS(RequestUser requestUser) {
         try{
             String keyFileName = env.getProperty("spring.cloud.gcp.credentials.location");
+            log.info(requestUser.getThumbnail());
 
             InputStream keyFile = ResourceUtils.getURL(keyFileName).openStream();
-            Storage storage = StorageOptions.newBuilder().setProjectId("iljo-bucket1")
+            Storage storage = StorageOptions.newBuilder().setProjectId("student-project-2022-368005")
                     .setCredentials(GoogleCredentials.fromStream(keyFile))
                     .build().getService();
 
-            BlobId blobId = BlobId.of("https://console.cloud.google.com/storage/browser/iljo-bucket1", requestUser.getThumbnail());
+            BlobId blobId = BlobId.of("iljo-bucket1", requestUser.getThumbnail());
             BlobInfo blobInfo = BlobInfo.newBuilder(blobId)
                     .setAcl(new ArrayList<>(Arrays.asList(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER))))
                     .build();
+
 
             Blob blob = storage
                     .create(blobInfo, new FileInputStream(requestUser.getThumbnail()));
@@ -170,6 +176,40 @@ public class UserServiceImpl implements UserService{
         }catch(IOException e){
             log.error(e.getMessage());
             log.info("코딩 ㅈ 같다.");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public BlobInfo uploadFileToGCSTest(MultipartFile file) {
+        try{
+            String keyFileName = env.getProperty("spring.cloud.gcp.credentials.location");
+
+            InputStream keyFile = ResourceUtils.getURL(keyFileName).openStream();
+            Storage storage = StorageOptions.newBuilder().setProjectId("student-project-2022-368005")
+                    .setCredentials(GoogleCredentials.fromStream(keyFile))
+                    .build().getService();
+
+            File destination = new File("C:\\Users\\user\\Desktop\\Workspace\\Team\\user(imgUpload)/upload/" + file.getOriginalFilename());
+            file.transferTo(destination);
+
+            BlobId blobId = BlobId.of("iljo-bucket1", "upload/" + file.getOriginalFilename());
+            System.out.println(destination);
+
+            System.out.println(file.getOriginalFilename());
+
+            BlobInfo blobInfo = BlobInfo.newBuilder(blobId)
+                    .setAcl(new ArrayList<>(Arrays.asList(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER))))
+                    .build();
+
+            Blob blob = storage
+                    .create(blobInfo, new FileInputStream(file.getOriginalFilename()));
+
+            return blob;
+        }catch(IOException e){
+            log.error(e.getMessage());
+            log.info("코딩 ㅈㅈ 같다.");
             e.printStackTrace();
         }
         return null;

@@ -19,7 +19,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +63,31 @@ public class UserController {
         ResponseUser responseUser = mapper.map(userDto1, ResponseUser.class);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity upload(@RequestPart MultipartFile file) {
+//        String originalFileName = file.getOriginalFilename();
+//        File destination = new File("https://storage.googleapis.com/iljo-bucket1/" + originalFileName);
+//        log.info(destination.toString());
+//        try {
+//            file.transferTo(destination);
+//        } catch (IOException e) {
+//            log.error(e.toString());
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(originalFileName);
+//        }
+//        return ResponseEntity.status(HttpStatus.CREATED).body(originalFileName);
+
+        BlobInfo blobInfo = userService.uploadFileToGCSTest(file);
+
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(blobInfo);
+        } catch (Exception e) {
+            log.error(e.toString() + " asgdasdgashgfs");
+            log.error("코딩 ㅈ 같다");
+            return null;
+        }
+
     }
 
 
