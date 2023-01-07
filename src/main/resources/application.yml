@@ -39,7 +39,11 @@ spring:
       org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-
+  cloud:
+    gcp:
+      credentials:
+#        location: file:///${user.home}/Desktop/key/student-project-2022-368005-54dd6b18c177.json
+        location: classpath:student-project-2022-368005-e4a467c21c2c.json
 #logging:
 #  level:
 #    org:

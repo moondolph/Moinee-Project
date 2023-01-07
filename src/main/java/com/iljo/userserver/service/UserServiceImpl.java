@@ -1,27 +1,45 @@
 package com.iljo.userserver.service;
 
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.storage.*;
 import com.iljo.userserver.dto.UserDto;
 import com.iljo.userserver.jpa.UserEntity;
 import com.iljo.userserver.jpa.UserRepository;
+import com.iljo.userserver.vo.RequestUser;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService{
 
+    Environment env;
     UserRepository userRepository;
     BCryptPasswordEncoder PasswordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+    public UserServiceImpl(Environment env, UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+        this.env = env;
         this.userRepository = userRepository;
         PasswordEncoder = passwordEncoder;
     }
+
 
     /**
      * 회원가입을 위한 method
@@ -130,5 +148,70 @@ public class UserServiceImpl implements UserService{
         // String result = userRepository.findByUserIdAndPassword(userId, password).getUserId();
 
         return result;
+    }
+    /**
+     * gcs파일 업로드
+     * */
+    @Override
+    public BlobInfo uploadFileToGCS(RequestUser requestUser) {
+        try{
+            String keyFileName = env.getProperty("spring.cloud.gcp.credentials.location");
+            log.info(requestUser.getThumbnail());
+
+            InputStream keyFile = ResourceUtils.getURL(keyFileName).openStream();
+            Storage storage = StorageOptions.newBuilder().setProjectId("student-project-2022-368005")
+                    .setCredentials(GoogleCredentials.fromStream(keyFile))
+                    .build().getService();
+
+            BlobId blobId = BlobId.of("iljo-bucket1", requestUser.getThumbnail());
+            BlobInfo blobInfo = BlobInfo.newBuilder(blobId)
+                    .setAcl(new ArrayList<>(Arrays.asList(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER))))
+                    .build();
+
+
+            Blob blob = storage
+                    .create(blobInfo, new FileInputStream(requestUser.getThumbnail()));
+
+            return blob;
+        }catch(IOException e){
+            log.error(e.getMessage());
+            log.info("코딩 ㅈ 같다.");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public BlobInfo uploadFileToGCSTest(MultipartFile file) {
+        try{
+            String keyFileName = env.getProperty("spring.cloud.gcp.credentials.location");
+
+            InputStream keyFile = ResourceUtils.getURL(keyFileName).openStream();
+            Storage storage = StorageOptions.newBuilder().setProjectId("student-project-2022-368005")
+                    .setCredentials(GoogleCredentials.fromStream(keyFile))
+                    .build().getService();
+
+            File destination = new File("C:\\Users\\user\\Desktop\\Workspace\\Team\\user(imgUpload)/upload/" + file.getOriginalFilename());
+            file.transferTo(destination);
+
+            BlobId blobId = BlobId.of("iljo-bucket1", "upload/" + file.getOriginalFilename());
+            System.out.println(destination);
+
+            System.out.println(file.getOriginalFilename());
+
+            BlobInfo blobInfo = BlobInfo.newBuilder(blobId)
+                    .setAcl(new ArrayList<>(Arrays.asList(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER))))
+                    .build();
+
+            Blob blob = storage
+                    .create(blobInfo, new FileInputStream(file.getOriginalFilename()));
+
+            return blob;
+        }catch(IOException e){
+            log.error(e.getMessage());
+            log.info("코딩 ㅈㅈ 같다.");
+            e.printStackTrace();
+        }
+        return null;
     }
 }

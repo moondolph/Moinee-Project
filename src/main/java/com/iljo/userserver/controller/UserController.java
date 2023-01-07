@@ -1,5 +1,7 @@
 package com.iljo.userserver.controller;
 
+import com.google.cloud.storage.Blob;
+import com.google.cloud.storage.BlobInfo;
 import com.iljo.userserver.dto.UserDto;
 import com.iljo.userserver.jpa.EnterEntity;
 import com.iljo.userserver.service.EnterService;
@@ -18,7 +20,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +52,12 @@ public class UserController {
         System.out.println(user instanceof Object);
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
+        BlobInfo blobInfo = userService.uploadFileToGCS(user);
+        log.info("blogInfo : ", blobInfo);
+
+        if(blobInfo == null){
+            return null;
+        }
         UserDto userDto = mapper.map(user, UserDto.class);
         log.info(user.toString());
         log.info(userDto.toString());
@@ -55,6 +66,31 @@ public class UserController {
         ResponseUser responseUser = mapper.map(userDto1, ResponseUser.class);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity upload(@RequestPart MultipartFile file) {
+//        String originalFileName = file.getOriginalFilename();
+//        File destination = new File("https://storage.googleapis.com/iljo-bucket1/" + originalFileName);
+//        log.info(destination.toString());
+//        try {
+//            file.transferTo(destination);
+//        } catch (IOException e) {
+//            log.error(e.toString());
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(originalFileName);
+//        }
+//        return ResponseEntity.status(HttpStatus.CREATED).body(originalFileName);
+
+        BlobInfo blobInfo = userService.uploadFileToGCSTest(file);
+
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(blobInfo);
+        } catch (Exception e) {
+            log.error(e.toString() + " asgdasdgashgfs");
+            log.error("코딩 ㅈ 같다");
+            return null;
+        }
+
     }
 
 
