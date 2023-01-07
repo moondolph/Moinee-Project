@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
@@ -24,6 +25,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
+
+import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.path;
 
 @Service
 @Slf4j
@@ -185,17 +188,33 @@ public class UserServiceImpl implements UserService{
     public BlobInfo uploadFileToGCSTest(MultipartFile file) {
         try{
             String keyFileName = env.getProperty("spring.cloud.gcp.credentials.location");
+            System.out.println(keyFileName);
 
             InputStream keyFile = ResourceUtils.getURL(keyFileName).openStream();
             Storage storage = StorageOptions.newBuilder().setProjectId("student-project-2022-368005")
                     .setCredentials(GoogleCredentials.fromStream(keyFile))
                     .build().getService();
 
-            File destination = new File("C:\\Users\\user\\Desktop\\Workspace\\Team\\user(imgUpload)/upload/" + file.getOriginalFilename());
-            file.transferTo(destination);
 
-            BlobId blobId = BlobId.of("iljo-bucket1", "upload/" + file.getOriginalFilename());
-            System.out.println(destination);
+
+//            log.info("resources/static/saveCheck");
+
+            File destination = new File(System.getProperty("user.dir") + "/" + file.getOriginalFilename());
+            file.transferTo(destination);
+            log.info(destination.toString());
+
+            log.info("일차 test 성공 11111");
+            System.out.println(System.getProperty("user.dir"));
+
+//            ClassLoader classLoader = getClass().getClassLoader();
+//            File routefile = new File(classLoader.getResource("file/test.xml").getFile());
+//            ClassPathResource classPathResource = new ClassPathResource("config/" + path);
+//            log.info(classPathResource.toString());
+
+//            BlobId blobId = BlobId.of("iljo-bucket1","file:///api.jar!/BOOT-INF/classes!/" + destination.getName());
+            BlobId blobId = BlobId.of("iljo-bucket1", destination.getAbsolutePath());
+            log.info(destination.getAbsolutePath());
+            //System.out.println(destination);
 
             System.out.println(file.getOriginalFilename());
 
