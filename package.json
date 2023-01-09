@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "env-cmd node src/server.js",
+    "prestart": "env-cmd node src/swagger/swagger.js",
     "dev": "env-cmd nodemon src/server.js"
   },
   "repository": {
@@ -21,10 +22,14 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "env-cmd": "^10.1.0",
+    "eureka-client": "^1.1.0",
     "express": "^4.18.2",
-    "mongoose": "^6.8.2"
+    "mongoose": "^6.8.2",
+    "swagger-autogen": "^2.22.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "swagger-jsdoc": "^6.2.7",
+    "swagger-ui-express": "^4.6.0"
   }
 }

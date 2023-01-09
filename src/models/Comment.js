@@ -1,19 +1,18 @@
 
 const {
-    Schema, model} = require('mongoose');
+    Schema, model, Types:{ObjectId}} = require('mongoose');
 
 const CommentSchema = new Schema(
     {
-        commentId: { type: Number, required: true, unique:true },
-        roomId: { type: Number, required: true, index: true},
+        roomId: { type: Number, required: true},
         userId: {type: String, required: true},
         content: {type: String, required: true},
-        createdAt:{type: String, required: true},
+        createdAt:{type: Date, required: true},
     },
     {timestamps: true}
     );
 
-CommentSchema.index({blog: 1, createdAt: -1});
+CommentSchema.index({createdAt: -1});
 //model(document 이름, 사용될 Schema)
 const Comment= model("comment", CommentSchema);
 

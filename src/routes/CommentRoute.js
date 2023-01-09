@@ -6,42 +6,36 @@ const commentRouter = express.Router({mergeParams: true});
 const {Comment} = require('../models');
 const {isValidObjectId, startSession} = require('mongoose');
 
+
+
 commentRouter.post('/:roomId', async(req,res) => {
 try{
     let { roomId } = req.params;
     roomId = parseInt(roomId);
     const {
-        commentId,
         userId,
-        content,
-        createdAt
+        content
     } = req.body;
 
-    if(typeof commentId !== "number")
-    return res.status(400).send({err: "commentId is invalid"});
-
-    if(typeof roomId !== "number")
+    if(!roomId || typeof roomId !== "number")
     return res.status(400).send({err: "roomId is invalid"});
 
-    if(typeof userId !== "string")
+    if(!userId || typeof userId !== "string")
     return res.status(400).send({err: "userId is invalid"});
 
-    if(typeof content !== "string")
+    if(!content || typeof content !== "string")
     return res.status(400).send({err: "content is invalid"});
 
-    if(typeof createdAt !== "string")
-    return res.status(400).send({err: "createdAt is invalid"});
 
-    console.log(typeof Comment);
+    //console.log(typeof Comment);
     let comment = new Comment({
-        commentId,
         roomId,
         userId,
         content,
-        createdAt
+        createdAt:Date.now()
     });
 
-    console.log(typeof comment)
+    //console.log(typeof comment)
     await comment.save();
     return res.status(201).send({ comment });
 } catch(err) {
@@ -49,11 +43,18 @@ try{
 }
 });
 
+//------------------------------------------------------------------------------
+
+
+
+
+//------------------------------------------------------------------------------
+
 commentRouter.get("/", async (req,res) => {
     try{
         const comments = await Comment.find()
-        // creat
-        .sort({createdAt : -1, commentId : -1});
+        // create
+        .sort({createdAt : -1});
     return res.status(200).send({comments});
     } catch(err) {
         return res.status(400).send({err: err.message});
@@ -61,17 +62,18 @@ commentRouter.get("/", async (req,res) => {
     
 });
 
+//------------------------------------------------------------------------------
 commentRouter.get("/:roomId", async(req,res) => {
     try{
         let { roomId } = req.params;
-    roomId = parseInt(roomId);
-
-        if(typeof roomId !== 'number')
+   
+        if(!roomId || typeof roomId !== 'string')
         return res.status(400).send({err: "roomId is invalid"});
 
+        roomId = parseInt(roomId);
         const comments = await Comment.find({ roomId })
         // creat
-        .sort({createdAt : -1, commentId : -1});
+        .sort({createdAt : -1});
     return res.status(200).send({comments});
     } catch(err) {
         return res.status(400).send({err: err.message});
@@ -79,39 +81,29 @@ commentRouter.get("/:roomId", async(req,res) => {
     
 });
 
-commentRouter.patch("/:roomId/:commentId", async(req,res) => {
+//------------------------------------------------------------------------------
+commentRouter.patch("/:roomId/:_id", async(req,res) => {
     try{
-    let {commentId, roomId } = req.params;
-    commentId = parseInt(commentId);
+    let {_id, roomId } = req.params;
     roomId = parseInt(roomId);
-    const {
-        userId,
-        content,
-        createdAt
+    const { 
+        content
     } = req.body;
 
-    if(typeof commentId !== "number")
+
+    if(!isValidObjectId(_id))
     return res.status(400).send({err: "commentId is invalid"});
 
     if(typeof roomId !== "number")
     return res.status(400).send({err: "roomId is valid"});
 
-    if(typeof userId !== "string")
-    return res.status(400).send({err: "userId is invalid"});
-
     if(typeof content !== "string")
     return res.status(400).send({err: "content is invalid"});
 
-    if(typeof createdAt !== "string")
-    return res.status(400).send({err: "createdAt is invalid"});
-
     const comment = await Comment.findOneAndUpdate(
-      { commentId },
+      { _id, roomId},
       {
-        roomId,
-        userId,
-        content,
-        createdAt,
+        content
       },
       {new: true},
     );
@@ -122,21 +114,21 @@ commentRouter.patch("/:roomId/:commentId", async(req,res) => {
 }
 });
 
-commentRouter.delete("/:roomId/:commentId", async (req,res) => {
+//------------------------------------------------------------------------------
+commentRouter.delete("/:roomId/:_id", async (req,res) => {
     try{
-        let {roomId, commentId } = req.params;
+        let {roomId, _id } = req.params;
         
         roomId = parseInt(roomId);
-        commentId = parseInt(commentId);
 
-        if(typeof commentId !== "number")
+        if(!isValidObjectId(_id))
         return res.status(400).send({err: "commentId is invalid"});
     
         if(typeof roomId !== "number")
         return res.status(400).send({err: "roomId is valid"});
     
         const comment = await Comment.findOneAndDelete({
-          commentId,
+          _id,
           roomId,
         }); 
         
