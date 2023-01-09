@@ -22,6 +22,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
@@ -202,8 +206,12 @@ public class UserServiceImpl implements UserService{
             file.transferTo(destination);
 //            log.info(destination.toString());
 
+            String now = LocalTime.now().toString().replace(":","").replace(".","");
+
+            String fileName = now + file.getOriginalFilename();
+            log.info(fileName);
             // 클라우드 버킷에 저장될 파일 이름 만들어주기
-            BlobId blobId = BlobId.of("iljo-bucket1", destination.getAbsolutePath());
+            BlobId blobId = BlobId.of("iljo-bucket1", fileName);
 //            log.info(destination.getAbsolutePath());
 
 //            System.out.println(file.getOriginalFilename());
@@ -219,7 +227,7 @@ public class UserServiceImpl implements UserService{
             File file1 = new File(destination.getAbsolutePath());
             file1.delete();
 
-            return file.getOriginalFilename();
+            return fileName;
         }catch(IOException e){
             log.error(e.getMessage());
             e.printStackTrace();
