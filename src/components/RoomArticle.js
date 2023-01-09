@@ -20,7 +20,7 @@ const RoomArticle = () => {
 
     const [roomInfo, setRoomInfo] = useState([]);
     const getRoomInfo = async () => {
-        await axios.get("http://localhost:3001/testObject").then((response) => {
+        await axios.get("http://localhost:3001/room").then((response) => {
             setRoomInfo(response.data)
         }
         )

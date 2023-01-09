@@ -1,6 +1,15 @@
-
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const RoomComment = () => {
+
+    const [comments, setComments] = useState([]);
+    const getComments = async () => {
+        await axios.get("http://localhost:3001")
+    } 
+
+
+
     return (
         <div className="container bg-body">
             <div className="fs-3 mb-3 ps-3 text-start">모임이 궁금하다면 댓글을 남겨보세요</div>
