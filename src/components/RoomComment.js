@@ -1,18 +1,28 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 const RoomComment = () => {
 
     // 방에 달린 댓글 불러오기
     const [comments, setComments] = useState([]);
-    const getComments = async () => {
-        await axios.get("http://localhost:3001/comments").then((response) => {
-            setComments(response.data)
+    const getComments = useCallback(async () => {
+         await axios.get("http://localhost:9800/comments", {
+            headers: {
+              withCredentials: true,
+              "Content-Type": "application/json",
+            },
+          }).then((response) => {
+            console.log(response.data.comments)
+            setComments(response.data.comments)
+            //setComments(commentList.data);
+        }).catch((e) => {
+            console.log(e)
         })
-    }
+    },[]);
     useEffect(() => {
+        console.log(comments)
         getComments();
-    }, [])
+    }, [getComments])
     
     ////////////// 댓글 작성하기 
     // 댓글 서버로 보내야 할 유저 아이디와 방 아이디는 주어진 상황이다.
@@ -39,26 +49,22 @@ const RoomComment = () => {
 
     // 댓글 내용 저장할 함수
     const [commentId, setCommentId] = useState(); //렌더링되는 상태값을 저장했다가 나중에 사용. name을 리턴부분에서 사용하고 set하겠다. ""는 초기값("":빈 값)
-    // const [userId, setUserId] = useState(""); 
-    // const [roomId, setRoomId] = useState(""); 
     const [content, setContent] = useState(""); 
     const [createdAt, setCreatedAt] = useState(""); 
-    const writeComment = ()=> {
-        getNow();
-        makeRandomNum();
-        axios.post('http://localhost:3001/comments', {
-            commentId : commentId,
+    const onsubmit = ()=> {
+        console.log(userId)
+        console.log(content)
+        axios.post('http://localhost:9800/comments/10', {
             userId : userId,
-            roomId : roomId,
             content : content,
-            createdAt : createdAt
         }).then(response => {
             alert('댓글이 등록되었습니다.');
+            console.log('success');
         }).catch(error => {
             console.log('error: ', error.response);
+            console.log("post failed")
         })
     }
-
 
     return (
         <div className="container bg-body">
@@ -69,7 +75,7 @@ const RoomComment = () => {
                 </div>
                 <div className="col-9">
                     <div className="row">
-                        {/* 여기부터 댓글 */}
+                        
                         {comments.map((comment, index) => {
                             return (
                                 <span>
@@ -83,7 +89,7 @@ const RoomComment = () => {
                                     <div className="col text-start">
                                         <p>
                                             <div className="fs-5" style={{ paddingRight: "5px" }}>{comment.userId}</div>
-                                            {comment.createdAt}
+                                            {comment.createdAt.substring(0, 10) + " " + comment.createdAt.substring(11, 19)}
                                         </p>
                                         <p> {comment.content}
                                         </p>
@@ -105,7 +111,7 @@ const RoomComment = () => {
                     <div>
                         <button 
                             className="btn btn-primary mt-3 centerAlign" 
-                            onClick={()=>writeComment()}>
+                            onClick={onsubmit}>
                                 댓글 작성하기
                         </button>
                     </div>
