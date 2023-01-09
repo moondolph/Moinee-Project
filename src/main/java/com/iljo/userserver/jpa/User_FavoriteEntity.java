@@ -11,7 +11,7 @@ import java.io.Serializable;
  * */
 @Data
 @Entity
-@Table(name = "user_favorite")
+@Table(name = "userFavorite")
 @IdClass(FavoriteID.class)
 public class User_FavoriteEntity implements Serializable {
 

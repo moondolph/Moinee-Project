@@ -11,7 +11,7 @@ import java.io.Serializable;
  * */
 @Data
 @Entity
-@Table(name = "user_follow_tag")
+@Table(name = "userFollowTag")
 @IdClass(FollowID.class)
 public class User_Follow_TagEntity implements Serializable{
 
