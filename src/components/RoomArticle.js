@@ -1,23 +1,10 @@
 // room thumbnail 및 설명 부분
 import axios from "axios";
 import { useEffect, useState } from "react";
-const hashTagList = [
-    {
-        hashTag: "야외"
-    },
-    {
-        hashTag: "별구경"
-    },
-    {
-        hashTag: "천체 관측"
-    },
-    {
-        hashTag: "밤마실"
-    }
-]
 
 const RoomArticle = () => {
 
+    // 방 정보 불러오기
     const [roomInfo, setRoomInfo] = useState([]);
     const getRoomInfo = async () => {
         await axios.get("http://localhost:3001/room").then((response) => {
@@ -25,9 +12,17 @@ const RoomArticle = () => {
         }
         )
     }
-
+    // 해시태그 불러오기
+    const [hashTags, setHashTags] = useState([]);
+    const getHashTags = async () => {
+        await axios.get("http://localhost:3001/hashTags").then((response)=>{
+            setHashTags(response.data)
+        })
+    }
+    
     useEffect(() => {
         getRoomInfo();
+        getHashTags();
     }, [])
 
     return (
@@ -57,9 +52,9 @@ const RoomArticle = () => {
                         {roomInfo.description} {/* 상세 설명 */}
                     </p>
                     <div class="floatLeft">
-                        {hashTagList.map((value, index) => {
+                        {hashTags.map((hashTag, index) => {
                             return (
-                                <span class="text-primary"># {value.hashTag} </span>
+                                <span class="text-primary"># {hashTag.hashTag} </span>
                             )
                         })}
                     </div>
