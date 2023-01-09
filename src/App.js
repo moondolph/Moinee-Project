@@ -12,7 +12,6 @@ import MainContents from "./components/MainContents";
 import RoomJoinButton from "./components/RoomJoinButton";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
-import SignUp2 from "./Pages/SignUp2";
 import MyPage01 from "./Pages/MyPage01";
 import CreateRoom from "./Pages/CreateRoom";
 import MyPage2 from "./components/MyPage2";
@@ -29,7 +28,7 @@ function App() {
         </Routes>
       </div>
       <div className="mt-3 width-100"><Footer /></div>
-      <SimpleRoom/>
+      {/* <SimpleRoom/> */}
       {/* <NavigationBar /> */}
       {/* <NavBar /> */}
       {/* <Profile /> */}
@@ -60,7 +59,7 @@ function App() {
       {/* <MainContents /> */}
 
       {/* <MyPage01/> */}
-      <Profile02 />
+      {/* <Profile02 /> */}
     </div>
   );
 }
