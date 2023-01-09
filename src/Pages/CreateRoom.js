@@ -40,7 +40,7 @@ export default function CreateRoom() {
   };
   */
   return (
-    <div className="page container border border-light border-3">
+    <div className="page container border border-light border-3 text-bg-info bg-opacity-50">
 
       <div className="contentWrap ">
         <h1>방 생성 <span class="badge bg-secondary">New</span></h1>
