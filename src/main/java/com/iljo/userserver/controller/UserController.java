@@ -52,12 +52,12 @@ public class UserController {
         System.out.println(user instanceof Object);
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
-        BlobInfo blobInfo = userService.uploadFileToGCS(user);
-        log.info("blogInfo : ", blobInfo);
+//        BlobInfo blobInfo = userService.uploadFileToGCS(user);
+//        log.info("blogInfo : ", blobInfo);
 
-        if(blobInfo == null){
-            return null;
-        }
+//        if(blobInfo == null){
+//            return null;
+//        }
         UserDto userDto = mapper.map(user, UserDto.class);
         log.info(user.toString());
         log.info(userDto.toString());
@@ -67,6 +67,31 @@ public class UserController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
     }
+
+    /*@PostMapping("/")
+    @Transactional
+    public ResponseEntity<ResponseUser> createUser(@RequestBody RequestUser user, @RequestPart MultipartFile file) {
+        ModelMapper mapper = new ModelMapper();
+        System.out.println(user instanceof Object);
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+        BlobInfo blobInfo = userService.uploadFileToGCSTest(file);
+        log.info("blogInfo : ", blobInfo);
+
+        if(blobInfo == null){
+            return null;
+        }
+
+        user.setThumbnail(file.getOriginalFilename());
+        UserDto userDto = mapper.map(user, UserDto.class);
+        log.info(user.toString());
+        log.info(userDto.toString());
+        UserDto userDto1 = userService.createUser(userDto);
+        log.info(userDto1.toString());
+        ResponseUser responseUser = mapper.map(userDto1, ResponseUser.class);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
+    }*/
 
     @PostMapping("/upload")
     public ResponseEntity upload(@RequestPart MultipartFile file) {
@@ -81,13 +106,12 @@ public class UserController {
 //        }
 //        return ResponseEntity.status(HttpStatus.CREATED).body(originalFileName);
 
-        BlobInfo blobInfo = userService.uploadFileToGCSTest(file);
+        BlobInfo blobInfo = userService.uploadFile(file);
 
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(blobInfo);
         } catch (Exception e) {
-            log.error(e.toString() + " asgdasdgashgfs");
-            log.error("코딩 ㅈ 같다");
+            log.error(e.toString());
             return null;
         }
 
