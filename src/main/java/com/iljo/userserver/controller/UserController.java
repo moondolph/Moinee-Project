@@ -93,23 +93,16 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
     }*/
 
+    /**
+     * 사진을 업로드하기 위한 컨트롤러
+     * */
     @PostMapping("/upload")
     public ResponseEntity upload(@RequestPart MultipartFile file) {
-//        String originalFileName = file.getOriginalFilename();
-//        File destination = new File("https://storage.googleapis.com/iljo-bucket1/" + originalFileName);
-//        log.info(destination.toString());
-//        try {
-//            file.transferTo(destination);
-//        } catch (IOException e) {
-//            log.error(e.toString());
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(originalFileName);
-//        }
-//        return ResponseEntity.status(HttpStatus.CREATED).body(originalFileName);
 
-        BlobInfo blobInfo = userService.uploadFile(file);
+        String fileName = userService.uploadFile(file);
 
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(blobInfo);
+            return ResponseEntity.status(HttpStatus.CREATED).body(fileName);
         } catch (Exception e) {
             log.error(e.toString());
             return null;

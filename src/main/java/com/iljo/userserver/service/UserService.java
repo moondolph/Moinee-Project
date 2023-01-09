@@ -20,5 +20,5 @@ public interface UserService  {
 
 //    BlobInfo uploadFileToGCS(RequestUser requestUser);
 
-    BlobInfo uploadFile(MultipartFile file) ;
+    String uploadFile(MultipartFile file) ;
 }

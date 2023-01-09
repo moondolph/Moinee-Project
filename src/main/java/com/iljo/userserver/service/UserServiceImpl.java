@@ -152,42 +152,42 @@ public class UserServiceImpl implements UserService{
 
         return result;
     }
-    /**
-     * 서버에 있는 파일 gcs에 업로드
-     *
-    @Override
-    public BlobInfo uploadFileToGCS(RequestUser requestUser) {
-        try{
-            String keyFileName = env.getProperty("spring.cloud.gcp.credentials.location");
-            log.info(requestUser.getThumbnail());
-
-            InputStream keyFile = ResourceUtils.getURL(keyFileName).openStream();
-            Storage storage = StorageOptions.newBuilder().setProjectId("student-project-2022-368005")
-                    .setCredentials(GoogleCredentials.fromStream(keyFile))
-                    .build().getService();
-
-            BlobId blobId = BlobId.of("iljo-bucket1", requestUser.getThumbnail());
-            BlobInfo blobInfo = BlobInfo.newBuilder(blobId)
-                    .setAcl(new ArrayList<>(Arrays.asList(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER))))
-                    .build();
-
-
-            Blob blob = storage
-                    .create(blobInfo, new FileInputStream(requestUser.getThumbnail()));
-
-            return blob;
-        }catch(IOException e){
-            log.error(e.getMessage());
-            e.printStackTrace();
-        }
-        return null;
-    }*/
+//    /**
+//     * 서버에 있는 파일 gcs에 업로드
+//     */
+//    @Override
+//    public BlobInfo uploadFileToGCS(RequestUser requestUser) {
+//        try{
+//            String keyFileName = env.getProperty("spring.cloud.gcp.credentials.location");
+//            log.info(requestUser.getThumbnail());
+//
+//            InputStream keyFile = ResourceUtils.getURL(keyFileName).openStream();
+//            Storage storage = StorageOptions.newBuilder().setProjectId("student-project-2022-368005")
+//                    .setCredentials(GoogleCredentials.fromStream(keyFile))
+//                    .build().getService();
+//
+//            BlobId blobId = BlobId.of("iljo-bucket1", requestUser.getThumbnail());
+//            BlobInfo blobInfo = BlobInfo.newBuilder(blobId)
+//                    .setAcl(new ArrayList<>(Arrays.asList(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER))))
+//                    .build();
+//
+//
+//            Blob blob = storage
+//                    .create(blobInfo, new FileInputStream(requestUser.getThumbnail()));
+//
+//            return blob;
+//        }catch(IOException e){
+//            log.error(e.getMessage());
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     /**
      * 클라이언트에서 파일을 서버에 올리고 바로 클라우드 버킷에 파일이 저장되게 해주는 메소드
      * */
     @Override
-    public BlobInfo uploadFile(MultipartFile file) {
+    public String uploadFile(MultipartFile file) {
         try{
             String keyFileName = env.getProperty("spring.cloud.gcp.credentials.location");
 //            System.out.println(keyFileName);
@@ -202,7 +202,7 @@ public class UserServiceImpl implements UserService{
             file.transferTo(destination);
 //            log.info(destination.toString());
 
-            // 클라우드 버킷에 저장할 파일의 경로 입력
+            // 클라우드 버킷에 저장될 파일 이름 만들어주기
             BlobId blobId = BlobId.of("iljo-bucket1", destination.getAbsolutePath());
 //            log.info(destination.getAbsolutePath());
 
@@ -212,13 +212,14 @@ public class UserServiceImpl implements UserService{
                     .setAcl(new ArrayList<>(Arrays.asList(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER))))
                     .build();
 
-            Blob blob = storage
-                    .create(blobInfo, new FileInputStream(file.getOriginalFilename()));
+            // 버킷에 파일 저장하고 저장될 파일의 서버상 경로 입력
+            storage.create(blobInfo, new FileInputStream(file.getOriginalFilename()));
 
+            // 버킷에 파일 올린 다음 서버에서 파일 삭제
             File file1 = new File(destination.getAbsolutePath());
             file1.delete();
 
-            return blob;
+            return file.getOriginalFilename();
         }catch(IOException e){
             log.error(e.getMessage());
             e.printStackTrace();
