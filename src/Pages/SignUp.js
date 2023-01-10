@@ -13,7 +13,7 @@ export default function Signup() {
   const [userEmail, setUserEmail] = useState("");
 
   //체크박스 value 값 받아오는 함수
-  const check = e =>{
+  const check = (e) =>{
     //두 번 체크하면 받아오지 않게 해야 함
     
     //두번 째 체크했을 때
@@ -184,9 +184,9 @@ export default function Signup() {
 
       <div>
         <NavLink className="nav-link" to="/rooms/">
-          <button className="bottomButton mt-5" onClick={() => {
-            register();
-          }}>
+          <button className="bottomButton mt-5" onClick={
+            register
+          }>
             🆗확인
           </button>
         </NavLink>

@@ -50,7 +50,7 @@ export default function MyPage01() {
     ];
     return (
 
-        <div className="container border border-3 p-3 bg-info bg-opacity-50">
+        <div className="container border border-3 p-3 bg-info bg-opacity-50 mt-5">
 
             <div>
                 <div>
