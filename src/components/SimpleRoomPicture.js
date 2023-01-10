@@ -1,11 +1,11 @@
 // 메인 화면에 있는 콘텐츠에 커서를 올렸을 때 표시되는 창의
 // 왼쪽 위에 위치하는 사진부분입니다.
-const SimpleRoomPicture = () => {
+const SimpleRoomPicture = (props) => {
     return (
 	<div className="container text-center">
         <p>
             <img 
-                src='/images\grayBox.png' 
+                src={props.room.roomThumbnail} 
                 className="unifySimplePicture"
                 alt="room preview" 
             />

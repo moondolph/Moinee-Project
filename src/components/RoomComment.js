@@ -5,16 +5,29 @@ const RoomComment = () => {
 
     // 방에 달린 댓글 불러오기
     const [comments, setComments] = useState([]);
+
+    ///////////////////////////////////////////////////////// 클라우드에서 불러오기 
+    // const getComments = useCallback(async () => {
+    //      await axios.get(
+    //         // 서버를 통해 클라우드 DB에서 데이터를 불러올 수 있게 됨.
+    //         "http://localhost:9800/comments", {
+    //         headers: {
+    //           withCredentials: true,
+    //           "Content-Type": "application/json",
+    //         },
+    //       }).then((response) => {
+    //         console.log(response.data.comments)
+    //         setComments(response.data.comments)
+    //         //setComments(commentList.data);
+    //     }).catch((e) => {
+    //         console.log(e)
+    //     })
+    // },[]);
+    ///////////////////////////////////////////////////////// json-server에서 불러오기
     const getComments = useCallback(async () => {
-         await axios.get("http://localhost:9800/comments", {
-            headers: {
-              withCredentials: true,
-              "Content-Type": "application/json",
-            },
-          }).then((response) => {
-            console.log(response.data.comments)
-            setComments(response.data.comments)
-            //setComments(commentList.data);
+         await axios.get("http://localhost:3001/comments").then((response) => {
+            console.log(response.data)
+            setComments(response.data)
         }).catch((e) => {
             console.log(e)
         })
@@ -25,32 +38,12 @@ const RoomComment = () => {
     }, [getComments])
     
     ////////////// 댓글 작성하기 
-    // 댓글 서버로 보내야 할 유저 아이디와 방 아이디는 주어진 상황이다.
+    // 방 아이디는 URI로 보내고, commentID와 createdAt은 서버에서 알아서 생성해줌.
+    // 결국 json으로는 userID와 content만 보내주면 된다.
     const userId = "로그인유저";
-    const roomId = 30;
 
-    // 댓글 서버로 보낼 현재 시간 생성하기
-    const getNow = ()=> {
-        let today = new Date();
-        setCreatedAt(
-            today.getFullYear() + '-' + 
-            ( (today.getMonth()+1) < 9 ? "0" + (today.getMonth()+1) : (today.getMonth()+1) ) + '-' 
-            + ( (today.getDate()) < 9 ? "0" + (today.getDate()) : (today.getDate()) )
-        )
-    }
-
-    // id를 지정하기 위해 랜덤 숫자 뽑기
-    const makeRandomNum = ()=>{
-        let randomNum = Math.floor(Math.random() * 100000 + 1);
-        //Math.random 0~1 사이의 난수 생성
-        //Math.floor 소수점을 내림시켜 정수로 만듦
-        setCreatedAt(randomNum);
-    }
-
-    // 댓글 내용 저장할 함수
-    const [commentId, setCommentId] = useState(); //렌더링되는 상태값을 저장했다가 나중에 사용. name을 리턴부분에서 사용하고 set하겠다. ""는 초기값("":빈 값)
+    // 댓글 내용 저장하는 함수
     const [content, setContent] = useState(""); 
-    const [createdAt, setCreatedAt] = useState(""); 
     const onsubmit = ()=> {
         console.log(userId)
         console.log(content)
@@ -75,7 +68,6 @@ const RoomComment = () => {
                 </div>
                 <div className="col-9">
                     <div className="row">
-                        
                         {comments.map((comment, index) => {
                             return (
                                 <span>

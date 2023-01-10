@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Routers from "./Routers/Routers";
 import SideBarRoom from "./components/SideBarRoom";
+import RoomArticle from "./components/RoomArticle";
 import RoomComment from "./components/RoomComment";
 import SimpleRoomParticipants from "./components/SimpleRoomParticipants";
 import SimpleRoomPicture from "./components/SimpleRoomPicture";
@@ -48,8 +49,8 @@ function App() {
 
       {/* HansooComponents*/}
       {/* <SideBarMain /> */}
-      {/* <SideBarRoom /> 
-      <RoomArticle /> */}
+      <SideBarRoom /> 
+      <RoomArticle />
       {/* <RoomComment /> */}
       {/* <JoinRoomButton /> */}
       {/* <SimpleRoomPicture /> */}
