@@ -118,13 +118,24 @@
 #InfoContainer1 {
   padding: 10px;
   /*margin-left: 35%;*/
-  display: grid; 
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 10px;
+  display: flex; 
   place-items: center;
   justify-items: center;
   justify-content: center;
 }
+
+#InfoContainer11 {
+  margin-left: 30%;
+  width:650px;
+  display: flex; 
+  place-items: center;
+  justify-content:space-between;
+  
+}
+
+
+
+
 
 #InfoContainer2 {
   padding: 10px;
