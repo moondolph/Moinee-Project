@@ -24,7 +24,8 @@ const MainContents = (props) => {
                 </p>
                     <h6 className="text-start">{props.room.title}</h6>
                 <div>
-                    {props.room.meetingDate}
+                    {props.room.meetingDate},
+                    {props.example}
                 </div>
                 <div class="pop-up-child">
                     <SimpleRoom room={props.room}/>
