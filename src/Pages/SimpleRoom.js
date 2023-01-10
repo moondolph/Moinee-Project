@@ -3,24 +3,24 @@ import SimpleRoomText from '../components/SimpleRoomText'
 import SimpleRoomParticipants from '../components/SimpleRoomParticipants'
 import ProfileMini from '../components/ProfileMini';
 
-const SimpleRoom = () => {
+const SimpleRoom = (props) => {
     return (
         <div className="container bg-white simpleRoomSize">
             <table className="">
                 <tr className="">
                     <td className="pt-5">
-                        <SimpleRoomPicture />
+                        <SimpleRoomPicture room={props.room}/>
                     </td>
                     <td className="pe-5">
-                        <SimpleRoomText />
+                        <SimpleRoomText room={props.room}/>
                     </td>
                 </tr>
                 <tr className="">
                     <td className="">
-                        <ProfileMini />
+                        <ProfileMini host={props.room.host}/>
                     </td>
                     <td className="pe-5">
-                        <SimpleRoomParticipants />
+                        <SimpleRoomParticipants room={props.room}/>
                     </td>
                 </tr>
             </table>
