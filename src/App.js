@@ -66,7 +66,7 @@ function App() {
 
  //---------------------------------------------------------------------------------------
  //------------------------------Comment---------------------------------------------
- const comments = require("./Data/comments");
+ const comments = require("./Data/CommentCopy");
  const testComment = () => {
    console.log(comments)
    };
