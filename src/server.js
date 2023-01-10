@@ -1,10 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const {commentRouter} = require('./routes');
 const mongoose = require('mongoose');
 const { swaggerUi, specs } = require('./swagger/swagger');
-const {registerWithEureka} = require('./eureka-client');
+// const {registerWithEureka} = require('./eureka-client');/
+
+ 
 
 const server = async() => {
   try {
@@ -13,6 +16,12 @@ const server = async() => {
 
     if (!MONGO_URI) throw new Error("MONGO_URI is required");
     if (!PORT) throw new Error("PORT is required");
+
+    app.use(cors({
+      origin: '*', // 모든 출처 허용 옵션. true 를 써도 된다.
+      credential: true // 사용자 인증이 필요한 리소스(쿠키 ..등) 접근
+  }));
+  
 
     app.listen(PORT, async () => {
       console.log(`server listening on port ${PORT}`);

@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/SeoulPolarBear/ILJOComment#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "env-cmd": "^10.1.0",
     "eureka-client": "^1.1.0",
