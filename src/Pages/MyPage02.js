@@ -1,18 +1,30 @@
 
 import MainContents from "../components/MainContents";
 import { Link } from "react-router-dom";
+import Profile from "../components/Profile";
 
 export default function MyPage03() {
     return (
-        <div style={{ background: "whitesmoke" }}>
+        <div style={{ background: "whitesmoke" }} class="mt-4">
             <div> 
                 <div id="InfoContainer1">
+                    <div>
                     {/* 별점 */}
                     <img style={{ width: '200px' }} src="https://cdn0.iconfinder.com/data/icons/twitter-23/512/166_Heart_Love_Like_Twitter-512.png"></img>
+                    </div>
+                    {/*프로필  */}
+                    <div>
+                    <Profile />
+                    </div>
+                    <div>
                     {/* 정보변경 */}
                     <img style={{ width: '200px' }} src="https://cdn0.iconfinder.com/data/icons/user-interface-2063/24/UI_Essential_icon_expanded-43-512.png"></img>
-                    <div class="text-center">0점</div>
-                    <div class="text-center"><a href="/" class="btn btn-primary">정보 변경</a></div>
+                    </div>
+                </div>
+                <div id="InfoContainer11"> 
+                    <div class="text-center mx-5">0점</div>
+                    <div class="text-center mx-5">프로필</div>
+                    <div class="text-center mx-5"><a href="/" class="btn btn-primary">정보 변경</a></div>
                 </div>
             </div>
             <hr></hr>

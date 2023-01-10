@@ -12,7 +12,6 @@ import MainContents from "./components/MainContents";
 import RoomJoinButton from "./components/RoomJoinButton";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
-import MyPage01 from "./Pages/MyPage01";
 import CreateRoom from "./Pages/CreateRoom";
 import MyPage2 from "./components/MyPage2";
 import Profile02 from "./Pages/Profile02";
