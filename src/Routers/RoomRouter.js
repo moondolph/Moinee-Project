@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import SimpleRoom from '../Pages/SimpleRoom';
 import Rooms from '../Pages/Rooms';
 import RoomDetail from '../Pages/RoomDetail';
+import RoomRanking from '../Pages/RoomRanking';
 
 const RoomRouter = () => {
   return (
@@ -13,6 +14,7 @@ const RoomRouter = () => {
         <Route path="/CreateRoom" element={<CreateRoom />} />
         <Route path="/SimpleRoom" element={<SimpleRoom />} />
         <Route path="/RoomDetail" element={<RoomDetail />} />
+        <Route path="/RoomRanking" element={<RoomRanking />} />
       </Routes>
     </div>
   )

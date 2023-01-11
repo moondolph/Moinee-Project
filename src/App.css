@@ -2,6 +2,11 @@
   margin-top: 100px;
 }
 
+.chart {
+  width: 1500px;
+  height: 650px;
+}
+
 .mt-20 {
   margin-top: 200px;
 }
