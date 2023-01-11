@@ -6,28 +6,30 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function MyPage02() {
-    console.log("1");
     // 유저 정보 불러오기
     const [user, setUser] = useState({});
-    const [roomList, setRoomList] = useState({});
+    const [roomList, setRoomList] = useState([]);
     // 서버랑 연결할 때는, props에서 userId 꺼내서 URI 에 넣어주어야 한다.
     const getUser = async () => {
         await axios.get("http://localhost:3001/user").then((response) => {
             console.log("방 간략정보에서 방장 프로필 가져옴")
-            console.log(response)
+            console.log("success")
             setUser(response.data)
             setRoomList(response.data.roomList)
         }).catch((e) => {
             console.log("간략정보 방장 프로필 가져오기 에러 : " + e)
-            console.log("2");
+            console.log("fail");
         })
     }
 
+
     useEffect(() => {
         getUser();
+        
     }, [])
 
-    console.log(typeof (roomList))
+    console.log(user);
+    console.log(roomList);
     // 문제가 뭐였냐면, 코드를 맨 처음 읽을 때, user.roomList 는 정의되어있지 않다.
     // user 는 useState를 통해 초기값이 지정되어있으니 그러려니 하고 넘어가지만,
     // user.roomList 라는 건 뭔지 감도 못잡게 되는 것이다.
