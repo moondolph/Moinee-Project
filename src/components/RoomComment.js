@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 
 const RoomComment = (props) => {
 
@@ -8,51 +8,40 @@ const RoomComment = (props) => {
 
     // 방에 달린 댓글 불러오는 기능
     const [comments, setComments] = useState([]);
-    ///////////////////////////////////////////////////////// 클라우드에서 불러오기 
     const getComments = useCallback(async () => {
-         await axios.get(
-            // 서버를 통해 클라우드 DB에서 데이터를 불러올 수 있게 됨.
-            "http://localhost:9800/comments", {
+        await axios.get(
+            "http://localhost:9800/comments/10", {
             headers: {
-              withCredentials: true,
-              "Content-Type": "application/json",
+                withCredentials: true,
+                "Content-Type": "application/json",
             },
-          }).then((response) => {
+        }).then((response) => {
             console.log(response.data.comments)
             setComments(response.data.comments)
             //setComments(commentList.data);
         }).catch((e) => {
             console.log(e)
         })
-    },[]);
-    ///////////////////////////////////////////////////////// json-server에서 불러오기
-    // const getComments = useCallback(async () => {
-    //      await axios.get("http://localhost:3001/comments").then((response) => {
-    //         console.log(response.data)
-    //         setComments(response.data)
-    //     }).catch((e) => {
-    //         console.log(e)
-    //     })
-    // },[]);
-    
-useEffect(() => {
+    }, []);
+
+    useEffect(() => {
         console.log(comments)
         getComments();
     }, [getComments])
-    
+
     ////////////// 댓글 작성하는 기능 
     // 방 아이디는 URI로 보내고, commentID와 createdAt은 서버에서 알아서 생성해줌.
     // 결국 json으로는 userID와 content만 보내주면 된다.
     const userId = "로그인유저";
 
     // 댓글 내용 저장하는 함수
-    const [content, setContent] = useState(""); 
-    const onsubmit = ()=> {
+    const [content, setContent] = useState("");
+    const onsubmit = () => {
         console.log(userId)
         console.log(content)
         axios.post('http://localhost:9800/comments/10', {
-            userId : userId,
-            content : content,
+            userId: userId,
+            content: content,
         }).then(response => {
             alert('댓글이 등록되었습니다.');
             console.log('success');
@@ -62,20 +51,36 @@ useEffect(() => {
         })
     }
 
-    // 댓글 수정하기 /:roomId/:_id
-    const changeIntoUpdateMode = (text) => {
-
-    }
-
+    // 서버에 업데이트 요청 보내기 /:roomId/:_id
     const [commentId, setCommentId] = useState("");
-    const [updateComment, setUpdateComment] = userState("");
-    const update = () => {
-        axios.patch('http://localhost:9800/comments/10/로그인유저',{
-            _id : commentId,
-            content : updateComment
+    const [newComment, setNewComment] = useState("");
+    const updateComment = (_id) => {
+        setCommentId(_id);
+        axios.patch('http://localhost:9800/comments/10/' + _id, {
+            _id: commentId,
+            content: newComment
+        }).then(response => {
+            alert('댓글 수정 완료');
+            console.log('update success');
+        }).catch(error => {
+            console.log('error: ', error.response);
+            console.log('update failed')
         })
     }
 
+    // 서버에 삭제 요청 보내기 /:roomId/:_id
+    // const deleteComment = (_id) => {
+    //     setCommentId(_id);
+    //     axios.delete('http://localhost:9800/comments/10/' + _id).then(response => {
+    //         alert('댓글 삭제 완료');
+    //         console.log('delete success');
+    //     }).catch(error => {
+    //         console.log('error: ', error.response);
+    //         console.log('delete failed')
+    //     })
+    // }
+
+    let [updateMode, setUpdateMode] = useState(false)
 
     return (
         <div className="container bg-body">
@@ -86,16 +91,33 @@ useEffect(() => {
                 </div>
                 <div className="col-9">
                     <div>
-                        {/* 불러온 댓글을 맵함수를 써서 보여준다. */}
+                        {/* 불러온 댓글들을 맵함수를 써서 보여준다. */}
                         {comments.map((comment, index) => {
-                            
-                            {/* 자기가 쓴 댓글이라면 수정, 삭제를 넣어준다.*/}
+
+                            {/* 자기가 쓴 댓글이라면 수정, 삭제를 넣어준다. 여기서 쏘아줌 */ }
                             let myCommentSection = [];
-                            if ( userId === comment.userId ) {
+                            if (userId === comment.userId) {
+                                
                                 myCommentSection.push(
-                                <div className="profile-right">
-                                    <span onClick={changeIntoUpdateMode}>수정</span> | <span>삭제</span>
-                                </div>);
+                                    <>
+                                        <div className={"comment" + index + " " + "profile-right"}>
+                                            <span onClick={setUpdateMode(true)}>수정</span> | <span onClick={deleteComment(comment._id)}>삭제</span>
+                                        </div>
+                                        
+                                        {/* 숨어있다가 수정하기를 누르면 나타난다. */}
+                                        {updateMode ?
+                                            (<div className="hidden">
+                                                <textarea value={newComment} onChange={(event) => {
+                                                    setNewComment(event.target.value);
+                                                }} />
+                                                <div>
+                                                    <span onClick={() => { updateComment(comment._id); }}>등록</span> | <span>취소</span>
+                                                </div>
+                                            </div>) : null
+                                        }
+                                    </>
+
+                                );
                             }
 
                             return (
@@ -119,44 +141,39 @@ useEffect(() => {
                                     </div>
 
                                     <div className="col text-start">
-                                       
-                                        {/* 불러온 댓글 내용이 담기는 곳. 수정하기를 누르면 숨는다. */}
-                                        <div id={"comment" + index}> 
+
+                                        {/* 불러온 댓글 내용이 담기는 곳 */}
+                                        <div ref={"comment" + index}>
                                             {comment.content}
+
+                                            {/* 로그인한 id와 댓글 작성자의 id가 같으면 여기서 수정 / 삭제 기능을 보여줌. */}
+                                            {myCommentSection}
                                         </div>
-                                        
-                                        {/* 숨어있다가 수정하기를 누르면 나타난다. */}
-                                        <div id={"commentUpdateSection" + index} className="hidden">
-                                            <textarea value={updateComment}/>
-                                            <div>
-                                                <span>등록</span> | <span>취소</span>
-                                            </div>
-                                        </div>
+
+
                                     </div>
-                                    
-                                    {/* 로그인한 id와 댓글 작성자의 id가 같으면 수정 / 삭제 기능을 보여줌. */}
-                                    {myCommentSection}
+
                                 </div>
                             )
                         })}
                     </div>
                 </div>
                 <hr />
-                
+
                 {/* 댓글 입력창. 숨어있다가 커서를 올리면 나타난다.*/}
                 <div className="commentSection">
-                    <textarea 
+                    <textarea
                         placeholder="댓글 입력"
                         value={content}
-                        onChange={(event)=>{
+                        onChange={(event) => {
                             setContent(event.target.value);
-                        }} 
+                        }}
                         className="centerAlign mt-2 commentInput" />
                     <div>
-                        <button 
-                            className="btn btn-primary mt-3 centerAlign" 
+                        <button
+                            className="btn btn-primary mt-3 centerAlign"
                             onClick={onsubmit}>
-                                댓글 작성하기
+                            댓글 작성하기
                         </button>
                     </div>
                 </div>
