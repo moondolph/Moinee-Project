@@ -49,4 +49,6 @@ spring:
 #    org:
 #      hibernate: info
 
+upload-path: upload
+
 

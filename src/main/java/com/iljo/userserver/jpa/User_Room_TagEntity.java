@@ -11,7 +11,7 @@ import java.io.Serializable;
  * */
 @Data
 @Entity
-@Table(name = "user_room_tag")
+@Table(name = "userRoomTag")
 @IdClass(RoomTagID.class)
 public class User_Room_TagEntity implements Serializable{
 

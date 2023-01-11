@@ -18,7 +18,7 @@ public interface UserService  {
 
     String login(String userId, String password);
 
-    BlobInfo uploadFileToGCS(RequestUser requestUser);
+//    BlobInfo uploadFileToGCS(RequestUser requestUser);
 
-    BlobInfo uploadFileToGCSTest(MultipartFile file) ;
+    String uploadFile(MultipartFile file) ;
 }
