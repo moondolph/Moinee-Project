@@ -1,5 +1,9 @@
+import { useEffect, useState } from "react";
 
-const TagUsersProfile = () => {
+const TagUsersProfile = ({user}) => {
+
+
+  console.log(user.thumbnail)
   return (
       <div className="container profile-size">
         <div className="mb-3">
@@ -7,13 +11,13 @@ const TagUsersProfile = () => {
             <img
               className="rounded-circle"
               alt="profile"
-              src="https://w.namu.la/s/521343777070adc467a42b068a5afe7b58487b50367103d3d0371edd952f51a70855d917201401e8a8eb021b1d83b03ee5a48722b5f7cf07e6f2aa8749562689ce8c0cf3d4bc0b64e9894218b8f018dc"
+              src={`https://storage.googleapis.com/${user.thumbnail}`}
               width="100px"
               height="100px"
             />
           </div>
           <div style={{width : '180px'}}>
-            PolarBearInKyonggi
+            {user.userId}
           </div>
         </div>
         {/* <div className="container">
