@@ -28,12 +28,9 @@ export default function MyPage02() {
         
     }, [])
 
-    console.log(typeof (roomList))
-    // 문제가 뭐였냐면, 코드를 맨 처음 읽을 때, user.roomList 는 정의되어있지 않다.
-    // user 는 useState를 통해 초기값이 지정되어있으니 그러려니 하고 넘어가지만,
-    // user.roomList 라는 건 뭔지 감도 못잡게 되는 것이다.
-    // 그러니까 roomList 에 따로 useState를 걸어줘야, 그러려니 하고 한 번 읽을 수가 있고,
-    // useEffect를 통해 두번째 읽을 때 비로소 axios도 실행하고 roomList에 값이 저장이 되는 것이다.
+
+    console.log(typeof (roomList));
+
     
     return (
         <div style={{ background: "whitesmoke" }} class="mt-4">
@@ -46,7 +43,7 @@ export default function MyPage02() {
                     </div>
                     {/*프로필  */}
                     <div>
-                    <Profile room={user} />
+                    <Profile user={user} />
                     </div>
                     <div>
                     {/* 정보변경 */}
@@ -66,7 +63,7 @@ export default function MyPage02() {
                         {roomList.map((room, i) => {
                             return (
                                 <div key={room.roomId} className="ms-2 mb-5 width-22">
-                                    <MainContents room={room} />
+                                    <MainContents room={room} IsTag={true} />
                                 </div>
                             )
                         })}
