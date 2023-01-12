@@ -162,6 +162,16 @@
 }
 
 /* ---------------이하 주용 css---------------*/
+.postmodal{
+  background : rgba(0,0,0,0.25);
+   /* position : fixed;    fixed 지워야 바로 밑에 뜸*/
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+}
+
+
 
 .page {         
   /* position: absolute;       
