@@ -39,7 +39,7 @@ useEffect(() => {
           {roomTag.map((room, i) => {
             return (
               <div key={room.roomId} className="ms-2 mb-5 width-22">
-                <MainContents room={room} />
+                <MainContents room={room} IsTag={true}/>
               </div>
             )
           })}

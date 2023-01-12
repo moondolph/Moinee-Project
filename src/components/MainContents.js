@@ -18,10 +18,11 @@ const MainContents = (props) => {
             <div className="bg-light container border border-1 mainContentMaxWidth pop-up-parent">
                 <br/>
                 <p>
-                    
-                    <NavLink className="fs-5 nav-link" to="/Users/MyTag" onClick={()=>{
+                    {props.IsTag ? 
+                    <NavLink className="fs-5 nav-link" to="" onClick={()=>{
                             deleteRoomTag(props.room.roomId);
-                        }}>❌</NavLink> 
+                        }}>❌</NavLink> : null
+                    }
                     
                     <span className="position-relative">
                         <img
