@@ -20,46 +20,14 @@ import axios from "axios";
 import SimpleRoom from "./Pages/SimpleRoom";
 function App() {
   return (
-    <div className="App py-3">
+    <div className="App pt-3">
       <div className="mb-10"><NavBar /></div>
       <div className="pt-5">
         <Routes >
           <Route path="/*" element={<Routers />} />
         </Routes>
       </div>
-      <div className="mt-3 width-100"><Footer /></div>
-      {/* <SimpleRoom/> */}
-      {/* <NavigationBar /> */}
-      {/* <NavBar /> */}
-      {/* <Profile /> */}
-      {/* <ProfileMini /> */}
-      {/* <SortList /> */}
-
-      {/* 주용 로그인 페이지 시작 */}
-      {/* <Login/> */}
-      {/* <SignUp/> */}
-      {/* <SignUp2/> */}
-      {/* <CreateRoom /> */}
-      {/* { <MyPage2 />  } */}
-      {/* 주용 로그인 페이지 끝 */}
-
-      {/* <Pagination /> */}
-      {/* <Footer /> */}
-
-      {/* HansooComponents*/}
-      {/* <SideBarMain /> */}
-      {/* <SideBarRoom /> 
-      <RoomArticle /> */}
-      {/* <RoomComment /> */}
-      {/* <JoinRoomButton /> */}
-      {/* <SimpleRoomPicture /> */}
-      {/* <SimpleRoomText /> */}``
-      {/* <SimpleRoomParticipants /> */}
-
-      {/* <MainContents /> */}
-
-      {/* <MyPage01/> */}
-      {/* <Profile02 /> */}
+      <div className="width-100"><Footer /></div>
     </div>
   );
 }

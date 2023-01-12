@@ -21,7 +21,7 @@ const host = "유저3"
 
 
     return (
-        <div className="container text-start pt-3 pb-5" style={{minWidth:"150px", backgroundColor:"white"}}>
+        <div className="container text-start pt-3 pb-5 roomSideBar width-226" style={{minWidth:"150px", backgroundColor:"white"}}>
             <span className="h5">참여인원</span>
             <hr /><br/>
                 <div className="row mb-2">

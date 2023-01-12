@@ -12,6 +12,7 @@ ChartJS.register(...registerables);
     //       indexAxis: 'y',
     //     }
     //   };
+
     axios.defaults.withCredentials=true;
     console.log(axios.defaults.headers.common['Authorization']);
     let labels = []
