@@ -1,6 +1,15 @@
 server:
   port: 8808
 
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+
 spring:
   application:
     name: user
@@ -28,7 +37,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     properties:
       hibernate:
         format_sql: true
@@ -49,6 +58,5 @@ spring:
 #    org:
 #      hibernate: info
 
-upload-path: upload
 
 

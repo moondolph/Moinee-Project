@@ -30,5 +30,11 @@ public class ResponseUser {
 
     private List<ResponseRoomId> rooms;
 
+    private List<ResponseFavorite> userFavorites;
+
+    private List<ResponseFollow> userFollows;
+
+    private List<ResponseRoomTag> userRoomTags;
+
 
 }

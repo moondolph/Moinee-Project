@@ -15,6 +15,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/user/{userId}/user_favorite")
+@CrossOrigin("http://localhost:3000")
 public class FavoriteController {
 
     private FavoriteService favoriteService;

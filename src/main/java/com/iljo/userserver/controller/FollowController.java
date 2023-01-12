@@ -18,6 +18,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/user/{userId}/user_follow_tag")
+@CrossOrigin("http://localhost:3000")
 public class FollowController {
 
     private FollowService followService;

@@ -6,6 +6,7 @@ import com.iljo.userserver.jpa.EnterEntity;
 import com.iljo.userserver.service.EnterService;
 import com.iljo.userserver.vo.RequestRoomId;
 import com.iljo.userserver.vo.ResponseEnter;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user/{userId}/enter")
+@Slf4j
+@RequestMapping("/user")
+@CrossOrigin("http://localhost:3000")
 public class EnterController {
 
     private EnterService enterService;
@@ -28,7 +31,7 @@ public class EnterController {
     }
 
     // 방에 참가하기를 눌렀을 때, enter 테이블에 데이터를 저장하는 메소드
-    @PostMapping("/")
+    @PostMapping("/{userId}/enter/")
     public ResponseEntity<ResponseEnter> enterRoom(
             @PathVariable("userId") String userId,
             @RequestBody RequestRoomId roomId) {
@@ -48,7 +51,7 @@ public class EnterController {
     }
 
     // 참여중인 방을 전부 불러오는 메소드
-    @GetMapping("/")
+    @GetMapping("/{userId}/enter/")
     public ResponseEntity<List<ResponseEnter>> getEnterList (
             @PathVariable("userId") String userId) {
         // sql문 실행
@@ -65,11 +68,26 @@ public class EnterController {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
+    // 방에 참여중인 user 리스트 받아오기
+    @GetMapping("/enteredUser/{roomId}")
+    public ResponseEntity<List<ResponseEnter>> getEnteredUserList(@PathVariable Long roomId) {
+        List<EnterEntity> enterEntityList = enterService.getUserByRoomId(roomId);
+        log.info("getUserByRoomID : " + enterEntityList);
+        List<ResponseEnter> result = new ArrayList<>();
+
+        enterEntityList.forEach(v -> {
+            result.add(new ModelMapper().map(v, ResponseEnter.class));
+        });
+        log.info("ResponseEnter : " + result);
+
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+
     // 참여했던 방에서 나갈 때, 데이터를 삭제하는 메소드
-    @DeleteMapping("/{room_id}")
+    @DeleteMapping("/{userId}/leave/{roomId}")
     public ResponseEntity<String> leaveTheRoom(
             @PathVariable("userId") String userId,
-            @PathVariable("room_id") Long roomId) {
+            @PathVariable("roomId") Long roomId) {
         // 받아온 값을 dto에 넣어준다.
         EnterID enterID = new EnterID(userId, roomId);
 
