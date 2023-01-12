@@ -2,11 +2,8 @@ package com.iljo.socialroom.jpa;
 
 import javax.persistence.*;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Date;
 
@@ -73,9 +70,6 @@ public class RoomEntity {
     @Column(columnDefinition = "Integer default 0")
     private Integer roomLikes;
 
-//    @ManyToOne
-//    @Column
-//    private RoomHashTagEntity roomHashTagEntity;
 
    public void putRoomInfo(RoomEntity roomEntity){
         if (roomEntity.roomId != null)

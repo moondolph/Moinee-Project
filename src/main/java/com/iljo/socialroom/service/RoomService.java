@@ -2,6 +2,7 @@ package com.iljo.socialroom.service;
 
 import com.iljo.socialroom.dto.RoomDto;
 import com.iljo.socialroom.jpa.RoomEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ public interface RoomService {
     RoomEntity getRoomInfo(Long roomId);
     RoomEntity updateRoomInfo(Long roomId, RoomDto roomDto);
     RoomEntity deleteRoom(Long roomId);
+
+    String uploadFile(MultipartFile file);
 }

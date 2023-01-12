@@ -87,6 +87,13 @@
             <artifactId>netty-resolver-dns-native-macos</artifactId>
             <version>4.1.68.Final</version>
         </dependency>
+        <!--	gcs 파일 업로드	-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-gcp-starter-storage</artifactId>
+            <version>1.2.8.RELEASE</version>
+        </dependency>
+
     </dependencies>
     <dependencyManagement>
         <dependencies>

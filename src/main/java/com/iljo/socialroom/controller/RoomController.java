@@ -16,7 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.util.ArrayList;
@@ -53,6 +53,21 @@ public class RoomController {
         ResponseRoom responseRoom = mapper.map(roomEntity, ResponseRoom.class);
         return (responseRoom != null) ? ResponseEntity.status(HttpStatus.CREATED).body(responseRoom) :
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    /**
+     * Social_Room File Upload
+     */
+    @PostMapping("/upload")
+    public ResponseEntity upload(@RequestPart MultipartFile file) {
+        String fileName = roomService.uploadFile(file);
+
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(fileName);
+        } catch (Exception e) {
+            log.error(e.toString());
+            return null;
+        }
     }
 
     /**

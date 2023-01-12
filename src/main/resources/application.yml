@@ -33,9 +33,15 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://34.170.121.78:3306/iljo_db?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
     username: iljo
+
+    cloud:
+      gcp:
+        credentials:
+          location: classpath:student-project-2022-368005-e4a467c21c2c.json
+
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
     properties:
       hibernate:
         format_sql: true
