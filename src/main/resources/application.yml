@@ -8,11 +8,26 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
+
 spring:
   application:
     name: lijo-apigateway-service
   cloud:
     gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+      globalcors:
+        cors-configurations:
+          '[/**]':
+              allowedOrigins: 'http://localhost:3000'
+              allow-credentials: true
+              allowedHeaders: '*'
+              allowedMethods:
+                - PUT
+                - GET
+                - POST
+                - DELETE
+                - OPTIONS
 #      default-filters:
 #        - name: GlobalFilter
 #          args:
@@ -60,10 +75,20 @@ spring:
 #          filters :
 #            - RemoveRequestHeader=Cookie # ?? ??? ???? Header ?? ?????? ?? ?? ??? ??? ????.
 #            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
-        - id: user-evaluation
-          uri: lb://USER-EVALUATION
+        - id: userEvaluation
+          uri: lb://USEREVALUATION
           predicates :
-            - Path=/user-evaluation/**
+            - Path=/userEvaluation/**
+
+        - id: user
+          uri: lb://USER
+          predicates:
+            - Path=/user/**
+
+        - id: socialRoom
+          uri: lb://SOCIALROOM
+          predicates:
+            - Path=/socialRoom/**
 
 #        - id : comments
 #          uri : lb://COMMENTS
