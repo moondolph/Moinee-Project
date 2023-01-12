@@ -21,10 +21,12 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-gateway</artifactId>
-		</dependency>
+            <version>4.0.0</version>
+        </dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<version>4.0.0</version>
 		</dependency>
 
 		<dependency>
@@ -35,7 +37,18 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+            <version>3.0.1</version>
+            <scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>5.3.23</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>
@@ -47,6 +60,19 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<!-- Mac OS Error -->
+			<!-- https://mvnrepository.com/artifact/io.netty/netty-resolver-dns-native-macos -->
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-resolver-dns-native-macos</artifactId>
+				<version>4.1.86.Final</version>
+			</dependency>
+
+			<!--			<dependency>-->
+<!--				<groupId>org.apache.httpcomponents</groupId>-->
+<!--				<artifactId>httpclient</artifactId>-->
+<!--				<scope>test</scope>-->
+<!--			</dependency>-->
 		</dependencies>
 	</dependencyManagement>
 
