@@ -48,8 +48,8 @@ function App() {
 
       {/* HansooComponents*/}
       {/* <SideBarMain /> */}
-      <SideBarRoom /> 
-      <RoomArticle />
+      {/* <SideBarRoom /> 
+      <RoomArticle /> */}
       {/* <RoomComment /> */}
       {/* <JoinRoomButton /> */}
       {/* <SimpleRoomPicture /> */}

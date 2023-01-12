@@ -40,9 +40,9 @@ const RoomArticle = () => {
                 <img src='\images\wordBalloon.png' style={{ width: "15px" }} alt="comment" />
                 &nbsp;댓글 개수 나타내기 {/* 댓글 개수 */}
             </p>
-            <p>
+            <div className="ms-20 container">
                 <img src={roomInfo.roomThumbnail} className="img-fluid" alt="room description" />
-            </p>
+            </div>
             <div className="row">
                 <h3 className="col-lg-2" style={{ minWidth: "170px" }}>
                     어떤 모임<br />인가요?
