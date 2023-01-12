@@ -38,7 +38,7 @@ const Rooms = () => {
           {rooms.map((room, index)=>{
             return(
               <div key={index} className="ms-3 mb-5 width-22">
-                <MainContents room={room}/>
+                <MainContents room={room} IsTag={false}/>
               </div>)
           })}
           {/* {Array(16)
