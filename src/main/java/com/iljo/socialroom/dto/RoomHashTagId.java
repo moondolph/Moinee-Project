@@ -1,4 +1,4 @@
-package com.iljo.social_room.dto;
+package com.iljo.socialroom.dto;
 
 
 import lombok.AllArgsConstructor;

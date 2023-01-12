@@ -1,23 +1,23 @@
-package com.iljo.social_room.vo;
+package com.iljo.socialroom.vo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-
 @Data
-
-public class ResponseRoom {
+@Component
+public class RequestRoom {
 
     private Long roomId;
     private String host;
     private String title;
     private String category;
     private String description;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "Asia/Seoul")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Date meetingDate;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "Asia/Seoul")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Date createDate;
     private String meetingLoc;
     private double latitude;
@@ -26,5 +26,5 @@ public class ResponseRoom {
     private String roomThumbnail;
     private Integer roomLikes;
 
-//    private List<User> userList;
+
 }

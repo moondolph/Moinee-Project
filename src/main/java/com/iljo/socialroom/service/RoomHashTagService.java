@@ -1,9 +1,7 @@
-package com.iljo.social_room.service;
+package com.iljo.socialroom.service;
 
-import com.iljo.social_room.dto.RoomHashTagDto;
-import com.iljo.social_room.dto.RoomHashTagId;
-import com.iljo.social_room.jpa.RoomHashTagEntity;
-import com.iljo.social_room.vo.RequestRoomHashTag;
+import com.iljo.socialroom.jpa.RoomHashTagEntity;
+import com.iljo.socialroom.vo.RequestRoomHashTag;
 
 import java.util.List;
 

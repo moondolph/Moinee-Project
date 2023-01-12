@@ -1,8 +1,8 @@
-package com.iljo.social_room.jpa;
+package com.iljo.socialroom.jpa;
 
 import javax.persistence.*;
 
-import com.iljo.social_room.dto.RoomHashTagId;
+import com.iljo.socialroom.dto.RoomHashTagId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

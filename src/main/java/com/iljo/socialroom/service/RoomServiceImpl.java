@@ -1,8 +1,8 @@
-package com.iljo.social_room.service;
+package com.iljo.socialroom.service;
 
-import com.iljo.social_room.dto.RoomDto;
-import com.iljo.social_room.jpa.RoomEntity;
-import com.iljo.social_room.jpa.RoomRepository;
+import com.iljo.socialroom.dto.RoomDto;
+import com.iljo.socialroom.jpa.RoomEntity;
+import com.iljo.socialroom.jpa.RoomRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -15,7 +15,7 @@ import java.util.List;
 @Slf4j
 public class RoomServiceImpl implements RoomService{
 
-    RoomRepository roomRepository;
+    private RoomRepository roomRepository;
 
 
     @Autowired

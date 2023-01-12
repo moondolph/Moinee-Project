@@ -1,4 +1,4 @@
-package com.iljo.social_room.vo;
+package com.iljo.socialroom.vo;
 
 
 import lombok.Data;

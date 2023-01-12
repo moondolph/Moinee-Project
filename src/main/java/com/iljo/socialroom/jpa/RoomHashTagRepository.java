@@ -1,9 +1,10 @@
-package com.iljo.social_room.jpa;
+package com.iljo.socialroom.jpa;
 
-import com.iljo.social_room.dto.RoomHashTagId;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import com.iljo.socialroom.dto.RoomHashTagId;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface RoomHashTagRepository extends CrudRepository<RoomHashTagEntity, RoomHashTagId> {

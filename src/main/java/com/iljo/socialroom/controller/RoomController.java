@@ -1,21 +1,17 @@
-package com.iljo.social_room.controller;
+package com.iljo.socialroom.controller;
 
-import com.iljo.social_room.dto.RoomDto;
-import com.iljo.social_room.dto.RoomHashTagDto;
-import com.iljo.social_room.dto.RoomHashTagId;
-import com.iljo.social_room.jpa.RoomEntity;
-import com.iljo.social_room.jpa.RoomHashTagEntity;
-import com.iljo.social_room.service.RoomHashTagService;
-import com.iljo.social_room.service.RoomService;
-import com.iljo.social_room.vo.RequestRoom;
-import com.iljo.social_room.vo.RequestRoomHashTag;
-import com.iljo.social_room.vo.ResponseRoom;
-import com.iljo.social_room.vo.ResponseRoomHashTag;
+import com.iljo.socialroom.dto.RoomDto;
+import com.iljo.socialroom.dto.RoomHashTagDto;
+import com.iljo.socialroom.feign.UserClient;
+import com.iljo.socialroom.jpa.RoomEntity;
+import com.iljo.socialroom.jpa.RoomHashTagEntity;
+import com.iljo.socialroom.service.RoomHashTagService;
+import com.iljo.socialroom.service.RoomService;
+import com.iljo.socialroom.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,20 +23,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/social_room")
+@RequestMapping("/socialRoom")
 @Slf4j
+@CrossOrigin("http://localhost:3000")
 public class RoomController {
 
 
     private RoomService roomService;
     private RoomHashTagService roomHashTagService;
+    private UserClient userClient;
 
     @Autowired
-    public RoomController(RoomService roomService, RoomHashTagService roomHashTagService) {
+    public RoomController(RoomService roomService, RoomHashTagService roomHashTagService, UserClient userClient) {
         this.roomService = roomService;
         this.roomHashTagService = roomHashTagService;
+        this.userClient = userClient;
     }
-
 
     /**
      *  Social_Room Create Method
@@ -51,8 +49,8 @@ public class RoomController {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         RoomDto roomDto = mapper.map(room, RoomDto.class);
-        roomService.createRoom(roomDto);
-        ResponseRoom responseRoom = mapper.map(roomDto, ResponseRoom.class);
+        RoomEntity roomEntity = roomService.createRoom(roomDto);
+        ResponseRoom responseRoom = mapper.map(roomEntity, ResponseRoom.class);
         return (responseRoom != null) ? ResponseEntity.status(HttpStatus.CREATED).body(responseRoom) :
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
@@ -78,11 +76,36 @@ public class RoomController {
      */
     @GetMapping("/{roomId}")
     public ResponseEntity<ResponseRoom> getRoomInfo(@PathVariable Long roomId) {
+        // Enter에서 UserId 가져오기
+        List<ResponseEnter> responseEnters = userClient.getEnteredUser(roomId);
+        List<ResponseUser> userList = new ArrayList<>();
+        responseEnters.forEach(u -> {
+            ResponseUser users = userClient.getUsers(u.getUserId());
+            userList.add(users);
+        });
+        // RoomHashTag 가져오기
+        Iterable<RoomHashTagEntity> roomHashTagEntity = roomHashTagService.findByRoomId(roomId);
+        List<ResponseRoomHashTag> responseRoomHashTag = new ArrayList<>();
+        roomHashTagEntity.forEach(v -> {
+            responseRoomHashTag.add(new ModelMapper().map(v, ResponseRoomHashTag.class));
+        });
+
+        // 방 정보 가져오기
         RoomEntity roomEntity = roomService.getRoomInfo(roomId);
         ResponseRoom roomInfo = new ModelMapper().map(roomEntity, ResponseRoom.class);
-        return ResponseEntity.status(HttpStatus.OK).body(roomInfo); // user list 추가
-
+        roomInfo.setUserList(userList);
+        roomInfo.setRoomHashTagList(responseRoomHashTag);
+        return ResponseEntity.status(HttpStatus.OK).body(roomInfo);
     }
+
+    // user에 보내줄 room 정보
+    @GetMapping("/{roomId}/user")
+    public ResponseEntity<ResponseRoom> getRoomInfoForUser(@PathVariable Long roomId) {
+        RoomEntity roomEntity = roomService.getRoomInfo(roomId);
+        ResponseRoom roomInfo = new ModelMapper().map(roomEntity, ResponseRoom.class);
+        return ResponseEntity.status(HttpStatus.OK).body(roomInfo);
+    }
+
     /**
      *  Find Social_Room by category Method
      */

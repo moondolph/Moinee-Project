@@ -1,23 +1,20 @@
-package com.iljo.social_room.jpa;
+package com.iljo.socialroom.jpa;
 
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-import java.io.Serializable;
 import java.util.Date;
 
 
-@Table(name="SOCIALROOM")
+@Table(name="socialRoom")
 @Entity
 @Data
 @DynamicInsert // Insert시 null값 제외하고 쿼리문 실행
-@AllArgsConstructor
-@NoArgsConstructor
 public class RoomEntity {
     /**
      * room_id :  고유 방 번호
@@ -43,13 +40,13 @@ public class RoomEntity {
     @Column(nullable = false, length = 20)
     private String host;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 10)
     private String title;
 
     @Column(nullable = false, length = 10)
     private String category;
 
-    @Column(nullable = false, columnDefinition = "Text")
+    @Column(nullable = false, columnDefinition = "Text", length = 50)
     private String description;
 
     @Column(nullable = false)
@@ -75,6 +72,10 @@ public class RoomEntity {
 
     @Column(columnDefinition = "Integer default 0")
     private Integer roomLikes;
+
+//    @ManyToOne
+//    @Column
+//    private RoomHashTagEntity roomHashTagEntity;
 
    public void putRoomInfo(RoomEntity roomEntity){
         if (roomEntity.roomId != null)

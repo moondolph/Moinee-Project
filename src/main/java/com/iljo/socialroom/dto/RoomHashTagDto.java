@@ -1,11 +1,10 @@
-package com.iljo.social_room.vo;
+package com.iljo.socialroom.dto;
 
 import lombok.Data;
 
 @Data
-public class RequestRoomHashTag {
-
+public class RoomHashTagDto {
     private Long roomId;
     private String hashTag;
 
-}
+};

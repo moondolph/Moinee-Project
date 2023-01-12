@@ -1,33 +1,38 @@
 server:
-  port: 8808
+  port: 0
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
 
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test_db?serverTimezone=Asia/Seoul
-    username: test_user
-    password: admin
-
-
-
 
   mvc:
     hidden-method:
       filter:
         enabled: true
   application:
-    name: social-room
-  h2:
-    console:
-      enabled: true
-      settings:
-        web-allow-others: true
-      path: /h2-console
+    name: SOCIALROOM
+#  h2:
+#    console:
+#      enabled: true
+#      settings:
+#        web-allow-others: true
+#      path: /h2-console
 #  datasource:
 #    driver-class-name: org.h2.Driver
 #    url: jdbc:h2:mem:testdb;MODE=MySQL
 #    username: sa
 #    password : 1234
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://34.170.121.78:3306/iljo_db?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    username: iljo
   jpa:
     hibernate:
       ddl-auto: create
@@ -36,18 +41,11 @@ spring:
         format_sql: true
   logging.level:
     org.hibernate.SQL: debug
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 #  devtools:
 #    add-properties:
 #    password : 1234
-#eureka :
-#  instance :
-#    instance-id : ${spring.application.name}:${spring.application.instance-id:${random.value}}
-#  client:
-#    register-with-eureka : true
-#    fetch-registry : true
-#    service-url:
-#      defaultZone: http://127.0.0.1:8761/eureka
+
 spring.devtools.livereload.enabled: false
 
 

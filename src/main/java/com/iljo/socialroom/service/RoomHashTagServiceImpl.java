@@ -1,12 +1,9 @@
-package com.iljo.social_room.service;
+package com.iljo.socialroom.service;
 
-import com.iljo.social_room.dto.RoomHashTagDto;
-import com.iljo.social_room.dto.RoomHashTagId;
-import com.iljo.social_room.jpa.RoomHashTagEntity;
-import com.iljo.social_room.jpa.RoomHashTagRepository;
-import com.iljo.social_room.vo.RequestRoomHashTag;
+import com.iljo.socialroom.jpa.RoomHashTagEntity;
+import com.iljo.socialroom.jpa.RoomHashTagRepository;
+import com.iljo.socialroom.vo.RequestRoomHashTag;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

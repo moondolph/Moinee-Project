@@ -1,7 +1,7 @@
-package com.iljo.social_room.service;
+package com.iljo.socialroom.service;
 
-import com.iljo.social_room.dto.RoomDto;
-import com.iljo.social_room.jpa.RoomEntity;
+import com.iljo.socialroom.dto.RoomDto;
+import com.iljo.socialroom.jpa.RoomEntity;
 
 import java.util.List;
 
