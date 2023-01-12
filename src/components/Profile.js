@@ -27,7 +27,7 @@ const Profile = (props) => {
           <table>
             <tr>
               <th>Email :</th>
-              <td>{props.room.email}</td>
+              <td>{props.user.email}</td>
             </tr>
             <tr>
               <th>Phone :</th>
@@ -35,7 +35,7 @@ const Profile = (props) => {
             </tr>
             <tr>
               <th>Name :</th>
-              <td>{props.room.name}</td>
+              <td>{props.user.name}</td>
             </tr>
           </table>
         </div>

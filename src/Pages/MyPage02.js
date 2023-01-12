@@ -40,7 +40,7 @@ export default function MyPage02() {
                     </div>
                     {/*프로필  */}
                     <div>
-                    <Profile room={user} />
+                    <Profile user={user} />
                     </div>
                     <div>
                     {/* 정보변경 */}
