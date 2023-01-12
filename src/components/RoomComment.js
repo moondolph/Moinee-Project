@@ -2,16 +2,21 @@ import axios from "axios";
 import { useEffect, useState, useCallback, useRef } from "react";
 
 const RoomComment = (props) => {
+    const token = axios.defaults.headers.common['Authorization']
 
+    // console.log(token);
     // 서버랑 연동할 때는 props 에서 userId 도 꺼내고, room 도 꺼내고 해야 함.
     const room = props.room;
 
     // 방에 달린 댓글 불러오는 기능
     const [comments, setComments] = useState([]);
     const getComments = useCallback(async () => {
+        <meta name="referrer" content="no-referrer-when-downgrade" />
         await axios.get(
             "http://localhost:9800/comments/10", {
             headers: {
+                "Access-Controll-Allow-Origin" : "*",
+                 Authorization: token,
                 withCredentials: true,
                 "Content-Type": "application/json",
             },
@@ -19,8 +24,8 @@ const RoomComment = (props) => {
             console.log(response.data.comments)
             setComments(response.data.comments)
             //setComments(commentList.data);
-        }).catch((e) => {
-            console.log(e)
+        }).catch((error) => {
+            console.log(error.message)
         })
     }, []);
 
@@ -33,26 +38,34 @@ const RoomComment = (props) => {
 
     // 댓글 내용 저장하는 함수
     const [content, setContent] = useState("");
-    const onsubmit = () => {
+    const onsubmit = useCallback(() => {
         console.log(userId)
         console.log(content)
         axios.post('http://localhost:9800/comments/10', {
             userId: userId,
             content: content,
-        }).then(response => {
+        },{
+            headers: {
+                Authorization: token,
+               withCredentials: true,
+               "Content-Type": "application/json",
+           },
+    }
+        ).then(response => {
             alert('댓글이 등록되었습니다.');
             console.log('success');
+            getComments();
         }).catch(error => {
-            console.log('error: ', error.response);
+            console.log('error: ', error.message);
             console.log("post failed")
         })
-    }
+    }, [getComments,content]);
 
     // 서버에 업데이트 요청 보내기 /:roomId/:_id
     const [commentId, setCommentId] = useState("");
     const [newComment, setNewComment] = useState("");
     const [targetComment, SetTargetComment] = useState("");
-    const updateComment = (_id) => {
+    const updateComment = useCallback((_id) => {
         setCommentId(_id);
         axios.patch('http://localhost:9800/comments/10/' + _id, {
             _id: commentId,
@@ -60,23 +73,25 @@ const RoomComment = (props) => {
         }).then(response => {
             alert('댓글 수정 완료');
             console.log('update success');
+            getComments();
         }).catch(error => {
             console.log('error: ', error.response);
             console.log('update failed')
         })
-    }
+    }, [newComment]);
 
     // 서버에 삭제 요청 보내기 /:roomId/:_id
-    const deleteComment = (_id) => {
+    const deleteComment = useCallback((_id) => {
         setCommentId(_id);
         axios.delete('http://localhost:9800/comments/10/' + _id).then(response => {
             alert('댓글 삭제 완료');
             console.log('delete success');
+            getComments();
         }).catch(error => {
             console.log('error: ', error.response);
             console.log('delete failed')
         })
-    }
+    }, []);
 
     let [updateMode, setUpdateMode] = useState(false);
 
@@ -84,19 +99,24 @@ const RoomComment = (props) => {
         
     },[updateMode, targetComment])
 
+    // useEffect(() => {
+    //     // console.log(comments)
+        
+    // }, [getComments])
+
     useEffect(() => {
-        console.log(comments)
+    console.log(comments)
         getComments();
-    }, [getComments,onsubmit, updateComment, deleteComment])
+    }, [])
 
     return (
         <div className="container bg-body">
             <div className="fs-3 mb-3 ps-3 text-start">모임이 궁금하다면 댓글을 남겨보세요</div>
 
-            <div className="row">
+            <div className="row ">
                 <div className="col-2">
                 </div>
-                <div className="col-9">
+                <div className="col-9 pb-5">
                     <div>
                         {/* 불러온 댓글들을 맵함수를 써서 보여준다. */}
                         {comments.map((comment, index) => {
@@ -114,7 +134,7 @@ const RoomComment = (props) => {
                                             <div className="fs-5 left-text" style={{ paddingRight: "5px" }}>
                                                 {comment.userId}
                                             </div>
-                                            <div className="left-text">
+                                            <div className="left-text text-secondary">
                                                 {comment.createdAt.substring(0, 10) + " " + comment.createdAt.substring(11, 19)}
                                             </div>
                                         </p>
@@ -165,6 +185,7 @@ const RoomComment = (props) => {
                         value={content}
                         onChange={(event) => {
                             setContent(event.target.value);
+                            console.log(content);
                         }}
                         className="centerAlign mt-2 commentInput" />
                     <div>

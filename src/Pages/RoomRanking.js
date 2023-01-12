@@ -2,6 +2,7 @@ import React from 'react'
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { Chart } from 'react-chartjs-2'
 import { rankingList } from '../resource/ranking'
+import axios from 'axios';
 const RoomRanking = () => {
 ChartJS.register(...registerables);
     // const config = {
@@ -12,6 +13,8 @@ ChartJS.register(...registerables);
     //     }
     //   };
 
+    axios.defaults.withCredentials=true;
+    console.log(axios.defaults.headers.common['Authorization']);
     let labels = []
     let result = []
     let backgroundColor = []

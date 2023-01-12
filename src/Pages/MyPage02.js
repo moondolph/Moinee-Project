@@ -9,7 +9,6 @@ export default function MyPage02() {
     // 유저 정보 불러오기
     const [user, setUser] = useState({});
     const [roomList, setRoomList] = useState([]);
-
     // 서버랑 연결할 때는, props에서 userId 꺼내서 URI에 넣어주어야 한다.
     const getUser = async () => {
         await axios.get("http://localhost:3001/user").then((response) => {
@@ -20,7 +19,6 @@ export default function MyPage02() {
         }).catch((e) => {   
             console.log("간략정보 방장 프로필 가져오기 에러 : " + e);
             console.log("2");
-
         })
     }
 
