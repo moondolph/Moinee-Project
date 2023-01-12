@@ -33,6 +33,11 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+<!--	mySQL	-->
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
@@ -82,6 +87,12 @@
 				<version>${spring-cloud.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
+			</dependency>
+			<!-- Mac OS Error -->
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-resolver-dns-native-macos</artifactId>
+				<version>4.1.68.Final</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
