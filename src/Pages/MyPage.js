@@ -9,7 +9,7 @@ const MyPage = () => {
   return (
     <div className="page container">
         <div>
-            <Profile room={user}/>
+            {/* <Profile room={user}/> */}
         </div>
         <hr/>
         <div>
