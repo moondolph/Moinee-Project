@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Profile = () => {
+const Profile = (props) => {
   return (
     <div>
       {/* Image */}
@@ -27,15 +27,15 @@ const Profile = () => {
           <table>
             <tr>
               <th>Email :</th>
-              <td>xxxxxx@gmail.com</td>
+              <td>{props.user.email}</td>
             </tr>
             <tr>
               <th>Phone :</th>
-              <td>xxx-xxxx-xxxx</td>
+              <td>010-1234-5678</td>
             </tr>
             <tr>
               <th>Name :</th>
-              <td>SungHwan</td>
+              <td>{props.user.name}</td>
             </tr>
           </table>
         </div>
