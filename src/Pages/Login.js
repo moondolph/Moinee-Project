@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom';
-
+import axios from 'axios';
 const User = {
   id: 'test@example.com',
   pw: 'test2323@@@'
@@ -8,6 +8,8 @@ const User = {
 
 
 export default function Login() {
+  const accessToken = '1234';
+  axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
     /* 기능박는부분. 아직 공부 안된 상태고. 아직 안 써서 주석처리 
     const [id, setid] = useState('');
     const [pw, setPw] = useState('');
