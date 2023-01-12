@@ -7,6 +7,8 @@ import java.util.List;
 public interface EnterRepository extends CrudRepository<EnterEntity, EnterID> {
 
     List<EnterEntity> findAllByUserId(String userId);
+
+    List<EnterEntity> findAllByRoomId(Long roomId);
 }
 
 
