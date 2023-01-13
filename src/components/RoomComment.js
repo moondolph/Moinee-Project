@@ -64,7 +64,7 @@ const RoomComment = (props) => {
     // 서버에 업데이트 요청 보내기 /:roomId/:_id
     const [commentId, setCommentId] = useState("");
     const [newComment, setNewComment] = useState("");
-    const [targetComment, SetTargetComment] = useState("");
+    const [targetComment, setTargetComment] = useState("");
     const updateComment = useCallback((_id) => {
         setCommentId(_id);
         axios.patch('http://localhost:9800/comments/10/' + _id, {
@@ -116,8 +116,8 @@ const RoomComment = (props) => {
             <div className="row ">
                 <div className="col-2">
                 </div>
-                <div className="col-9 pb-5">
-                    <div>
+                <div className="col-9 pb-5" style={{maxWidth: "700px"}}>
+          
                         {/* 불러온 댓글들을 맵함수를 써서 보여준다. */}
                         {comments.map((comment, index) => {
                             return (
@@ -146,35 +146,51 @@ const RoomComment = (props) => {
                                         <div>
                                             {comment.content}
 
-                                            {/* 로그인한 id와 댓글 작성자의 id가 같으면 여기서 수정 / 삭제 기능을 보여줌. */}
-                                            {(userId === comment.userId) ? ( <div className={"comment" + index + " " + "profile-right"}>
-                                            <span className="btn btn-primary me-3" onClick={()=>{SetTargetComment(comment._id); setUpdateMode(true)}}>수정</span>
-                                            <span className="btn btn-danger" onClick={() =>{deleteComment(comment._id)}}>삭제</span>
-                                        </div>) : null}
-                                        
-                                        {/* 숨어있다가 수정하기를 누르면 나타난다. */}
-                                        {updateMode ? 
-                                                ((targetComment === comment._id) ?
-                                            (<div>
-                                                <textarea value={newComment} onChange={(event) => {
-                                                    setNewComment(event.target.value);
-                                                }} />
-                                                <div>
-                                                    <span className="btn btn-light me-1 shadow-sm bg-body-tertiary" onClick={() => {updateComment(comment._id); }}>등록</span> 
-                                                    <span className="btn btn-light me-1 shadow-sm bg-body-tertiary" onClick={() => {setUpdateMode(false)}}>취소</span>
-                                                </div>
-                                            </div>) :null) 
+                                            {/* 수정, 삭제 버튼. 댓글 작성자 id 와 내 id가 같으면 나타난다. */}
+                                            {/* 수정을 누르면 사라지고, 취소를 누르면 다시 나타난다. */}
+                                            {(userId === comment.userId) ?
+                                                (updateMode === false) ? 
+                                                    ( <div className="profile-right">
+                                                        <span 
+                                                        className="btn btn-primary me-3" 
+                                                        onClick={()=>{
+                                                            setTargetComment(comment._id); 
+                                                            setUpdateMode(true);
+                                                            setNewComment(comment.content)
+                                                            }}
+                                                        >
+                                                            수정
+                                                        </span>
+                                                        <span className="btn btn-danger" onClick={() =>{deleteComment(comment._id)}}>삭제</span>
+                                                    </div>)
                                                 : null
+                                            : null}
+                                        
+                                        {/* 수정할 때 입력하는 창. 숨어있다가 수정하기를 누르면 나타난다. */}
+                                        {updateMode ? 
+                                            ((targetComment === comment._id) ?
+                                                (<div>
+                                                    <textarea 
+                                                        className="commentUpdateSection" 
+                                                        value={newComment}
+                                                        onChange={(event) => {
+                                                            setNewComment(event.target.value);
+                                                        }} 
+                                                    />
+                                                    <div className="profile-right">
+                                                        <span className="btn btn-light me-1 shadow-sm bg-body-tertiary" onClick={() => {updateComment(comment._id); }}>등록</span> 
+                                                        <span className="btn btn-light me-1 shadow-sm bg-body-tertiary" onClick={() => {setUpdateMode(false)}}>취소</span>
+                                                    </div>
+                                                </div>) 
+                                            :null) 
+                                        : null
                                         }
                                         </div>
-
-
                                     </div>
 
                                 </div>
                             )
                         })}
-                    </div>
                 </div>
                 <hr />
 

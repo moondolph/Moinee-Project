@@ -1,5 +1,6 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useCookies } from 'react-cookie';
 
 const Ul = styled.ul`
   display: flex;
@@ -12,27 +13,49 @@ const List = styled.li`
 `;
 
 const NavBar = () => {
+
+  const [cookies, setCookie, removeCookie] = useCookies(['id']);
+  const navigate = useNavigate();
+
+  const logout = () => {
+    removeCookie('id')
+    alert("로그아웃 하였습니다.");
+    navigate('/');
+  }
+
   return (
     <div className="z-n1 fixed-top text-bg-light">
       {/* Navgiation */}
       <nav className="navbar bg-gray stikcy-top">
         <div className="container-fluid">
-          {/* Home button */}
-          <Link className="navbar-brand site-Title" to="/">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/151/151864.png"
-              alt="Logo"
-              width="30"
-              height="30"
-              className="d-inline-block align-text-top"
-            />
-            MO-INEE
-          </Link>
+          <span>
+
+            {/* Home button */}
+            <Link className="navbar-brand site-Title" to="/">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/151/151864.png"
+                alt="Logo"
+                width="30"
+                height="30"
+                className="d-inline-block align-text-top me-2"
+              />
+              MO-INEE
+            </Link>
+
+            {/* Show LoginUser and Logout */}
+            {(cookies.id !== undefined) ?
+              <>
+                {cookies.id}님, 반갑습니다.
+                <button className="btn btn-light text-secondary" onClick={logout}>로그아웃</button>
+              </>: 
+                null
+            }
+          </span>
 
           {/* Search Bar and MakeRoomButton*/}
           <form className="d-flex" role="search">
             <NavLink className="nav-link" to="/Rooms/CreateRoom">
-              <button className="btn btn-primary" style={{marginRight:"20px", width:"120px"}}>모임 만들기</button>
+              <button className="btn btn-primary" style={{ marginRight: "20px", width: "120px" }}>모임 만들기</button>
             </NavLink>
             <div className="input-group">
               <span className="input-group-text" id="basic-addon1">
