@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 
 // 방에 참여 -> enter table에 값 입력하기. json으로는 roomId만 보내주면 됨.
-const RoomJoinButton = () => {
+const RoomJoinButton = (props) => {
 
     
     // const [roomId, setRoomId] = useState("");
@@ -24,14 +24,17 @@ const RoomJoinButton = () => {
         <hr/>
         <div className="justifySpaceAround" style={{minWidth:"520px"}}>
             <div>
-                <div>2022. 12. 16 토요일</div>
-                <img src='\images\location.png' style={{width:"20px"}} alt="location" />
-                <span className="fs-3">중구 회현동</span>
+                <div className="text-start">
+                    {props.room.meetingDate}<br/>
+                    <img src='\images\location.png' style={{width:"20px", marginRight:"5px", paddingBottom:"11px"}} alt="location" />
+                    {props.room.meetingLoc}
+                </div>
+                <span className="fs-3">{props.room.title}</span>
             </div>
-            <span className="justifySpaceAround">
-                <button onClick={enterRoom} className="btn btn-primary" style={{width:"150px",}}>참가 신청하기</button>
-                <img className="" src='\images\likeNotPushed.png' style={{width:"70px"}} alt="like button" />
-            </span>
+            <div className="justifySpaceAround" style={{height:"80px"}}>
+                <button onClick={enterRoom} className="btn btn-primary me-3" style={{width:"150px",}}>참가 신청하기</button>
+                <img className="btn btn-light" src='\images\likeNotPushed.png' style={{width:"55px"}} alt="like button" />
+            </div>
         </div> 
 
     </div>

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
 const User = {
   id: 'test@example.com',
   pw: 'test2323@@@'

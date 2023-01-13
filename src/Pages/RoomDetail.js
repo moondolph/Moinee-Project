@@ -26,7 +26,7 @@ export default function RoomDetail() {
                 <td style={{ "minWidth": "200px" }}>
                     <SideBarRoom room={room}/>
                 </td>
-                <td class="p-5 pb-0">
+                <td class="p-5 pb-0" style={{ "maxWidth": "1200px"}}>
                     <RoomArticle room={room}/>
                     <RoomComment room={room}/>
                     <RoomJoinButton room={room}/>
