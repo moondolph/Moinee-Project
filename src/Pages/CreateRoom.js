@@ -84,7 +84,7 @@ export default function CreateRoom() {
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="영화" onChange={check}></input>
-            <label class="form-check-label" for="inlineCheckbox2">여행</label>
+            <label class="form-check-label" for="inlineCheckbox2">영화</label>
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="음식" onChange={check}></input>
