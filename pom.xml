@@ -94,6 +94,12 @@
             <version>1.2.8.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
+        </dependency>
+
     </dependencies>
     <dependencyManagement>
         <dependencies>
