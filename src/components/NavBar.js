@@ -84,8 +84,8 @@ const NavBar = () => {
             </NavLink>
           </List>
           <List className="nav-item">
-            <NavLink className="nav-link" to="/">
-              about
+            <NavLink className="nav-link" to="/RoomRanking">
+              RoomRanking
             </NavLink>
           </List>
           <List className="nav-item">
