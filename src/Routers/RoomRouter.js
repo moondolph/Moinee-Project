@@ -14,7 +14,7 @@ const RoomRouter = () => {
         <Route path="/CreateRoom" element={<CreateRoom />} />
         <Route path="/SimpleRoom" element={<SimpleRoom />} />
         <Route path="/RoomDetail" element={<RoomDetail />} />
-        <Route path="/RoomRanking" element={<RoomRanking />} />
+        
       </Routes>
     </div>
   )

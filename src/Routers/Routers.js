@@ -11,6 +11,7 @@ const Routers = () => {
             <Route path='/' element = {<Main />} />
             <Route path='/Users/*' element= {<UserRouter/>} />
             <Route path='/Rooms/*' element= {<RoomRouter/>} />
+            <Route path="/RoomRanking" element={<RoomRanking />} />
         </Routes>
     </div>
   )
