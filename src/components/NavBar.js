@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, Navigate } from "react-router-dom";
 import styled from "styled-components";
 import { useCookies } from 'react-cookie';
 
@@ -15,12 +15,11 @@ const List = styled.li`
 const NavBar = () => {
 
   const [cookies, setCookie, removeCookie] = useCookies(['id']);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const logout = () => {
     removeCookie('id')
     alert("로그아웃 하였습니다.");
-    navigate('/');
   }
 
   return (
@@ -120,7 +119,7 @@ const NavBar = () => {
             // 로그인 상태일 경우 보여주는 화면
             <>
               <List className="nav-item">
-                <NavLink className="nav-link" onClick={logout}>
+                <NavLink className="nav-link" to="Users/login" onClick={logout}>
                   Logout
                 </NavLink>
               </List>

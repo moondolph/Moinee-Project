@@ -5,7 +5,7 @@ const SimpleRoomPicture = (props) => {
 	<div className="container text-center">
         <p>
             <img 
-                src={props.room.roomThumbnail} 
+                src={`https://storage.googleapis.com/iljo-room/${props.room.roomThumbnail}`}
                 className="unifySimplePicture"
                 alt="room preview" 
             />

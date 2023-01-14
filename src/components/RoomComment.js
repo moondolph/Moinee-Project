@@ -6,14 +6,14 @@ const RoomComment = (props) => {
 
     // console.log(token);
     // 서버랑 연동할 때는 props 에서 userId 도 꺼내고, room 도 꺼내고 해야 함.
-    const room = props.room;
+    
 
     // 방에 달린 댓글 불러오는 기능
     const [comments, setComments] = useState([]);
     const getComments = useCallback(async () => {
         <meta name="referrer" content="no-referrer-when-downgrade" />
         await axios.get(
-            "http://localhost:9800/comments/10", {
+            `http://localhost:9800/comments/${props.room.roomId}`, {
             headers: {
                 "Access-Controll-Allow-Origin" : "*",
                  Authorization: token,
@@ -41,7 +41,7 @@ const RoomComment = (props) => {
     const onsubmit = useCallback(() => {
         console.log(userId)
         console.log(content)
-        axios.post('http://localhost:9800/comments/10', {
+        axios.post(`http://localhost:9800/comments/${props.room.roomId}`, {
             userId: userId,
             content: content,
         },{
@@ -67,7 +67,7 @@ const RoomComment = (props) => {
     const [targetComment, setTargetComment] = useState("");
     const updateComment = useCallback((_id) => {
         setCommentId(_id);
-        axios.patch('http://localhost:9800/comments/10/' + _id, {
+        axios.patch(`http://localhost:9800/comments/${props.room.roomId}` + _id, {
             _id: commentId,
             content: newComment
         }).then(response => {
@@ -83,7 +83,7 @@ const RoomComment = (props) => {
     // 서버에 삭제 요청 보내기 /:roomId/:_id
     const deleteComment = useCallback((_id) => {
         setCommentId(_id);
-        axios.delete('http://localhost:9800/comments/10/' + _id).then(response => {
+        axios.delete(`http://localhost:9800/comments/${props.room.roomId}/` + _id).then(response => {
             alert('댓글 삭제 완료');
             console.log('delete success');
             getComments();

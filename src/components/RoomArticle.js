@@ -4,17 +4,17 @@ import { useEffect, useState } from "react";
 
 const RoomArticle = (props) => {
 
-    // 해시태그 불러오기
-    const [hashTags, setHashTags] = useState([]);
-    const getHashTags = async () => {
-        await axios.get("http://localhost:3001/hashTags").then((response)=>{
-            setHashTags(response.data)
-        })
-    }
+    // 해시태그 불러오기(테스트용 JSON 서버)
+    // const [hashTags, setHashTags] = useState([]);
+    // const getHashTags = async () => {
+    //     await axios.get("http://localhost:3001/hashTags").then((response)=>{
+    //         setHashTags(response.data)
+    //     })
+    // }
     
-    useEffect(() => {
-        getHashTags();
-    }, [])
+    // useEffect(() => {
+    //     getHashTags();
+    // }, [])
 
     return (
         <div className="container text-start pb-5 pt-4 ps-4 bg-body">
@@ -33,7 +33,7 @@ const RoomArticle = (props) => {
             </p>
             <div className="text-center mt-2 mb-3">
                 {/* 방 사진 */}
-                <img src={props.room.roomThumbnail} className="img-fluid centerAlign roomImage" alt="room description" />
+                <img src={`https://storage.googleapis.com/iljo-room/${props.room.roomThumbnail}`} className="img-fluid centerAlign roomImage" alt="room description" />
             </div>
             <div className="row">
                 <h3 className="col-lg-2" style={{ minWidth: "170px" }}>
@@ -43,13 +43,13 @@ const RoomArticle = (props) => {
                     <p>
                         {props.room.description} {/* 상세 설명 */}
                     </p>
-                    <div class="floatLeft">
+                    {/* <div class="floatLeft">
                         {hashTags.map((hashTag, index) => {
                             return (
                                 <span class="text-primary"># {hashTag.hashTag} </span>
                             )
                         })}
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <hr />
