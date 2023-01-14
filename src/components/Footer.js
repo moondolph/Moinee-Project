@@ -11,7 +11,7 @@ const Footer = () => {
             alt="Logo"
             width="50"
             height="50"
-            className="d-inline-block align-text-top"
+            className="d-inline-block align-text-top me-2"
           />
           MO-INEE
         </div>

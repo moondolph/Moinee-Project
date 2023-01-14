@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import DaumPostCode from '../components/DaumPostCode';
 
 export default function Signup() {
   const [userId, setUserId] = useState("");     //렌더링되는 상태값들을 저장했다가 나중에 사용. name을 리턴부분에서 사용하고 set하겠다. ""는 userId의 초기값("":빈 값)
@@ -12,14 +13,15 @@ export default function Signup() {
   const [userAddress, setUserAddress] = useState("");
   const [userEmail, setUserEmail] = useState("");
 
+
   //체크박스 value 값 받아오는 함수
-  const check = (e) =>{
+  const check = (e) => {
     //두 번 체크하면 받아오지 않게 해야 함
-    
+
     //두번 째 체크했을 때
-    if(userInterest.includes(e.target.value)){
-      for(var i = 0; i < userInterest.length; i++){   //반복문 돌려서
-        if(userInterest[i] == e.target.value) {       //배열에 값이 들어가있으면
+    if (userInterest.includes(e.target.value)) {
+      for (var i = 0; i < userInterest.length; i++) {   //반복문 돌려서
+        if (userInterest[i] == e.target.value) {       //배열에 값이 들어가있으면
           userInterest.splice(i, 1);                  //제거해주고
           break;  //바로 반복문 종료
         }
@@ -27,10 +29,10 @@ export default function Signup() {
       setUserInterest(userInterest);          //마지막에 set으로 상태저장
     }
     //처음 체크했을 때    
-    else{
+    else {
       userInterest.push(e.target.value); //바로 배열에 저장
       setUserInterest(userInterest);     //set으로 상태저장
-    }  
+    }
   }
 
 
@@ -43,7 +45,7 @@ export default function Signup() {
       userBirth: userBirth,
       userInterest: userInterest,
       userGender: selected,
-      userAddress: userAddress,
+      userAddress: enroll_company.address,
       userEmail: userEmail,    //쉼표는 적어주는게 좋다. 다음에 데이터가 나올 수도 있다는 의미.
     })
       .then(response => {
@@ -60,7 +62,26 @@ export default function Signup() {
       });
   }
 
- 
+  const [enroll_company, setEnroll_company] = useState({
+    address:'',
+  });
+  
+  const [popup, setPopup] = useState(false);
+  
+  const handleInput = (e) => {
+    setEnroll_company({
+        ...enroll_company,
+          [e.target.name]:e.target.value,
+      })
+  }
+  
+  const handleComplete = (data) => {
+      setPopup(!popup);
+  }
+  
+  
+
+
 
   //return 위에다 JS 함수 선언해주고 return(렌더링되는 부분)에서 사용
   return (
@@ -176,10 +197,28 @@ export default function Signup() {
       </div>
 
       <div className="inputTitle">📮주소</div>
-      <div className="inputWrap"><input className="input" type="text" value={userAddress}
-        onChange={(event) => {
-          setUserAddress(event.target.value);
-        }} /></div>
+      
+      
+    
+      <div className="inputWrap" >
+      <div className="address_search container" >
+    <input className="user_enroll_text" placeholder="주소"  type="text" required={true} name="address" onChange={handleInput} value={enroll_company.address}/>
+    <button onClick={handleComplete}>우편번호 찾기</button>
+    {popup && <DaumPostCode company={enroll_company} setcompany={setEnroll_company}/>}
+
+      </div>
+        
+
+        
+
+        
+
+        {/* <input className="input" type="text" value={userAddress}
+          onChange={(event) => {
+            setUserAddress(event.target.value);
+          }} /> */}
+          
+          </div>
 
 
       <div>

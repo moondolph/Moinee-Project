@@ -13,8 +13,7 @@ const MainContents = (props) => {
             console.log(e);
         })
     }
-    return (
-        <NavLink className="nav-link" to="/Rooms/RoomDetail">
+    return (       
             <div className="bg-light container border border-1 mainContentMaxWidth pop-up-parent">
                 <br/>
                 <p>
@@ -26,7 +25,7 @@ const MainContents = (props) => {
                     
                     <span className="position-relative">
                         <img
-                            src={props.room.roomThumbnail}
+                            src={`https://storage.googleapis.com/iljo-room/${props.room.roomThumbnail}`}
                             className="unifyContentPicture"
                             alt="room preview"
                         />
@@ -46,7 +45,7 @@ const MainContents = (props) => {
                     <SimpleRoom room={props.room}/>
                 </div>
             </div>
-        </NavLink>
+        
     );
 };
 

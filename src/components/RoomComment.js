@@ -2,16 +2,21 @@ import axios from "axios";
 import { useEffect, useState, useCallback, useRef } from "react";
 
 const RoomComment = (props) => {
+    const token = axios.defaults.headers.common['Authorization']
 
+    // console.log(token);
     // 서버랑 연동할 때는 props 에서 userId 도 꺼내고, room 도 꺼내고 해야 함.
-    const room = props.room;
+    
 
     // 방에 달린 댓글 불러오는 기능
     const [comments, setComments] = useState([]);
     const getComments = useCallback(async () => {
+        <meta name="referrer" content="no-referrer-when-downgrade" />
         await axios.get(
-            "http://localhost:9800/comments/10", {
+            `http://localhost:9800/comments/${props.room.roomId}`, {
             headers: {
+                "Access-Controll-Allow-Origin" : "*",
+                 Authorization: token,
                 withCredentials: true,
                 "Content-Type": "application/json",
             },
@@ -19,8 +24,8 @@ const RoomComment = (props) => {
             console.log(response.data.comments)
             setComments(response.data.comments)
             //setComments(commentList.data);
-        }).catch((e) => {
-            console.log(e)
+        }).catch((error) => {
+            console.log(error.message)
         })
     }, []);
 
@@ -33,50 +38,60 @@ const RoomComment = (props) => {
 
     // 댓글 내용 저장하는 함수
     const [content, setContent] = useState("");
-    const onsubmit = () => {
+    const onsubmit = useCallback(() => {
         console.log(userId)
         console.log(content)
-        axios.post('http://localhost:9800/comments/10', {
+        axios.post(`http://localhost:9800/comments/${props.room.roomId}`, {
             userId: userId,
             content: content,
-        }).then(response => {
+        },{
+            headers: {
+                Authorization: token,
+               withCredentials: true,
+               "Content-Type": "application/json",
+           },
+    }
+        ).then(response => {
             alert('댓글이 등록되었습니다.');
             console.log('success');
+            getComments();
         }).catch(error => {
-            console.log('error: ', error.response);
+            console.log('error: ', error.message);
             console.log("post failed")
         })
-    }
+    }, [getComments,content]);
 
     // 서버에 업데이트 요청 보내기 /:roomId/:_id
     const [commentId, setCommentId] = useState("");
     const [newComment, setNewComment] = useState("");
-    const [targetComment, SetTargetComment] = useState("");
-    const updateComment = (_id) => {
+    const [targetComment, setTargetComment] = useState("");
+    const updateComment = useCallback((_id) => {
         setCommentId(_id);
-        axios.patch('http://localhost:9800/comments/10/' + _id, {
+        axios.patch(`http://localhost:9800/comments/${props.room.roomId}` + _id, {
             _id: commentId,
             content: newComment
         }).then(response => {
             alert('댓글 수정 완료');
             console.log('update success');
+            getComments();
         }).catch(error => {
             console.log('error: ', error.response);
             console.log('update failed')
         })
-    }
+    }, [newComment]);
 
     // 서버에 삭제 요청 보내기 /:roomId/:_id
-    const deleteComment = (_id) => {
+    const deleteComment = useCallback((_id) => {
         setCommentId(_id);
-        axios.delete('http://localhost:9800/comments/10/' + _id).then(response => {
+        axios.delete(`http://localhost:9800/comments/${props.room.roomId}/` + _id).then(response => {
             alert('댓글 삭제 완료');
             console.log('delete success');
+            getComments();
         }).catch(error => {
             console.log('error: ', error.response);
             console.log('delete failed')
         })
-    }
+    }, []);
 
     let [updateMode, setUpdateMode] = useState(false);
 
@@ -84,20 +99,25 @@ const RoomComment = (props) => {
         
     },[updateMode, targetComment])
 
+    // useEffect(() => {
+    //     // console.log(comments)
+        
+    // }, [getComments])
+
     useEffect(() => {
-        console.log(comments)
+    console.log(comments)
         getComments();
-    }, [getComments,onsubmit, updateComment, deleteComment])
+    }, [])
 
     return (
         <div className="container bg-body">
             <div className="fs-3 mb-3 ps-3 text-start">모임이 궁금하다면 댓글을 남겨보세요</div>
 
-            <div className="row">
+            <div className="row ">
                 <div className="col-2">
                 </div>
-                <div className="col-9">
-                    <div>
+                <div className="col-9 pb-5" style={{maxWidth: "700px"}}>
+          
                         {/* 불러온 댓글들을 맵함수를 써서 보여준다. */}
                         {comments.map((comment, index) => {
                             return (
@@ -114,7 +134,7 @@ const RoomComment = (props) => {
                                             <div className="fs-5 left-text" style={{ paddingRight: "5px" }}>
                                                 {comment.userId}
                                             </div>
-                                            <div className="left-text">
+                                            <div className="left-text text-secondary">
                                                 {comment.createdAt.substring(0, 10) + " " + comment.createdAt.substring(11, 19)}
                                             </div>
                                         </p>
@@ -126,35 +146,51 @@ const RoomComment = (props) => {
                                         <div>
                                             {comment.content}
 
-                                            {/* 로그인한 id와 댓글 작성자의 id가 같으면 여기서 수정 / 삭제 기능을 보여줌. */}
-                                            {(userId === comment.userId) ? ( <div className={"comment" + index + " " + "profile-right"}>
-                                            <span className="btn btn-primary me-3" onClick={()=>{SetTargetComment(comment._id); setUpdateMode(true)}}>수정</span>
-                                            <span className="btn btn-danger" onClick={() =>{deleteComment(comment._id)}}>삭제</span>
-                                        </div>) : null}
-                                        
-                                        {/* 숨어있다가 수정하기를 누르면 나타난다. */}
-                                        {updateMode ? 
-                                                ((targetComment === comment._id) ?
-                                            (<div>
-                                                <textarea value={newComment} onChange={(event) => {
-                                                    setNewComment(event.target.value);
-                                                }} />
-                                                <div>
-                                                    <span className="btn btn-light me-1 shadow-sm bg-body-tertiary" onClick={() => {updateComment(comment._id); }}>등록</span> 
-                                                    <span className="btn btn-light me-1 shadow-sm bg-body-tertiary" onClick={() => {setUpdateMode(false)}}>취소</span>
-                                                </div>
-                                            </div>) :null) 
+                                            {/* 수정, 삭제 버튼. 댓글 작성자 id 와 내 id가 같으면 나타난다. */}
+                                            {/* 수정을 누르면 사라지고, 취소를 누르면 다시 나타난다. */}
+                                            {(userId === comment.userId) ?
+                                                (updateMode === false) ? 
+                                                    ( <div className="profile-right">
+                                                        <span 
+                                                        className="btn btn-primary me-3" 
+                                                        onClick={()=>{
+                                                            setTargetComment(comment._id); 
+                                                            setUpdateMode(true);
+                                                            setNewComment(comment.content)
+                                                            }}
+                                                        >
+                                                            수정
+                                                        </span>
+                                                        <span className="btn btn-danger" onClick={() =>{deleteComment(comment._id)}}>삭제</span>
+                                                    </div>)
                                                 : null
+                                            : null}
+                                        
+                                        {/* 수정할 때 입력하는 창. 숨어있다가 수정하기를 누르면 나타난다. */}
+                                        {updateMode ? 
+                                            ((targetComment === comment._id) ?
+                                                (<div>
+                                                    <textarea 
+                                                        className="commentUpdateSection" 
+                                                        value={newComment}
+                                                        onChange={(event) => {
+                                                            setNewComment(event.target.value);
+                                                        }} 
+                                                    />
+                                                    <div className="profile-right">
+                                                        <span className="btn btn-light me-1 shadow-sm bg-body-tertiary" onClick={() => {updateComment(comment._id); }}>등록</span> 
+                                                        <span className="btn btn-light me-1 shadow-sm bg-body-tertiary" onClick={() => {setUpdateMode(false)}}>취소</span>
+                                                    </div>
+                                                </div>) 
+                                            :null) 
+                                        : null
                                         }
                                         </div>
-
-
                                     </div>
 
                                 </div>
                             )
                         })}
-                    </div>
                 </div>
                 <hr />
 
@@ -165,6 +201,7 @@ const RoomComment = (props) => {
                         value={content}
                         onChange={(event) => {
                             setContent(event.target.value);
+                            console.log(content);
                         }}
                         className="centerAlign mt-2 commentInput" />
                     <div>
