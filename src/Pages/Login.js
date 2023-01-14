@@ -1,21 +1,55 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom';
-const User = {
-  id: 'test@example.com',
-  pw: 'test2323@@@'
-}
-
+import React, { useEffect, useState, useRef } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 export default function Login() {
-  const accessToken = '1234';
-  axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+
+const [cookies, setCookie] = useCookies(['id']);
+const navigate = useNavigate();
+const [id, setId] = useState('');
+const [pw, setPw] = useState('');
 
 
+  // const accessToken = '1234';
+  // axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
 
-    /* 기능박는부분. 아직 공부 안된 상태고. 아직 안 써서 주석처리 
-    const [id, setid] = useState('');
-    const [pw, setPw] = useState('');
+
+  // 아이디와 비밀번호를 서버에 보내면, 
+  // 서버에서는 response.data 에 token을 넣어서 보내주는 구조인것 같다.
+
+  const login = ()=> {
+    setCookie('id', id, {
+      maxAge : 1800,
+    });
+    alert("반갑습니다," + id + "님.")
+    navigate('/');
+
+    // axios
+    // .post('/users/login', {
+    //   id: id,
+    //   pw: pw,
+    // })
+    // .then((res)=>{
+    //   console.log(res)
+    //   setCookie('id', res.data.token);
+    // })
+    // .catch((error)=>{
+    //   console.log(error);
+    //   alert("로그인 실패");
+    // });
+  };
+  
+
+  
+  /* 기능박는부분. 아직 공부 안된 상태고. 아직 안 써서 주석처리 
+  
+    const User = {
+      id: 'test@example.com',
+      pw: 'test2323@@@'
+    }
+
+
 
     const [idValid, setidValid] = useState(false);
     const [pwValid, setPwValid] = useState(false);
@@ -75,6 +109,10 @@ export default function Login() {
               className="input"
               type="text"
               placeholder="아이디를 입력하세요"
+              value={id}
+              onChange={(e)=>{
+                setId(e.target.value);
+              }}
             />
           </div>
           
@@ -87,6 +125,10 @@ export default function Login() {
               className="input"
               type="password"
               placeholder="영문, 숫자, 특수문자 포함 8자 이상"
+              value={pw}
+              onChange={(e)=>{
+                setPw(e.target.value);
+              }}
             />
           </div>
           
@@ -100,7 +142,7 @@ export default function Login() {
 
         </div>
         <div className="mt-5">
-          <button className="bottomButton">
+          <button className="bottomButton" onClick={login}>
             확인
           </button>
         </div>

@@ -363,6 +363,7 @@
 .justifySpaceAround {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 /* 메인화면 컨텐츠에 사용 */
@@ -450,13 +451,19 @@
 .commentInput {width: 90%; height: 0px; visibility: hidden; transition: height 0.5s; resize:both; transition: resize initial initial 0.5s;}
 .commentSection:hover .commentInput {visibility: visible; height: 150px; resize: none;}
 
+.commentUpdateSection {
+  width: 100%;
+  height: 130px;
+  resize: none;
+}
+
 .hidden {
   visibility: hidden;
 }
 
 .roomSideBar {
-  position: fixed;
-  top: 163px;
-  left: 11px;
-  
+  position: absolute;
+  top: 300px;
+  left: 11px; 
 }
+
