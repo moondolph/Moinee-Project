@@ -32,6 +32,7 @@ export default function MyPage02() {
     // 유저 정보 불러오기
     const [user, setUser] = useState({});
     const [roomList, setRoomList] = useState([]);
+    const [evaluation, setEvaluation] = useState(0);
     // 서버랑 연결할 때는, props에서 userId 꺼내서 URI에 넣어주어야 한다.
     const getUser = async () => {
         await axios.get("http://localhost:3001/user").then((response) => {
@@ -44,11 +45,34 @@ export default function MyPage02() {
             console.log("2");
         })
     }
+// 서버랑 연결할 때는, props에서 userId 꺼내서 URI에 넣어주어야 한다.
+    const getEvaluation = async () => {
+        await axios.get("http://34.68.3.131:8003/userEvaluation/").then((response) => {
+            console.log("Evaluation 불러옴");
+            console.log(response.data);
+            let evalList = [];
+            response.data.forEach((evaluation) => {
+                evalList = [...evalList, evaluation.grade]
+            })
+            console.log(evalList)
 
+            // console.log(evalList)
+            const result = evalList.reduce(function add(sum,currValue){
+                return sum + currValue;
+            },0);
+
+            const avg = result / evalList.length;
+                
+            setEvaluation(Math.round(avg));
+        }).catch((e) => {   
+            console.log("간략정보 방장 프로필 가져오기 에러 : " + e);
+            console.log("2");
+        })
+    }
 
     useEffect(() => {
         getUser();
-        
+        getEvaluation();
     }, [])
 
 
@@ -62,7 +86,7 @@ export default function MyPage02() {
                     <div>
                     {/* 별점 */}
                     <img style={{ width: '130px' }} src="https://cdn0.iconfinder.com/data/icons/twitter-23/512/166_Heart_Love_Like_Twitter-512.png"></img>
-                    <div class="text-center mx-5">0점</div>
+                    <div class="text-center mx-5">{evaluation}</div>
                     </div>
                     {/*프로필  */}
                     <div>
