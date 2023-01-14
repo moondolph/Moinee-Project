@@ -5,9 +5,9 @@ import { NavLink } from 'react-router-dom';
 const User = {
   id: 'test@example.com',
   pw: 'test2323@@@'
-}
+  }
 
-
+  
 export default function Login() {
   const accessToken = '1234';
   axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
@@ -99,7 +99,7 @@ export default function Login() {
 
         </div>
         <div className="mt-5">
-          <button className="bottomButton">
+          <button className="bottomButton" onClick={Login}>
             확인
           </button>
         </div>
