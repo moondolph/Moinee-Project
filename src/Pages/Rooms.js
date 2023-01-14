@@ -57,7 +57,7 @@ const Rooms = () => {
         <div className="mt-5 pt-5">
           {/* <SideBarMain /> */}
           <ul className="container list-group list-group-flush pe-0">
-            <Link className="list-group-item list-group-item-action cursor-pointer"  to="/Rooms/RoomRanking">RoomRanking</Link>
+            {/* <Link className="list-group-item list-group-item-action cursor-pointer"  to="RoomRanking">RoomRanking</Link> */}
             <div className="list-group-item list-group-item-action cursor-pointer" onClick={() => SetCategory("")}>total</div>
             <div className="list-group-item list-group-item-action cursor-pointer" onClick={() => SetCategory("여행/나들이")}>Trip/Going Out</div>
             <div className="list-group-item list-group-item-action cursor-pointer" onClick={() => SetCategory("스터디")} >Study Groups</div>
