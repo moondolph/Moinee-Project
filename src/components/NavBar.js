@@ -43,12 +43,11 @@ const NavBar = () => {
             </Link>
 
             {/* Show LoginUser and Logout */}
-            {(cookies.id !== undefined) ?
+            {cookies.id !== undefined ?
               <>
                 {cookies.id}님, 반갑습니다.
-                <button className="btn btn-light text-secondary" onClick={logout}>로그아웃</button>
-              </>: 
-                null
+              </> :
+              null
             }
           </span>
 
@@ -100,17 +99,39 @@ const NavBar = () => {
               MyTag
             </NavLink>
           </List>
+
           {/* Login about List */}
-          <List className="nav-item">
-            <NavLink className="nav-link" to="/Users/Login">
-              Login
-            </NavLink>
-          </List>
-          <List className="nav-item">
-            <NavLink className="nav-link" to="Users/SignUp">
-              Sign-up
-            </NavLink>
-          </List>
+          {cookies.id === undefined ?
+
+            // 로그인 상태가 아닐 경우 보여주는 메뉴
+            <>
+              <List className="nav-item">
+                <NavLink className="nav-link" to="/Users/Login">
+                  Login
+                </NavLink>
+              </List>
+              <List className="nav-item">
+                <NavLink className="nav-link" to="Users/MyPage">
+                  Sign-up
+                </NavLink>
+              </List>
+            </> :
+
+            // 로그인 상태일 경우 보여주는 화면
+            <>
+              <List className="nav-item">
+                <NavLink className="nav-link" onClick={logout}>
+                  Logout
+                </NavLink>
+              </List>
+              <List className="nav-item">
+                <NavLink className="nav-link" to="Users/M">
+                  MyPage
+                </NavLink>
+              </List>
+            </>
+          }
+
         </Ul>
       </div>
     </div>
