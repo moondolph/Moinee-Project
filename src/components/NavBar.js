@@ -124,7 +124,7 @@ const NavBar = () => {
                 </NavLink>
               </List>
               <List className="nav-item">
-                <NavLink className="nav-link" to="Users/M">
+                <NavLink className="nav-link" to="Users/MyPage">
                   MyPage
                 </NavLink>
               </List>
