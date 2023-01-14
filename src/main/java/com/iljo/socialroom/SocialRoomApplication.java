@@ -20,15 +20,15 @@ public class SocialRoomApplication {
         SpringApplication.run(SocialRoomApplication.class, args);
     }
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://localhost:3000");
-            }
-        };
-    }
+        @Bean
+        public WebMvcConfigurer corsConfigurer() {
+            return new WebMvcConfigurer() {
+                @Override
+                public void addCorsMappings(CorsRegistry registry) {
+                    registry.addMapping("/**").allowedOrigins("http://localhost:3000");
+                }
+            };
+        }
     @Bean
     public Logger.Level feignLoggerLevel() {
         return Logger.Level.FULL;
