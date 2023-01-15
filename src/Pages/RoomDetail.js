@@ -18,7 +18,7 @@ export default function RoomDetail() {
     // 방 정보 불러오기(axios 테스트용)
     // const [room, setRoom] = useState([]);
     // const getRoom = async () => {
-    //     await axios.get("http://localhost:3001/room").then((response) => {
+    //     await axios.get("http://localhost:3001/room/:roomId/user").then((response) => {
     //         setRoom(response.data)
     //     }). catch(e=>{
     //         console.log(e)
