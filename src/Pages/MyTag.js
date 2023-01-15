@@ -10,7 +10,7 @@ const MyTag = () => {
   const [userThumbnail, setUserThumbnail] = useState([]);
 
   const getUser = async () => {
-    await axios.get("http://localhost:3001/user").then((response) => {
+    await axios.get("http://34.68.3.131:8000/user").then((response) => {
         console.log("방 간략정보에서 방장 프로필 가져옴");
         console.log(response);
         setRoomTag(response.data.roomTag);

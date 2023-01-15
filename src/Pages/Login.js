@@ -6,7 +6,7 @@ import { useCookies } from 'react-cookie';
   
 export default function Login() {
 
-const [cookies, setCookie] = useCookies(['id']);
+const [cookies, setCookie] = useCookies(['iDinfo']);
 const navigate = useNavigate();
 const [id, setId] = useState('');
 const [pw, setPw] = useState('');
@@ -23,7 +23,7 @@ const [accessToken, SetAccessToken] =useState('');
   const login = async(event)=> {
     // event.preventDefault();
     <meta name="referrer" content="no-referrer-when-downgrade" />
-    await axios.post('http://192.168.35.145:8000/user/login',{
+    await axios.post('http://34.68.3.131:8000/user/login',{
           "userId" : "abeathem1e",
           "encryptedPwd" : "uk46Fg"
       },{
@@ -33,17 +33,19 @@ const [accessToken, SetAccessToken] =useState('');
           "Content-Type": "application/json",
         },
       }).then((response) => {
-        const id = response.headers.get('token')
         const text = response.data.split(' ')
         console.log(text[0])
         console.log(text[1])
         
         axios.defaults.headers.common['Authorization'] = text[0]
 
-        setCookie('id', text[0], {
+        setCookie('iDinfo', {userId : text[1], accesstoken : text[0]}, {
           maxAge : 180,
         });
-        // alert("반갑습니다," + accessToken.userId + "님.")
+        // setCookie('accesstoken', text[0], {
+        //   maxAge : 180,
+        // });
+        alert("반갑습니다," + text[1] + "님.")
         navigate('/');
       }).catch((err) => {
         console.log('잘못된 입력 방식입니다.')

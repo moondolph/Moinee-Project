@@ -14,7 +14,7 @@ const List = styled.li`
 
 const NavBar = () => {
 
-  const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  const [cookies, setCookie, removeCookie] = useCookies(['id']);
   // const navigate = useNavigate();
 
   const logout = () => {
@@ -43,9 +43,9 @@ const NavBar = () => {
             </Link>
 
             {/* Show LoginUser and Logout */}
-            {cookies.user !== undefined ?
+            {cookies.iDinfo !== undefined ?
               <>
-                {cookies.user.userId}님, 반갑습니다.
+                {cookies.iDinfo.userId}님, 반갑습니다.
               </> :
               null
             }
@@ -111,7 +111,7 @@ const NavBar = () => {
                 </NavLink>
               </List>
               <List className="nav-item">
-                <NavLink className="nav-link" to="Users/MyPage">
+                <NavLink className="nav-link" to="Users/SignUp">
                   Sign-up
                 </NavLink>
               </List>
