@@ -7,7 +7,13 @@ const SimpleRoomText = (props) => {
        <p>
             {props.room.description}
         </p>
-        <div>해시태그 추가하기</div>
+        <div>
+            {props.room.roomHashTagList.map((hashTag, index) => {
+                return (
+                    <span class="text-primary"># {hashTag.hashTag} </span>
+                )
+            })}
+        </div>
         <div>모임시간 {props.room.meetingDate}</div>
         <div className="text-primary">{props.room.meetingLoc}</div>
     </div>

@@ -4,18 +4,6 @@ import { useEffect, useState } from "react";
 
 const RoomArticle = (props) => {
 
-    // 해시태그 불러오기(테스트용 JSON 서버)
-    // const [hashTags, setHashTags] = useState([]);
-    // const getHashTags = async () => {
-    //     await axios.get("http://localhost:3001/hashTags").then((response)=>{
-    //         setHashTags(response.data)
-    //     })
-    // }
-    
-    // useEffect(() => {
-    //     getHashTags();
-    // }, [])
-
     return (
         <div className="container text-start pb-5 pt-4 ps-4 bg-body">
             <div className="text-secondary">
@@ -43,13 +31,13 @@ const RoomArticle = (props) => {
                     <p>
                         {props.room.description} {/* 상세 설명 */}
                     </p>
-                    {/* <div class="floatLeft">
-                        {hashTags.map((hashTag, index) => {
+                    <div class="floatLeft">
+                        {props.room.roomHashTagList.map((hashTag, index) => {
                             return (
                                 <span class="text-primary"># {hashTag.hashTag} </span>
                             )
                         })}
-                    </div> */}
+                    </div>
                 </div>
             </div>
             <hr />
