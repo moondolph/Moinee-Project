@@ -13,11 +13,11 @@ const Main = () => {
   const imgSrcList = [
     {
       path: "https://assets.entrepreneur.com/content/3x2/2000/20180507200150-GettyImages-639336736.jpeg",
-      text: "우리는 현재 더불어서 살아가고 있습니다.",
+      text: "우리는 현재 더불어서 살아갑니다.",
     },
     {
       path: "https://t1.daumcdn.net/cfile/blog/99D6A3425CF9225B06",
-      text: "그럼 이건 어떠세요?",
+      text: "모임을 가져보시는건 어떠세요?",
     },
     {
       path: "https://src.hidoc.co.kr/image/lib/2022/2/11/1644569794564_0.jpg",
@@ -47,14 +47,15 @@ const Main = () => {
 
       {imgSrcList.map((imgSrc, index) =>
         index % 2 === 0 ? (
-          <div data-aos="fade-right" className="main-total">
+          <div data-aos="fade-right"  key={`${index} images`} className="main-total">
             <MainArticle 
+            
             path = {imgSrc.path}
             text = {imgSrc.text}
             />
           </div>
         ) : (
-          <div data-aos="fade-left" className="main-total">
+          <div data-aos="fade-left" key={`${index} images`} className="main-total">
             <MainArticle2 
             path = {imgSrc.path}
             text = {imgSrc.text}
