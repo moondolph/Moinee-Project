@@ -22,22 +22,27 @@ const SideBarRoom = (props) => {
                     </div>
                     <div id="root" className="col fs-5">{props.room.host}(방장)</div>
                 </div>
-                {props.room.userList.map((user,index) =>{
-                    if (user.userId === host) {
-                        null
-                    } else {
-                    return(<div className="row mb-2">
-                    <div className="col-3" style={{width:"50px"}}>
-                            <img
-                                src={`https://storage.googleapis.com/iljo-room/${user.thumbnail}`}
-                                className="unifyProfilePicture"
-                                alt="participant"
-                                />
-                    </div>
-                    <div className="col fs-5">{user.userId}</div>
-                </div>)
+                { props.room.userList !== null ?
+                    props.room.userList.map((user,index) =>{
+                        if (user.userId === props.room.host) {
+                            <></>
+                        } else {
+                        return(<div className="row mb-2">
+                            <div className="col-3" style={{width:"50px"}}>
+                                    <img
+                                        src={`https://storage.googleapis.com/iljo-room/${user.thumbnail}`}
+                                        className="unifyProfilePicture"
+                                        alt="participant"
+                                        />
+                            </div>
+                            <div className="col fs-5">
+                                {user.userId}
+                            </div>
+                        </div>)
+                        }
+                    }):
+                    null
                 }
-            })}
         </div>
     );
 };

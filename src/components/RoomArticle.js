@@ -32,11 +32,16 @@ const RoomArticle = (props) => {
                         {props.room.description} {/* 상세 설명 */}
                     </p>
                     <div class="floatLeft">
-                        {props.room.roomHashTagList.map((hashTag, index) => {
-                            return (
-                                <span class="text-primary"># {hashTag.hashTag} </span>
-                            )
-                        })}
+
+                        {/* 해시태그 리스트를 보여주되, 비어있으면 오류가 나기에 삼항연산자를 씌웠다. */}
+                        { props.room.roomHashTagList !== null ?
+                            props.room.roomHashTagList.map((hashTag, index) => {
+                                return (
+                                    <span class="text-primary"># {hashTag.hashTag} </span>
+                                )
+                            }):
+                            null
+                        }
                     </div>
                 </div>
             </div>

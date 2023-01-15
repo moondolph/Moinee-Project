@@ -14,11 +14,12 @@ const List = styled.li`
 
 const NavBar = () => {
 
-  const [cookies, setCookie, removeCookie] = useCookies(['id']);
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
   // const navigate = useNavigate();
 
   const logout = () => {
     removeCookie('id')
+    removeCookie('user')
     alert("로그아웃 하였습니다.");
   }
 
@@ -42,9 +43,9 @@ const NavBar = () => {
             </Link>
 
             {/* Show LoginUser and Logout */}
-            {cookies.id !== undefined ?
+            {cookies.user !== undefined ?
               <>
-                {cookies.id}님, 반갑습니다.
+                {cookies.user.userId}님, 반갑습니다.
               </> :
               null
             }

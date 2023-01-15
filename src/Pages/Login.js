@@ -26,6 +26,8 @@ const [pw, setPw] = useState('');
     alert("반갑습니다," + id + "님.")
     navigate('/');
 
+    setCookie('user', {userId : id}, {maxAge : 1800,});
+
     // axios
     // .post('/users/login', {
     //   id: id,

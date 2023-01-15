@@ -437,8 +437,8 @@
 .pop-up-parent:hover .pop-up-child { visibility: visible; opacity: 1;}
 
 .simpleRoomSize {
-  width:1000px;
-  height: 600px;
+  width:700px;
+  height: 500px;
 }
 
 .centerAlign {

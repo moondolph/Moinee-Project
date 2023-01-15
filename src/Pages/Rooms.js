@@ -37,6 +37,7 @@ const Rooms = () => {
   const getRooms = useCallback(async () => {
     await axios.get("http://34.68.3.131:8002/socialRoom/").then(response=>{
       console.log("불러온 데이터 : " + response.data.thumbnail)
+      console.log(response.data)
       setRooms(!category ? response.data : response.data.filter((d) =>{
         return d.category === category  
       })

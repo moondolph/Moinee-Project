@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useEffect, useState, useCallback, useRef } from "react";
+import { useCookies } from "react-cookie";
 
 const RoomComment = (props) => {
     const token = axios.defaults.headers.common['Authorization']
 
     // console.log(token);
-    // 서버랑 연동할 때는 props 에서 userId 도 꺼내고, room 도 꺼내고 해야 함.
+    const [cookies, setCookie, removeCookie] = useCookies(['user']);
     
 
     // 방에 달린 댓글 불러오는 기능
@@ -34,15 +35,12 @@ const RoomComment = (props) => {
     ////////////// 댓글 작성하는 기능 
     // 방 아이디는 URI로 보내고, commentID와 createdAt은 서버에서 알아서 생성해줌.
     // 결국 json으로는 userID와 content만 보내주면 된다.
-    const userId = "로그인유저";
 
     // 댓글 내용 저장하는 함수
     const [content, setContent] = useState("");
     const onsubmit = useCallback(() => {
-        console.log(userId)
-        console.log(content)
         axios.post(`http://localhost:9800/comments/${props.room.roomId}`, {
-            userId: userId,
+            userId: cookies.user.userId,
             content: content,
         },{
             headers: {
@@ -148,7 +146,7 @@ const RoomComment = (props) => {
 
                                             {/* 수정, 삭제 버튼. 댓글 작성자 id 와 내 id가 같으면 나타난다. */}
                                             {/* 수정을 누르면 사라지고, 취소를 누르면 다시 나타난다. */}
-                                            {(userId === comment.userId) ?
+                                            {(cookies.user.userId === comment.userId) ?
                                                 (updateMode === false) ? 
                                                     ( <div className="profile-right">
                                                         <span 
