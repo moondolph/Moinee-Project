@@ -41,7 +41,8 @@
 
 .Title-Article{
   font-size: 200px;
-  text-shadow: #3420e7 5px 5px 5px;
+  color: #5bdeff;
+  text-shadow: #2b00ff 5px 5px 5px;
 }
 
 .main-bg {
