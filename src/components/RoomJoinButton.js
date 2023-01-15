@@ -12,7 +12,7 @@ const RoomJoinButton = (props) => {
     
     // 방에 참가하는 함수
     const enterRoom = useCallback(()=> {
-        axios.post(`http://localhost:3001//${cookies.user.userId}/enter`, { // 유저 서버에 보내야 하므로 서버 해결되면 수정하자.
+        axios.post(`http://34.68.3.131:8000/user/${cookies.user.userId}/enter`, { // 유저 서버에 보내야 하므로 서버 해결되면 수정하자.
             roomId : props.room.roomId,
         }).then(response => {
             alert('방에 참가하였습니다.');
@@ -27,23 +27,26 @@ const RoomJoinButton = (props) => {
         axios.post(`http://localhost:3001//${cookies.user.userId}/enter/${props.room.roomId}`, { // 유저 서버에 보내야 하므로 서버 해결되면 수정하자.
             roomId : props.room.roomId,
         }).then(response => {
-            alert('방에 참가하였습니다.');
-            console.log('success');
+            alert('방에서 나왔습니다.');
+            console.log('leaved the room successfully');
         }).catch(error=>{
             console.log('error: ', error.response);
         })
     },[]);
 
 
+    // 방에 참가중인지 확인하기 위한 코드들
     const [userslist, setUsersList] = useState([]);
     const [isEntered, setIsEntered] = useState(false);
+    const [loginId, setLoginId] = useState("");
     const checkIsEntered = () => {
         setUsersList(props.room.userList);
-        setIsEntered(userslist.includes(cookies.user.userId));
+        setLoginId(cookies.user.userId)
+        setIsEntered(userslist.includes(loginId));
     }
     useEffect(()=>{
         checkIsEntered();
-    },[enterRoom])
+    },[enterRoom, leaveRoom])
 
     return (
 	<div className="container bg-body pt-5 pb-5">

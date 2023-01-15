@@ -1,23 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
+import { useCookies } from 'react-cookie';
 
 export default function CreateRoom() {
+  
   const [roomTitle,setRoomTitle] = useState("");
   const [roomTag,setRoomTag] = useState([]);
   const [meetingDate,setMeetingDate] = useState("");
   const [location,setLocation] = useState("");
   const [capacity,setCapacity] = useState("");
   const [introduction,setIntroduction] = useState("");
+  
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  const [userId, setUserId] = useState("");
 
+  // 방만들기 함수, 엔터함수도 만들자 자기가 만들면 엔터가 되는 것이니까.. 그리고 끝나면 만든 방으로 들어가게끔 해줘야겠죠.
   const create = () => {
+    setUserId(cookies.user.userId);
+    let date = new Date();
     axios.post('http://localhost:4000/social_room', {
-    roomtitle: roomTitle,
-    roomTag: roomTag,
-    roomMeetingDate: meetingDate,
-    roomLocation:location,
-    roomCapacity:capacity,
-    roomIntroduction:introduction,
-    })
+      host : userId,
+      title: roomTitle,
+      category: roomTag,
+      description:introduction,
+      meetingDate: meetingDate,
+      createDate: date,
+      meetingLoc:location,
+      latitude: 0.00,
+      longitude: 0.00,
+      limitMember:capacity,
+      roomThumbnail: "멀티파트 후 올립시다"
+      })
     .then(response => {
       alert('방 생성 완료!');
       console.log('Room creation complete');
@@ -127,6 +140,9 @@ export default function CreateRoom() {
         <div class="input-group mb-3 col-5 form-floating">
           <input type="text"  class="form-control height " id="floatingInput" value={introduction} onChange={(event) => {setIntroduction(event.target.value);
           }}/></div>  
+
+        <div className="inputTitle">사진을 등록해주세요</div>
+        <input type="file"/>
 
         <div class="d-grid gap-2 col-3 mx-auto mt-3" >
           <button class="btn btn-outline-success fs-4" type="button" onClick={create}>🆗확인</button>

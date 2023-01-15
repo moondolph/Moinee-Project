@@ -14,8 +14,6 @@ export default function RoomDetail() {
     const location = useLocation();
     const room = location.state.roomDetail;
 
-    console.log(`왔어? ${room}`);
-
 
     // 방 정보 불러오기(axios 테스트용)
     // const [room, setRoom] = useState([]);
