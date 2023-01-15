@@ -7,17 +7,17 @@ import { useCookies } from 'react-cookie';
 
 const MyPage = () => {
 
-    const [cookies, setCookie, removeCookie] = useCookies(['id']);
+    const [cookies, setCookie, removeCookie] = useCookies(['iDinfo']);
       // 유저 정보 불러오기
       const [user, setUser] = useState({});
       console.log(cookies ? cookies : "없다.")
-  
+
       // 서버랑 연결할 때는, props에서 userId 꺼내서 URI에 넣어주어야 한다.
       const getUser = async () => {
           await axios.get("http://34.68.3.131:8000/user/abeathem1e",
           {
             headers: {
-                Authorization : `Bearer ${cookies.id}`
+                Authorization : `Bearer ${cookies.accesstoken}`
             }
           }
           ).then((response) => {

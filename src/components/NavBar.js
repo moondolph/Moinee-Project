@@ -1,6 +1,7 @@
 import { Link, NavLink, Navigate } from "react-router-dom";
 import styled from "styled-components";
 import { useCookies } from 'react-cookie';
+import { useEffect, useState } from "react";
 
 const Ul = styled.ul`
   display: flex;
@@ -13,14 +14,20 @@ const List = styled.li`
 `;
 
 const NavBar = () => {
-
+  
   const [cookies, setCookie, removeCookie] = useCookies(['iDinfo']);
+  // console.log(cookies.iDinfo.userId)
   // const navigate = useNavigate();
-
+  // const [userName, setUserName] = useState(`${cookies.iDinfo.userId}`)
   const logout = () => {
-    removeCookie('id')
+    removeCookie('iDinfo')
     alert("로그아웃 하였습니다.");
+    // setUserName("")
   }
+
+  // useEffect(()=>{
+
+  // },[userName])
 
   return (
     <div className="z-n1 fixed-top text-bg-light">
@@ -100,7 +107,7 @@ const NavBar = () => {
           </List>
 
           {/* Login about List */}
-          {cookies.id === undefined ?
+          {cookies.iDinfo === undefined ?
 
             // 로그인 상태가 아닐 경우 보여주는 메뉴
             <>
