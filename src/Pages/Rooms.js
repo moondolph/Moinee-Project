@@ -22,7 +22,7 @@ const Rooms = () => {
   }
 
   const loginCheck = ()=>{
-    if (cookies.id === undefined) {
+    if (cookies.iDinfo === undefined) {
       goBack();
     }
 	};

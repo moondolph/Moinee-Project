@@ -40,7 +40,7 @@ const [accessToken, SetAccessToken] =useState('');
         axios.defaults.headers.common['Authorization'] = text[0]
 
         setCookie('iDinfo', {userId : text[1], accesstoken : text[0]}, {
-          maxAge : 180,
+          maxAge : 3600,
         });
         // setCookie('accesstoken', text[0], {
         //   maxAge : 180,
@@ -52,8 +52,6 @@ const [accessToken, SetAccessToken] =useState('');
         console.log(err.message)
       })
     
-
-    setCookie('user', {userId : id}, {maxAge : 1800,});
 
     // axios
     // .post('/users/login', {

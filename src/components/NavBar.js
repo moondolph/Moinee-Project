@@ -14,12 +14,11 @@ const List = styled.li`
 
 const NavBar = () => {
 
-  const [cookies, setCookie, removeCookie] = useCookies(['id']);
+  const [cookies, setCookie, removeCookie] = useCookies(['iDinfo']);
   // const navigate = useNavigate();
 
   const logout = () => {
-    removeCookie('id')
-    removeCookie('user')
+    removeCookie('iDinfo')
     alert("로그아웃 하였습니다.");
   }
 
@@ -45,7 +44,7 @@ const NavBar = () => {
             {/* Show LoginUser and Logout */}
             {cookies.iDinfo !== undefined ?
               <>
-                {cookies.iDinfo.userId}님, 반갑습니다.
+                {cookies.iDinfo.userId}님 반갑습니다.
               </> :
               null
             }
@@ -101,7 +100,7 @@ const NavBar = () => {
           </List>
 
           {/* Login about List */}
-          {cookies.id === undefined ?
+          {cookies.iDinfo === undefined ?
 
             // 로그인 상태가 아닐 경우 보여주는 메뉴
             <>
