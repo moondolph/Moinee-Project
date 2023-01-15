@@ -12,7 +12,7 @@ export default function MyPage2() {
 
     //Data 불러와서 화면에 띄워 놓기
     const data = useCallback(async() => { 
-        await axios.get("http://localhost:4000/users", {
+        await axios.get("http://34.68.3.131:8000/users", {
         params: {
             userId: "123"
         }
@@ -63,7 +63,7 @@ export default function MyPage2() {
 
 
     const update = () => {
-        axios.patch("http://localhost:4000/users?userId=123", {
+        axios.patch("http://34.68.3.131:8000/users?userId=123", {
       userPw: userPw,
       userName: userName,
       userBirth: userBirth,

@@ -23,7 +23,7 @@ const [accessToken, SetAccessToken] =useState('');
   const login = async(event)=> {
     // event.preventDefault();
     <meta name="referrer" content="no-referrer-when-downgrade" />
-    await axios.post('http://192.168.35.145:8000/user/login',{
+    await axios.post('http://34.68.3.131:8000/user/login',{
           "userId" : "abeathem1e",
           "encryptedPwd" : "uk46Fg"
       },{
@@ -33,7 +33,7 @@ const [accessToken, SetAccessToken] =useState('');
           "Content-Type": "application/json",
         },
       }).then((response) => {
-        const id = response.headers.get('token')
+        
         const text = response.data.split(' ')
         console.log(text[0])
         console.log(text[1])

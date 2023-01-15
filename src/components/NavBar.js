@@ -110,7 +110,7 @@ const NavBar = () => {
                 </NavLink>
               </List>
               <List className="nav-item">
-                <NavLink className="nav-link" to="Users/MyPage">
+                <NavLink className="nav-link" to="Users/SignUp">
                   Sign-up
                 </NavLink>
               </List>
