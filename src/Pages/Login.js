@@ -51,76 +51,9 @@ const [accessToken, SetAccessToken] =useState('');
         console.log('잘못된 입력 방식입니다.')
         console.log(err.message)
       })
-    
 
-    // axios
-    // .post('/users/login', {
-    //   id: id,
-    //   pw: pw,
-    // })
-    // .then((res)=>{
-    //   console.log(res)
-    //   setCookie('id', res.data.token);
-    // })
-    // .catch((error)=>{
-    //   console.log(error);
-    //   alert("로그인 실패");
-    // });
   };
-  
-
-  
-  /* 기능박는부분. 아직 공부 안된 상태고. 아직 안 써서 주석처리 
-  
-    const User = {
-      id: 'test@example.com',
-      pw: 'test2323@@@'
-    }
-
-
-
-    const [idValid, setidValid] = useState(false);
-    const [pwValid, setPwValid] = useState(false);
-    const [notAllow, setNotAllow] = useState(true);
-
-    useEffect(() => {
-      if(idValid && pwValid) {
-        setNotAllow(false);
-        return;
-      }
-      setNotAllow(true);
-    }, [idValid, pwValid]);
-
-    const handleid = (e) => {
-      setid(e.target.value);
-      const regex =
-        /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-      if (regex.test(e.target.value)) {
-        setidValid(true);
-      } else {
-        setidValid(false);
-      }
-    };
-
-    const handlePw = (e) => {
-      setPw(e.target.value);
-      const regex =
-        /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
-      if (regex.test(e.target.value)) {
-        setPwValid(true);
-      } else {
-        setPwValid(false);
-      }
-    };
-
-    const onClickConfirmButton = () => {
-      if(id === User.id && pw === User.pw) {
-        alert('로그인에 성공했습니다.')
-      } else {
-        alert("등록되지 않은 회원입니다.");
-      }
-    };
-    */
+ 
 
     return (
       <div className="page container border border-light border-3 text-bg-info bg-opacity-50">
