@@ -48,7 +48,7 @@ const server = async() => {
     app.use("/comments", commentRouter);
 
     app.use((err, req, res, next) => {
-      res.locals.error = 오류;
+      // res.locals.error = 오류;
       res.status(err.status);
       res.render("오류");
     });
