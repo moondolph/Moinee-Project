@@ -7,16 +7,7 @@ const SimpleRoomText = (props) => {
        <p>
             {props.room.description}
         </p>
-        <div>
-            { props.room.roomHashTagList !== null ?
-                props.room.roomHashTagList.map((hashTag, index) => {
-                    return (
-                        <span className="text-primary"># {hashTag.hashTag} </span>
-                    )
-                }) 
-                :null
-            }
-        </div>
+
         <div>모임시간 {props.room.meetingDate}</div>
         <div className="text-primary">{props.room.meetingLoc}</div>
     </div>
