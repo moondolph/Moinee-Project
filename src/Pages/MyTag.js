@@ -3,18 +3,24 @@ import MainContents from '../components/MainContents';
 import TagUsersProfile from '../components/TagUsersProfile';
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useCookies } from 'react-cookie';
 
 const MyTag = () => {
   const [roomTag, setRoomTag] = useState([]);
   const [userTag, setUserTag] = useState([]);
   const [userThumbnail, setUserThumbnail] = useState([]);
+  const [cookies] = useCookies(['iDinfo'])
 
   const getUser = async () => {
-    await axios.get("http://34.68.3.131:8000/user").then((response) => {
+    await axios.get(`http://34.68.3.131:8000/user/${cookies.iDinfo.userId}`,{
+      headers: {
+          Authorization : `Bearer ${cookies.iDinfo.accesstoken}`
+      }
+    }).then((response) => {
         console.log("방 간략정보에서 방장 프로필 가져옴");
         console.log(response);
-        setRoomTag(response.data.roomTag);
-        setUserTag(response.data.userTag);
+        setRoomTag(response.data.userRoomTags);
+        setUserTag(response.data.userFollows);
         setUserThumbnail(response.data.thumbnail);
   }
     ).catch((e) =>{

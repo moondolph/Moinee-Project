@@ -3,11 +3,26 @@ import axios from "axios";
 
 // 메인 화면에 뜨는 방들을 구현한 페이지 입니다.
 import SimpleRoom from "../Pages/SimpleRoom";
+import { useCookies } from "react-cookie";
+import { useState } from "react";
 
 const MainContents = (props) => {
 
+const [cookies] = useCookies(['iDinfo'])
+const [deleteroomtag, setDeleteroomtag] = useState('');
+
+    console.log(props)
+
+
+
+
     const deleteRoomTag = async (roomId) => {
-        await axios.delete(`http://localhost:3001/user/${roomId}`).then((response) =>{
+        await axios.delete(`http://34.68.3.131:8000/user/${cookies.iDinfo.userId}/user_room_tag`,
+        {
+            headers: {
+                Authorization : `Bearer ${cookies.iDinfo.accesstoken}`
+            }
+          }).then((response) =>{
             console.log("성공");
         }).catch((e) =>{
             console.log(e);
