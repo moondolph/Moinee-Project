@@ -442,8 +442,9 @@
 .pop-up-parent:hover .pop-up-child { visibility: visible; opacity: 1;}
 
 .simpleRoomSize {
-  width:1000px;
-  height: 600px;
+  width:700px;
+  height: 550px;
+  background-color: rgb(243, 243, 243);
 }
 
 .centerAlign {

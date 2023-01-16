@@ -1,15 +1,18 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const ProfileMini = (props) => {
-  
+  const [cookies, setCookie, removeCookie] = useCookies(['iDinfo']);
   // 유저 정보 불러오기
   const [user, setUser] = useState([]);
   // 서버랑 연결할 때는, props에서 userId 꺼내서 URI 에 넣어주어야 한다.
   const getUser = async ()=> {
-    await axios.get("http://localhost:3001/user").then(response=>{
-      console.log("방 간략정보에서 방장 프로필 가져옴")
+    await axios.get(`http://34.68.3.131:8000/user/${props.host}`,
+    {headers: 
+      {Authorization : `Bearer ${cookies.iDinfo.accesstoken}`}
+    }).then(response=>{
       setUser(response.data)
     }).catch(e=>{
       console.log("간략정보 방장 프로필 가져오기 에러 : " + e)
@@ -29,7 +32,7 @@ const ProfileMini = (props) => {
             <img
               className="me-3 rounded-circle"
               alt="profile"
-              src={user.thumbnail}
+              src={`https://storage.googleapis.com/iljo-bucket1/${user.thumbnail}`}
               width="50px"
               height="50px"
             />

@@ -13,6 +13,10 @@ const MainContents = (props) => {
             console.log(e);
         })
     }
+
+    let date = props.room.meetingDate
+    props.room.meetingDate = `${date.substring(0,4)}. ${date.substring(5,7)}. ${date.substring(8,10)} ${date.substring(11, 13)}시 ${date.substring(14,16)}분`
+
     return (       
             <div className="bg-light container border border-1 mainContentMaxWidth pop-up-parent">
                 <br/>
@@ -38,10 +42,11 @@ const MainContents = (props) => {
                     </span>
                 </p>
                     <h6 className="text-start">{props.room.title}</h6>
-                <div>
+                <div className="mb-3 text-start text-secondary">
+                    {props.room.meetingLoc.split(" ")[0] + " " + props.room.meetingLoc.split(" ")[1]}<br />
                     {props.room.meetingDate}
                 </div>
-                <div class="pop-up-child">
+                <div className="pop-up-child">
                     <SimpleRoom room={props.room}/>
                 </div>
             </div>

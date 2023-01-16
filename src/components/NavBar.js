@@ -48,9 +48,12 @@ const NavBar = () => {
             </Link>
 
             {/* Show LoginUser and Logout */}
-            {cookies.iDinfo !== undefined ? (
-              <>{cookies.iDinfo.userId}님, 반갑습니다.</>
-            ) : null}
+            {cookies.iDinfo !== undefined ?
+              <>
+                {cookies.iDinfo.userId}님 반갑습니다.
+              </> :
+              null
+            }
           </span>
 
           {/* Search Bar and MakeRoomButton*/}
