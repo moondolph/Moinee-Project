@@ -5,37 +5,51 @@ import RoomJoinButton from "../components/RoomJoinButton";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import {useLocation} from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 
 // 주소 : /Rooms/RoomDetail
 export default function RoomDetail() {
-    //SimpleRoomParticipants에서 데이터 받아오기
+    const [cookies, setCookie, removeCookie] = useCookies(['iDinfo']);
 
+    //SimpleRoomParticipants에서 방 아이디를 받아오기
     const location = useLocation();
-    const room = location.state.roomDetail;
+    const roomId = location.state.roomId;
 
+    // 방 정보 불러오기
+    const [room, setRoom] = useState({});
+    const [users, SetUsers] = useState([]);
+    const [host, SetHost] = useState('');
+    const getRoom = async () => {
+        await axios.get(`http://34.68.3.131:8000/socialRoom/${roomId}`,{
+            headers: {
+                Authorization : `Bearer ${cookies.iDinfo.accesstoken}`
+            }
+          }).then((response) => {
+            setRoom(response.data)
+            SetUsers(response.data.userList)
+            SetHost(response.data.host)
+        }). catch(e=>{
+            console.log(e.message)
+        })
+    }
 
-    // 방 정보 불러오기(axios 테스트용)
-    // const [room, setRoom] = useState([]);
-    // const getRoom = async () => {
-    //     await axios.get("http://localhost:3001/room/:roomId/user").then((response) => {
-    //         setRoom(response.data)
-    //     }). catch(e=>{
-    //         console.log(e)
-    //     })
-    // }
-
-    // useEffect(()=>{getRoom();}, [])
+    useEffect(() =>{
+        getRoom()
+    }, [])
 
     return (
         <table>
             <tr>
                 <td style={{ "minWidth": "200px" }}>
-                    <SideBarRoom room={room}/>
+                    <SideBarRoom 
+                    users={users}
+                    host={host}
+                    />
                 </td>
                 <td class="p-5 pb-0" style={{ "maxWidth": "1200px"}}>
                     <RoomArticle room={room}/>
-                    <RoomComment room={room}/>
+                    <RoomComment roomId={roomId}/>
                     <RoomJoinButton room={room}/>
                 </td>
             </tr>

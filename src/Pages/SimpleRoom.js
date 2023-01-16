@@ -5,7 +5,7 @@ import ProfileMini from '../components/ProfileMini';
 
 const SimpleRoom = (props) => {
     return (
-        <div className="container bg-white simpleRoomSize">
+        <div className="container simpleRoomSize">
             <table className="">
                 <tr className="">
                     <td className="pt-5">

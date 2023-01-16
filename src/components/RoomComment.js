@@ -2,26 +2,26 @@ import axios from "axios";
 import { useEffect, useState, useCallback, useRef } from "react";
 import { useCookies } from "react-cookie";
 
-const RoomComment = (props) => {
-    const token = axios.defaults.headers.common['Authorization']
-
+const RoomComment = ({roomId}) => {
     // console.log(token);
-    const [cookies, setCookie, removeCookie] = useCookies(['user']);
+    const [cookies, setCookie, removeCookie] = useCookies(['iDinfo']);
     
-
     // 방에 달린 댓글 불러오는 기능
     const [comments, setComments] = useState([]);
     const getComments = useCallback(async () => {
         <meta name="referrer" content="no-referrer-when-downgrade" />
+        console.log(`요청을 어디로 보냈나요"?? http://35.226.39.213:9800/comments/${roomId}`)
         await axios.get(
-            `http://localhost:9800/comments/${props.room.roomId}`, {
+            `http://35.226.39.213:9800/comments/${roomId}`,
+        {    
             headers: {
                 "Access-Controll-Allow-Origin" : "*",
-                 Authorization: token,
                 withCredentials: true,
                 "Content-Type": "application/json",
             },
-        }).then((response) => {
+        }
+        ).then((response) => {
+            console.log("댓글 불러오기는 잘 되나요??")
             console.log(response.data.comments)
             setComments(response.data.comments)
             //setComments(commentList.data);
@@ -39,12 +39,12 @@ const RoomComment = (props) => {
     // 댓글 내용 저장하는 함수
     const [content, setContent] = useState("");
     const onsubmit = useCallback(() => {
-        axios.post(`http://localhost:9800/comments/${props.room.roomId}`, {
-            userId: cookies.user.userId,
+        axios.post(`http://35.226.39.213:9800/comments/${roomId}`, {
+            userId: cookies.iDinfo.userId,
             content: content,
         },{
             headers: {
-                Authorization: token,
+                Authorization: `Bearer ${cookies.iDinfo.accesstoken}`,
                withCredentials: true,
                "Content-Type": "application/json",
            },
@@ -65,7 +65,7 @@ const RoomComment = (props) => {
     const [targetComment, setTargetComment] = useState("");
     const updateComment = useCallback((_id) => {
         setCommentId(_id);
-        axios.patch(`http://localhost:9800/comments/${props.room.roomId}` + _id, {
+        axios.patch(`http://35.226.39.213:9800/comments/${roomId}/` + _id, {
             _id: commentId,
             content: newComment
         }).then(response => {
@@ -81,7 +81,7 @@ const RoomComment = (props) => {
     // 서버에 삭제 요청 보내기 /:roomId/:_id
     const deleteComment = useCallback((_id) => {
         setCommentId(_id);
-        axios.delete(`http://localhost:9800/comments/${props.room.roomId}/` + _id).then(response => {
+        axios.delete(`http://35.226.39.213:9800/comments/${roomId}/` + _id).then(response => {
             alert('댓글 삭제 완료');
             console.log('delete success');
             getComments();
@@ -103,8 +103,8 @@ const RoomComment = (props) => {
     // }, [getComments])
 
     useEffect(() => {
-    console.log(comments)
         getComments();
+        console.log(comments)
     }, [])
 
     return (
@@ -146,7 +146,7 @@ const RoomComment = (props) => {
 
                                             {/* 수정, 삭제 버튼. 댓글 작성자 id 와 내 id가 같으면 나타난다. */}
                                             {/* 수정을 누르면 사라지고, 취소를 누르면 다시 나타난다. */}
-                                            {(cookies.user.userId === comment.userId) ?
+                                            {(cookies.iDinfo.userId === comment.userId) ?
                                                 (updateMode === false) ? 
                                                     ( <div className="profile-right">
                                                         <span 

@@ -439,7 +439,8 @@
 
 .simpleRoomSize {
   width:700px;
-  height: 500px;
+  height: 550px;
+  background-color: rgb(243, 243, 243);
 }
 
 .centerAlign {

@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const SimpleRoomParticipants = (props) => {
 
     console.log(props.room);
-    const roomDetail = props.room;
+    const roomId = props.room.roomId;
     return (
 	<div className="container border border-5 text-start">
         <h4>{props.room.title}</h4>
@@ -14,7 +14,7 @@ const SimpleRoomParticipants = (props) => {
         </p>
         <p className="text-end" style={{display:"flex"}}>
             {/* 방 입장버튼 */}
-            <NavLink roomId={props.room.roomId} to="/Rooms/RoomDetail/" state={{ roomDetail }} className="nav-link btn btn-primary" type="submit" style={{marginLeft:"auto"}}>입장하기&nbsp;</NavLink>
+            <NavLink to="/Rooms/RoomDetail/" state={{ roomId }} className="btn btn-primary" type="submit" style={{marginLeft:"auto"}}>입장하기&nbsp;</NavLink>
             {/* 좋아요 버튼 */}
             <NavLink to="#">
                 <img src='/images\likeNotPushed.png' style={{width:"30px", marginInline:"10px 5%"}} alt="like" />

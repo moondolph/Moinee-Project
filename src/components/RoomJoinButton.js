@@ -7,13 +7,16 @@ import { useCookies } from "react-cookie";
 const RoomJoinButton = (props) => {
 
     // 방 참가시 유저 아이디를 요청하기 위해 쿠키를 불러옴
-    const [cookies, setCookie, removeCookie] = useCookies(['user']);
+    const [cookies, setCookie, removeCookie] = useCookies(['iDInfo']);
 
     
     // 방에 참가하는 함수
     const enterRoom = useCallback(()=> {
-        axios.post(`http://34.68.3.131:8000/user/${cookies.user.userId}/enter`, { // 유저 서버에 보내야 하므로 서버 해결되면 수정하자.
+        axios.post(`http://34.68.3.131:8000/user/${cookies.iDinfo.userId}/enter`, {
             roomId : props.room.roomId,
+        },          
+        {headers: 
+            {Authorization : `Bearer ${cookies.accesstoken}`}
         }).then(response => {
             alert('방에 참가하였습니다.');
             console.log('success');
@@ -24,8 +27,11 @@ const RoomJoinButton = (props) => {
     
     // 방에서 나오는 함수
     const leaveRoom = useCallback(()=> {
-        axios.post(`http://localhost:3001//${cookies.user.userId}/enter/${props.room.roomId}`, { // 유저 서버에 보내야 하므로 서버 해결되면 수정하자.
+        axios.delete(`http://34.68.3.131:8000/user/${cookies.iDinfo.userId}/enter/${props.room.roomId}`, {
             roomId : props.room.roomId,
+        },          
+        {headers: 
+            {Authorization : `Bearer ${cookies.accesstoken}`}    
         }).then(response => {
             alert('방에서 나왔습니다.');
             console.log('leaved the room successfully');
@@ -41,7 +47,7 @@ const RoomJoinButton = (props) => {
     const [loginId, setLoginId] = useState("");
     const checkIsEntered = () => {
         setUsersList(props.room.userList);
-        setLoginId(cookies.user.userId)
+        setLoginId(cookies.iDinfo.userId)
         setIsEntered(userslist.includes(loginId));
     }
     useEffect(()=>{
