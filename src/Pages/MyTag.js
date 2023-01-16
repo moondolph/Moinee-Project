@@ -4,6 +4,7 @@ import TagUsersProfile from '../components/TagUsersProfile';
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useCookies } from 'react-cookie';
+import RoomTag from '../components/RoomTag';
 
 const MyTag = () => {
   const [roomTag, setRoomTag] = useState([]);
@@ -45,7 +46,7 @@ useEffect(() => {
           {roomTag.map((room, i) => {
             return (
               <div key={room.roomId} className="ms-2 mb-5 width-22">
-                <MainContents room={room} IsTag={true}/>
+                <RoomTag room={room}/>
               </div>
             )
           })}
