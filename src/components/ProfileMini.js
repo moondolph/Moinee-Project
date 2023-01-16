@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 const ProfileMini = (props) => {
-  const [cookies, setCookie, removeCookie] = useCookies(['iDinfo']);
+  const [cookies] = useCookies(['iDinfo']);
   // 유저 정보 불러오기
   const [user, setUser] = useState([]);
   // console.log(props)

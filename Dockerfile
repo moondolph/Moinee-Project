@@ -18,4 +18,4 @@ RUN npm install
 COPY . .
 
 EXPOSE 9800
-ENTRYPOINT [ "node","src/server.js"]
+ENTRYPOINT [ "node","start"]

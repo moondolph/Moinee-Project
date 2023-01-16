@@ -1,5 +1,4 @@
 import React from 'react';
-import MainContents from '../components/MainContents';
 import TagUsersProfile from '../components/TagUsersProfile';
 import { useState, useEffect } from "react";
 import axios from "axios";

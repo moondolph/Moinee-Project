@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
-import {Link,useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 
 import MainContents from '../components/MainContents';
 import SideBarMain from '../components/SideBarMain';
