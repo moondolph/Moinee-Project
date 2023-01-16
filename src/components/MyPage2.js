@@ -1,5 +1,6 @@
 import axios from "axios";
 import {useCallback, useEffect, useState} from "react";
+import { Cookies, useCookies } from "react-cookie";
 export default function MyPage2() {
 
     const [userId, setUserId] = useState("");
@@ -9,15 +10,12 @@ export default function MyPage2() {
     const [userInterest, setUserInterest] = useState([]);
     const [userAddress, setUserAddress] = useState("");
     const [userEmail, setUserEmail] = useState("");
-
+    const [cookie] = useCookies(['iDinfo'])
     //Data 불러와서 화면에 띄워 놓기
     const data = useCallback(async() => { 
-        await axios.get("http://localhost:4000/users", {
-        params: {
-            userId: "123"
-        }
-    })
+        await axios.get(`http://34.68.3.131:8000/user/${cookie.iDinfo.userId}`)
         .then(function (response) {
+            
             console.log(response.data)
             setUserId(response.data[0].userId);
             setUserPw(response.data[0].userPw);
@@ -63,7 +61,7 @@ export default function MyPage2() {
 
 
     const update = () => {
-        axios.patch("http://localhost:4000/users?userId=123", {
+        axios.patch("http://34.68.3.131:8000/users?userId=123", {
       userPw: userPw,
       userName: userName,
       userBirth: userBirth,

@@ -38,7 +38,7 @@ export default function Signup() {
 
 
   const register = () => {
-    axios.post('http://localhost:4000/users', {
+    axios.post('http://localhost:3001/users', {
       userId: userId,
       userPw: userPw,
       userName: userName,

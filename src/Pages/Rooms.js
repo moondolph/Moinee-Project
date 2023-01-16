@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const Rooms = () => {
 
-  const [cookies, setCookie, removeCookie] = useCookies(['id']);
+  const [cookies, setCookie, removeCookie] = useCookies(['iDinfo']);
   const [category,SetCategory] = useState("")
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ const Rooms = () => {
   }
 
   const loginCheck = ()=>{
-    if (cookies.id === undefined) {
+    if (cookies.iDinfo.accesstoken === undefined) {
       goBack();
     }
 	};
@@ -35,7 +35,11 @@ const Rooms = () => {
   // 방 불러오기
   const [rooms, setRooms] = useState([]);
   const getRooms = useCallback(async () => {
-    await axios.get("http://34.68.3.131:8002/socialRoom/").then(response=>{
+    await axios.get("http://34.68.3.131:8000/socialRoom/",{
+      headers: {
+          Authorization : `Bearer ${cookies.iDinfo.accesstoken}`
+      }
+    }).then(response=>{
       console.log("불러온 데이터 : " + response.data.thumbnail)
       setRooms(!category ? response.data : response.data.filter((d) =>{
         return d.category === category  

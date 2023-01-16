@@ -10,7 +10,7 @@ export default function CreateRoom() {
   const [introduction,setIntroduction] = useState("");
 
   const create = () => {
-    axios.post('http://localhost:4000/social_room', {
+    axios.post('http://34.68.3.131:8000/socialRoom', {
     roomtitle: roomTitle,
     roomTag: roomTag,
     roomMeetingDate: meetingDate,
