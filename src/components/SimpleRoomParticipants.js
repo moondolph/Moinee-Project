@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 // 오른쪽 아래에 위치하는 인원수, 요금, 입장 버튼 부분입니다.
 const SimpleRoomParticipants = (props) => {
 
-    console.log(props.room);
     const roomId = props.room.roomId;
     return (
 	<div className="container border border-5 text-start">

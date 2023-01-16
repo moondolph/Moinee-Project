@@ -17,9 +17,6 @@ const SideBarRoom = ({users, host}) => {
     const author = [];
     const normalUsers = [];
 
-    console.log("룸 사이드바 콘솔, 유저리스트 잘 받아졌나요??" + users[0]);
-    console.log(users[0]);
-
     // const getUser = async () => {
     //     await axios.get(`http://34.68.3.131:8000/user/${host}`,
     //     {

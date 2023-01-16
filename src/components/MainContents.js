@@ -34,7 +34,8 @@ const MainContents = (props) => {
                             alt="room preview"
                         />
                         {/* 좋아요 배지 */}
-                        <span className="position-absolute top-90 start-100 translate-middle badge rounded-pill text-bg-light" 
+                        <span className="position-absolute top-90 translate-middle badge rounded-pill text-bg-light"
+                        style={{left:"150px"}} 
                         >
                             <img alt="좋아요" src='\images\likeNotPushed.png' style={{width:"15px"}}/>
                             {/* 좋아요 개수 */}&nbsp;{props.room.roomLikes}
