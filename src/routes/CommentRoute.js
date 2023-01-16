@@ -11,6 +11,10 @@ const {isValidObjectId, startSession} = require('mongoose');
 commentRouter.post('/:roomId', async(req,res) => {
 try{
     let { roomId } = req.params;
+    
+    // if(!req.headers['Authorization']){
+    //     return res.status(401).send({err: "token is invalid"});
+    // }
     roomId = parseInt(roomId);
     const {
         userId,
@@ -39,6 +43,7 @@ try{
     await comment.save();
     return res.status(201).send({ comment });
 } catch(err) {
+    
   return res.status(400).send({ err: err.message });
 }
 });
@@ -52,6 +57,8 @@ try{
 
 commentRouter.get("/", async (req,res) => {
     try{
+    //     if(!req.headers["Authorization"])
+    // return res.status(401).send({err: "token is invalid"});
         const comments = await Comment.find()
         // create
         .sort({createdAt : -1});
