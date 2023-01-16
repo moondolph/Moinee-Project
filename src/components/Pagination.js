@@ -5,7 +5,7 @@ const Pagination = () => {
     <div className="d-flex justify-content-center">
       <div className="d-flex align-baseline me-5">
         {/* Search Bar */}
-        <div class="align-baseline">
+        <div className="align-baseline">
           <form className="d-flex" role="search">
             <div className="input-group">
               <span className="input-group-text" id="basic-addon1">
@@ -27,8 +27,8 @@ const Pagination = () => {
         </div>
 
         {/* select */}
-        <div class="align-baseline">
-          <select class="form-select" aria-label="Default select example">
+        <div className="align-baseline">
+          <select className="form-select" aria-label="Default select example">
             <option selected>목록</option>
             <option value="1">제목</option>
             <option value="2">카테고리</option>

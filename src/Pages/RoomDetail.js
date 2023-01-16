@@ -47,7 +47,7 @@ export default function RoomDetail() {
                     host={host}
                     />
                 </td>
-                <td class="p-5 pb-0" style={{ "maxWidth": "1200px"}}>
+                <td className="p-5 pb-0" style={{ "maxWidth": "1200px"}}>
                     <RoomArticle room={room}/>
                     <RoomComment roomId={roomId}/>
                     <RoomJoinButton room={room}/>

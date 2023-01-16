@@ -11,7 +11,7 @@ const SimpleRoomText = (props) => {
             { props.room.roomHashTagList !== null ?
                 props.room.roomHashTagList.map((hashTag, index) => {
                     return (
-                        <span class="text-primary"># {hashTag.hashTag} </span>
+                        <span className="text-primary"># {hashTag.hashTag} </span>
                     )
                 }) 
                 :null

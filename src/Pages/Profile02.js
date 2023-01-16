@@ -7,7 +7,7 @@ export default function Profile02() {
                 <div id="InfoContainer2s">
                     {/* 별점 */}
                     <img style={{ width: '200px' }} src="https://cdn0.iconfinder.com/data/icons/twitter-23/512/166_Heart_Love_Like_Twitter-512.png"></img>
-                    <div class="text-center">0점</div>
+                    <div className="text-center">0점</div>
                 </div>
                 <hr></hr>
                 <div className="flex-column ">

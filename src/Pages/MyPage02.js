@@ -91,13 +91,13 @@ export default function MyPage02() {
 
     
     return (
-        <div style={{ background: "whitesmoke" }} class="mt-4">
+        <div style={{ background: "whitesmoke" }} className="mt-4">
             <div> 
                 <div id="InfoContainer1">
                     <div>
                     {/* 별점 */}
                     <img style={{ width: '130px' }} alt="star" src="https://cdn0.iconfinder.com/data/icons/twitter-23/512/166_Heart_Love_Like_Twitter-512.png"></img>
-                    <div class="text-center mx-5">{evaluation}</div>
+                    <div className="text-center mx-5">{evaluation}</div>
                     </div>
                     {/*프로필  */}
                     <div>
@@ -106,7 +106,7 @@ export default function MyPage02() {
                     <div>
                     {/* 정보변경 */}
                     <img style={{ width: '130px' }} alt="info" src="https://cdn0.iconfinder.com/data/icons/user-interface-2063/24/UI_Essential_icon_expanded-43-512.png"></img>
-                    <div class="text-center mx-5"><Link to="/Users/MyPage" className="nav-link btn btn-secondary">정보 변경</Link></div>
+                    <div className="text-center mx-5"><Link to="/Users/MyPage" className="nav-link btn btn-secondary">정보 변경</Link></div>
                     </div>
                 </div>
             </div>
