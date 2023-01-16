@@ -135,7 +135,7 @@ export default function MyPage02() {
                 <hr></hr>
 
 {/*                Ohter Room                          */}
-                <div className="d-flex">
+                {/* <div className="d-flex">
                     <div className="row mt-4">
                         <div className="ms-3 row">
                             <div>
@@ -152,7 +152,7 @@ export default function MyPage02() {
                         </div>
                     </div>
 
-                </div>
+                </div> */}
 
             </div>
         </div>
