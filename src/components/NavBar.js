@@ -35,7 +35,6 @@ const NavBar = () => {
       <nav className="navbar bg-gray stikcy-top">
         <div className="container-fluid">
           <span>
-
             {/* Home button */}
             <Link className="navbar-brand site-Title" to="/">
               <img
@@ -49,36 +48,40 @@ const NavBar = () => {
             </Link>
 
             {/* Show LoginUser and Logout */}
-            {cookies.iDinfo !== undefined ?
-              <>
-                {cookies.iDinfo.userId}님, 반갑습니다.
-              </> :
-              null
-            }
+            {cookies.iDinfo !== undefined ? (
+              <>{cookies.iDinfo.userId}님, 반갑습니다.</>
+            ) : null}
           </span>
 
           {/* Search Bar and MakeRoomButton*/}
-          <form className="d-flex" role="search">
-            <NavLink className="nav-link" to="/Rooms/CreateRoom">
-              <button className="btn btn-primary" style={{ marginRight: "20px", width: "120px" }}>모임 만들기</button>
-            </NavLink>
-            <div className="input-group">
-              <span className="input-group-text" id="basic-addon1">
-                <img
-                  alt="request"
-                  src="https://cdn-icons-png.flaticon.com/512/49/49116.png"
-                  style={{ height: "20px", width: "20px" }}
+          {cookies.iDinfo !== undefined ? (
+            <form className="d-flex" role="search">
+              <NavLink className="nav-link" to="/Rooms/CreateRoom">
+                <button
+                  className="btn btn-primary"
+                  style={{ marginRight: "20px", width: "120px" }}
+                >
+                  모임 만들기
+                </button>
+              </NavLink>
+              <div className="input-group">
+                <span className="input-group-text" id="basic-addon1">
+                  <img
+                    alt="request"
+                    src="https://cdn-icons-png.flaticon.com/512/49/49116.png"
+                    style={{ height: "20px", width: "20px" }}
+                  />
+                </span>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Keyword"
+                  aria-label="Username"
+                  aria-describedby="basic-addon1"
                 />
-              </span>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Keyword"
-                aria-label="Username"
-                aria-describedby="basic-addon1"
-              />
-            </div>
-          </form>
+              </div>
+            </form>
+          ) : null}
         </div>
       </nav>
 
@@ -95,20 +98,23 @@ const NavBar = () => {
               RoomRanking
             </NavLink>
           </List>
-          <List className="nav-item">
-            <NavLink className="nav-link" to="/Users/MyPage02">
-              MyRoom
-            </NavLink>
-          </List>
-          <List className="nav-item">
-            <NavLink className="nav-link" to="/Users/MyTag">
-              MyTag
-            </NavLink>
-          </List>
+          {cookies.iDinfo !== undefined ? (
+            <List className="nav-item">
+              <NavLink className="nav-link" to="/Users/MyPage02">
+                MyRoom
+              </NavLink>
+            </List>
+          ) : null}
 
+          {cookies.iDinfo !== undefined ? (
+            <List className="nav-item">
+              <NavLink className="nav-link" to="/Users/MyTag">
+                MyTag
+              </NavLink>
+            </List>
+          ) : null}
           {/* Login about List */}
-          {cookies.iDinfo === undefined ?
-
+          {cookies.iDinfo === undefined ? (
             // 로그인 상태가 아닐 경우 보여주는 메뉴
             <>
               <List className="nav-item">
@@ -121,8 +127,8 @@ const NavBar = () => {
                   Sign-up
                 </NavLink>
               </List>
-            </> :
-
+            </>
+          ) : (
             // 로그인 상태일 경우 보여주는 화면
             <>
               <List className="nav-item">
@@ -136,8 +142,7 @@ const NavBar = () => {
                 </NavLink>
               </List>
             </>
-          }
-
+          )}
         </Ul>
       </div>
     </div>

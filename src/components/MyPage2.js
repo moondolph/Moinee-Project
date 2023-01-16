@@ -1,6 +1,6 @@
 import axios from "axios";
 import {useCallback, useEffect, useState} from "react";
-import { Cookies, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 export default function MyPage2() {
 
     const [userId, setUserId] = useState("");
@@ -44,7 +44,7 @@ export default function MyPage2() {
         //두번 째 체크했을 때
         if (userInterest.includes(e.target.value)) {
             for (var i = 0; i < userInterest.length; i++) {   //반복문 돌려서
-                if (userInterest[i] == e.target.value) {       //배열에 값이 들어가있으면
+                if (userInterest[i] === e.target.value) {       //배열에 값이 들어가있으면
                     userInterest.splice(i, 1);                  //제거해주고
                     break;  //바로 반복문 종료
                 }
