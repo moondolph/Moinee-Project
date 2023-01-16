@@ -8,21 +8,40 @@ export default function MyPage2() {
     const [userName, setUserName] = useState("");
     const [userBirth, setUserBirth] = useState("");
     const [userInterest, setUserInterest] = useState([]);
+    // userFavorites
     const [userAddress, setUserAddress] = useState("");
     const [userEmail, setUserEmail] = useState("");
-    const [cookie] = useCookies(['iDinfo'])
+    
+
+    // const [check1, Setcheck1] = useState(false)
+    // const [check2, Setcheck2] = useState(false)
+    // const [check3, Setcheck3] = useState(false)
+    // const [check4, Setcheck4] = useState(false)
+    // const [check5, Setcheck5] = useState(false)
+    // const [check6, Setcheck6] = useState(false)
+    // const [check7, Setcheck7] = useState(false)
+
+
+    const [cookies] = useCookies(['iDinfo']);
     //Data 불러와서 화면에 띄워 놓기
     const data = useCallback(async() => { 
-        await axios.get(`http://34.68.3.131:8000/user/${cookie.iDinfo.userId}`)
+        await axios.get(`http://34.68.3.131:8000/user/${cookies.iDinfo.userId}`,
+        {
+            headers: {
+                Authorization : `Bearer ${cookies.iDinfo.accesstoken}`
+            }
+          })
         .then(function (response) {
             
             console.log(response.data)
-            setUserId(response.data[0].userId);
-            setUserPw(response.data[0].userPw);
-            setUserName(response.data[0].userName);
-            setUserBirth(response.data[0].userBirth);
-            setUserAddress(response.data[0].userAddress);
-            setUserEmail(response.data[0].userEmail);
+            setUserId(response.data.userId);
+            setUserPw(response.data.encryptedPwd);
+            setUserName(response.data.name);
+            setUserBirth(response.data.birthday);
+            setUserAddress(response.data.address);
+            setUserEmail(response.data.email);
+            setUserInterest(response.data.userFavorites);
+
             // return response.data;
         }).catch(function (error) {
             // 오류발생시 실행
@@ -33,7 +52,7 @@ export default function MyPage2() {
 
     useEffect(() => {
         data();
-    },[data])
+    },[])
     
 
 
@@ -131,6 +150,9 @@ export default function MyPage2() {
 
                 <div className="inputTitle">관심사</div>
                 <div className="inputWrap">
+                    {
+
+                    }
                     <span className="interest">운동<input type="checkbox" value="운동"  onChange={check} /></span>
                     <span className="interest">여행<input type="checkbox" value="여행"  onChange={check} /></span>
                     <span className="interest">독서<input type="checkbox" value="독서"  onChange={check} /></span>
@@ -139,7 +161,6 @@ export default function MyPage2() {
                     <span className="interest">영화<input type="checkbox" value="영화"  onChange={check} /></span>
                     <span className="interest">음식<input type="checkbox" value="음식"  onChange={check} /></span>
                 </div>
-
 
                 <div>
                     <button className="bottomButton" onClick={update}>

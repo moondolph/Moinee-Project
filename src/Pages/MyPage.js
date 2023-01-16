@@ -14,10 +14,10 @@ const MyPage = () => {
 
       // 서버랑 연결할 때는, props에서 userId 꺼내서 URI에 넣어주어야 한다.
       const getUser = async () => {
-          await axios.get("http://34.68.3.131:8000/user/abeathem1e",
+          await axios.get(`http://34.68.3.131:8000/user/${cookies.iDinfo.userId}`,
           {
             headers: {
-                Authorization : `Bearer ${cookies.accesstoken}`
+                Authorization : `Bearer ${cookies.iDinfo.accesstoken}`
             }
           }
           ).then((response) => {
@@ -33,7 +33,6 @@ const MyPage = () => {
   
       useEffect(() => {
           getUser();
-          
       }, [])
 
 
