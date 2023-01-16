@@ -3,14 +3,12 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import { useCookies } from "react-cookie";
 
 const RoomComment = ({roomId}) => {
-    // console.log(token);
     const [cookies, setCookie, removeCookie] = useCookies(['iDinfo']);
     
     // 방에 달린 댓글 불러오는 기능
     const [comments, setComments] = useState([]);
     const getComments = useCallback(async () => {
         <meta name="referrer" content="no-referrer-when-downgrade" />
-        console.log(`요청을 어디로 보냈나요"?? http://35.226.39.213:9800/comments/${roomId}`)
         await axios.get(
             `http://35.226.39.213:9800/comments/${roomId}`,
         {    
@@ -21,10 +19,7 @@ const RoomComment = ({roomId}) => {
             },
         }
         ).then((response) => {
-            console.log("댓글 불러오기는 잘 되나요??")
-            console.log(response.data.comments)
             setComments(response.data.comments)
-            //setComments(commentList.data);
         }).catch((error) => {
             console.log(error.message)
         })
@@ -69,7 +64,6 @@ const RoomComment = ({roomId}) => {
             _id: commentId,
             content: newComment
         }).then(response => {
-            alert('댓글 수정 완료');
             console.log('update success');
             getComments();
         }).catch(error => {
@@ -82,7 +76,6 @@ const RoomComment = ({roomId}) => {
     const deleteComment = useCallback((_id) => {
         setCommentId(_id);
         axios.delete(`http://35.226.39.213:9800/comments/${roomId}/` + _id).then(response => {
-            alert('댓글 삭제 완료');
             console.log('delete success');
             getComments();
         }).catch(error => {

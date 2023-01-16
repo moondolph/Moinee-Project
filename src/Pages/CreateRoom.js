@@ -64,44 +64,44 @@ export default function CreateRoom() {
     <div className="page container border border-light border-3 text-bg-info bg-opacity-50">
 
       <div className="contentWrap ">
-        <h1>방 생성 <span class="badge bg-secondary">New</span></h1>
+        <h1>방 생성 <span className="badge bg-secondary">New</span></h1>
 
 
         <div className="inputTitle">🔖제목</div>
-        <div class="input-group mb-3">
-          <input type="text" value={roomTitle} placeholder="제목을 입력하세요" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" onChange={(e)=>{setRoomTitle(e.target.value);}} />
+        <div className="input-group mb-3">
+          <input type="text" value={roomTitle} placeholder="제목을 입력하세요" className="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" onChange={(e)=>{setRoomTitle(e.target.value);}} />
         </div>
 
 
         <div className="inputTitle">✉️태그</div>
         <div className="inputWrap justify-content-center"> 
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="운동" onChange={check}></input>
-            <label class="form-check-label" for="inlineCheckbox1">운동</label>
+          <div className="form-check form-check-inline">
+            <input className="form-check-input" type="checkbox" id="inlineCheckbox1" value="운동" onChange={check}></input>
+            <label className="form-check-label" for="inlineCheckbox1">운동</label>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="여행" onChange={check}></input>
-            <label class="form-check-label" for="inlineCheckbox2">여행</label>
+          <div className="form-check form-check-inline">
+            <input className="form-check-input" type="checkbox" id="inlineCheckbox2" value="여행" onChange={check}></input>
+            <label className="form-check-label" for="inlineCheckbox2">여행</label>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="독서" onChange={check}></input>
-            <label class="form-check-label" for="inlineCheckbox2">독서</label>
+          <div className="form-check form-check-inline">
+            <input className="form-check-input" type="checkbox" id="inlineCheckbox2" value="독서" onChange={check}></input>
+            <label className="form-check-label" for="inlineCheckbox2">독서</label>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="음악" onChange={check}></input>
-            <label class="form-check-label" for="inlineCheckbox2">음악</label>
+          <div className="form-check form-check-inline">
+            <input className="form-check-input" type="checkbox" id="inlineCheckbox2" value="음악" onChange={check}></input>
+            <label className="form-check-label" for="inlineCheckbox2">음악</label>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="게임" onChange={check}></input>
-            <label class="form-check-label" for="inlineCheckbox2">게임</label>
+          <div className="form-check form-check-inline">
+            <input className="form-check-input" type="checkbox" id="inlineCheckbox2" value="게임" onChange={check}></input>
+            <label className="form-check-label" for="inlineCheckbox2">게임</label>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="영화" onChange={check}></input>
-            <label class="form-check-label" for="inlineCheckbox2">영화</label>
+          <div className="form-check form-check-inline">
+            <input className="form-check-input" type="checkbox" id="inlineCheckbox2" value="영화" onChange={check}></input>
+            <label className="form-check-label" for="inlineCheckbox2">영화</label>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="음식" onChange={check}></input>
-            <label class="form-check-label" for="inlineCheckbox2">음식</label>
+          <div className="form-check form-check-inline">
+            <input className="form-check-input" type="checkbox" id="inlineCheckbox2" value="음식" onChange={check}></input>
+            <label className="form-check-label" for="inlineCheckbox2">음식</label>
           </div>
         </div>
 
@@ -116,8 +116,8 @@ export default function CreateRoom() {
         </div>
 
         <div className="inputTitle">🏢장소</div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" value={location} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" onChange={(e)=>{setLocation(e.target.value);
+        <div className="input-group mb-3">
+          <input type="text" className="form-control" value={location} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" onChange={(e)=>{setLocation(e.target.value);
           }}/>
         </div>
 
@@ -137,15 +137,15 @@ export default function CreateRoom() {
         </div>
 
         <div className="inputTitle">✍️내용</div>
-        <div class="input-group mb-3 col-5 form-floating">
-          <input type="text"  class="form-control height " id="floatingInput" value={introduction} onChange={(event) => {setIntroduction(event.target.value);
+        <div className="input-group mb-3 col-5 form-floating">
+          <input type="text"  className="form-control height " id="floatingInput" value={introduction} onChange={(event) => {setIntroduction(event.target.value);
           }}/></div>  
 
         <div className="inputTitle">사진을 등록해주세요</div>
         <input type="file"/>
 
-        <div class="d-grid gap-2 col-3 mx-auto mt-3" >
-          <button class="btn btn-outline-success fs-4" type="button" onClick={create}>🆗확인</button>
+        <div className="d-grid gap-2 col-3 mx-auto mt-3" >
+          <button className="btn btn-outline-success fs-4" type="button" onClick={create}>🆗확인</button>
         </div>
 
       </div>

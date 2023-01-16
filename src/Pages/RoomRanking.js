@@ -58,7 +58,7 @@ const data = {
 // console.log(borderColor)
 // console.log(rankingList);
   return (
-    <div class="mt-5">
+    <div className="mt-5">
       <h1>RoomRanking</h1>
       <div className='chart bg-light container'>
         <Chart data={data}/>
