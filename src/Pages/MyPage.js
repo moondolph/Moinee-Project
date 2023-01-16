@@ -7,7 +7,7 @@ import { useCookies } from 'react-cookie';
 
 const MyPage = () => {
 
-    const [cookies, setCookie, removeCookie] = useCookies(['id']);
+    const [cookies, setCookie, removeCookie] = useCookies(['iDinfo']);
       // 유저 정보 불러오기
       const [user, setUser] = useState({});
       console.log(cookies ? cookies : "없다.")
