@@ -10,7 +10,7 @@ const MyTag = () => {
   const [roomTag, setRoomTag] = useState([]);
   const [userTag, setUserTag] = useState([]);
   const [userThumbnail, setUserThumbnail] = useState([]);
-  const [cookies] = useCookies(['iDinfo'])
+  const [cookies] = useCookies(['iDinfo']);
 
   const getUser = async () => {
     await axios.get(`http://34.68.3.131:8000/user/${cookies.iDinfo.userId}`,{
@@ -18,8 +18,8 @@ const MyTag = () => {
           Authorization : `Bearer ${cookies.iDinfo.accesstoken}`
       }
     }).then((response) => {
-        console.log("방 간략정보에서 방장 프로필 가져옴");
-        console.log(response);
+        // console.log("방 간략정보에서 방장 프로필 가져옴");
+        // console.log(response);
         setRoomTag(response.data.userRoomTags);
         setUserTag(response.data.userFollows);
         setUserThumbnail(response.data.thumbnail);
@@ -52,10 +52,11 @@ useEffect(() => {
           })}
         </div>
 
-        <div className="ms-3 row">
+        {/* <div className="ms-3 row">
           <div>
-            <h1>User Tag(내가 팔로우한 유저)</h1>       {/*내가 팔로우한 사람들 보여주기*/} 
-          </div>
+            <h1>User Tag(내가 팔로우한 유저)</h1>        */}
+            {/*내가 팔로우한 사람들 보여주기*/} 
+          {/* </div>
           <hr />
           {userTag.map((user, i) => {
             return (
@@ -64,8 +65,8 @@ useEffect(() => {
               </div>
             )
           })}
-        </div>
-      </div>
+        </div>*/}
+      </div> 
     </div>
   );
 }

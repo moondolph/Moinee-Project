@@ -7,6 +7,7 @@ const ProfileMini = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies(['iDinfo']);
   // 유저 정보 불러오기
   const [user, setUser] = useState([]);
+  // console.log(props)
   // 서버랑 연결할 때는, props에서 userId 꺼내서 URI 에 넣어주어야 한다.
   const getUser = async ()=> {
     await axios.get(`http://34.68.3.131:8000/user/${props.host}`,

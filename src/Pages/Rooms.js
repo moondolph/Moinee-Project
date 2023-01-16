@@ -70,10 +70,10 @@ const Rooms = () => {
         </div>
       </div>
       <div className="row mt-4">
-        <div className='pt-3 mt-3 mb-3 d-flex justify-content-end'>
+        {/* <div className='pt-3 mt-3 mb-3 d-flex justify-content-end'>
           <SortList />
-        </div>
-        <div className="ms-3 row">
+        </div> */}
+        <div className="ms-3 mt-3 row">
           {rooms.map((room, index)=>{
             return(
               <div key={index} className="ms-3 mb-5 width-22">
