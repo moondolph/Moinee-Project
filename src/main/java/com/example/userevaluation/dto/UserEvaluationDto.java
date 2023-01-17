@@ -2,6 +2,8 @@ package com.example.userevaluation.dto;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class UserEvaluationDto {
 
@@ -9,5 +11,5 @@ public class UserEvaluationDto {
     private String userId;
     private String evaluator;
     private Integer grade;
-    private String createAt;
+    private Date createAt;
 }

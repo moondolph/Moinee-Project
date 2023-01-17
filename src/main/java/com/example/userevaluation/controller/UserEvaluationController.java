@@ -6,6 +6,7 @@ import com.example.userevaluation.jpa.UserEvaluationEntity;
 import com.example.userevaluation.service.UserEvaluationService;
 import com.example.userevaluation.vo.RequestUserEvaluation;
 import com.example.userevaluation.vo.ResponseUserEvaluation;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user-evaluation/")
+@RequestMapping("/userEvaluation/")
+@Slf4j
+@CrossOrigin(origins = "*")
 public class UserEvaluationController {
 
     UserEvaluationService userEvaluationService;

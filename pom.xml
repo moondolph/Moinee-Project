@@ -10,7 +10,8 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>User_evaluation</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+<!--	<version>0.0.1-SNAPSHOT</version>-->
+	<version>1.0.0</version>
 	<name>User_evaluation</name>
 	<description>User_evaluation</description>
 	<properties>
