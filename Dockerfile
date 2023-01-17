@@ -17,5 +17,5 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 9800
-ENTRYPOINT [ "node","start"]
+EXPOSE 3000
+CMD [ "npm","start"]
