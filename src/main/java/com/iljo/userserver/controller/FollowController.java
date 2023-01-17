@@ -2,7 +2,7 @@ package com.iljo.userserver.controller;
 
 import com.iljo.userserver.dto.FollowDto;
 import com.iljo.userserver.dto.FollowID;
-import com.iljo.userserver.jpa.User_Follow_TagEntity;
+import com.iljo.userserver.jpa.UserFollowTagEntity;
 import com.iljo.userserver.service.FollowService;
 import com.iljo.userserver.vo.RequestUserId;
 import com.iljo.userserver.vo.ResponseFollow;
@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user/{userId}/user_follow_tag")
-@CrossOrigin("http://localhost:3000")
+@RequestMapping("/{userId}/user_follow_tag")
+@CrossOrigin(origins = "*")
 public class FollowController {
 
     private FollowService followService;
@@ -54,7 +54,7 @@ public class FollowController {
     public ResponseEntity<List<ResponseFollow>> getFollowList(
             @PathVariable("userId") String userId){
         // sql문을 실행하여 ID에 해당하는 데이터들을 불러온다.
-        List<User_Follow_TagEntity> userFollowTagEntityList = followService.getFollowByUserId(userId);
+        List<UserFollowTagEntity> userFollowTagEntityList = followService.getFollowByUserId(userId);
 
         // 반환하기 위해 비어있는 List 생성
         List<ResponseFollow> result = new ArrayList<>();

@@ -6,8 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 
-public interface User_FollowRepository extends CrudRepository<User_Follow_TagEntity, FollowID> {
-    List<User_Follow_TagEntity> findAllByUserId(String userId);
+public interface UserFollowRepository extends CrudRepository<UserFollowTagEntity, FollowID> {
+    List<UserFollowTagEntity> findAllByUserId(String userId);
 
 
 }

@@ -11,6 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -39,6 +43,22 @@ public class UserServiceImpl implements UserService{
     Environment env;
     UserRepository userRepository;
     BCryptPasswordEncoder PasswordEncoder;
+
+
+    /**
+     * userId와 password가 있는지 확인하고 있으면 가져오는 select method
+     * */
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        UserEntity userEntity = userRepository.findByUserId(username);
+
+        if (userEntity == null)
+            throw new UsernameNotFoundException(username + ": not found");
+
+        return new User(userEntity.getUserId(), userEntity.getEncryptedPwd(),
+                true, true, true, true,
+                new ArrayList<>());
+}
 
     @Autowired
     public UserServiceImpl(Environment env, UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
@@ -140,56 +160,19 @@ public class UserServiceImpl implements UserService{
         return resultUserDto;
     }
 
-    /**
-     * 로그인을 위한 메소드
-     * */
     @Override
-    public String login(String userId, String password) {
+    public UserDto getUserDetailsByUserId(String userId) {
+        UserEntity userEntity = userRepository.findByUserId(userId);
+        if(userEntity == null)
+            throw new UsernameNotFoundException(userId);
 
-//        ModelMapper mapper = new ModelMapper();
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
-        UserEntity userEntity = userRepository.findByUserIdAndEncryptedPwd(userId, password);
-
-        String result = userEntity.getUserId();
-
-        // String result = userRepository.findByUserIdAndPassword(userId, password).getUserId();
-
-        return result;
+        UserDto userDto = mapper.map(userEntity, UserDto.class);
+        return userDto;
     }
-//    /**
-//     * 서버에 있는 파일 gcs에 업로드
-//     */
-//    @Override
-//    public BlobInfo uploadFileToGCS(RequestUser requestUser) {
-//        try{
-//            String keyFileName = env.getProperty("spring.cloud.gcp.credentials.location");
-//            log.info(requestUser.getThumbnail());
-//
-//            InputStream keyFile = ResourceUtils.getURL(keyFileName).openStream();
-//            Storage storage = StorageOptions.newBuilder().setProjectId("student-project-2022-368005")
-//                    .setCredentials(GoogleCredentials.fromStream(keyFile))
-//                    .build().getService();
-//
-//            BlobId blobId = BlobId.of("iljo-bucket1", requestUser.getThumbnail());
-//            BlobInfo blobInfo = BlobInfo.newBuilder(blobId)
-//                    .setAcl(new ArrayList<>(Arrays.asList(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER))))
-//                    .build();
-//
-//
-//            Blob blob = storage
-//                    .create(blobInfo, new FileInputStream(requestUser.getThumbnail()));
-//
-//            return blob;
-//        }catch(IOException e){
-//            log.error(e.getMessage());
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
 
-    /**
-     * 클라이언트에서 파일을 서버에 올리고 바로 클라우드 버킷에 파일이 저장되게 해주는 메소드
-     * */
     @Override
     public String uploadFile(MultipartFile file) {
         try{
@@ -234,4 +217,21 @@ public class UserServiceImpl implements UserService{
         }
         return null;
     }
+
+/**
+     * 로그인을 위한 메소드
+     * */
+//    @Override
+//    public String login(String userId, String password) {
+//
+////        ModelMapper mapper = new ModelMapper();
+//
+//        UserEntity userEntity = userRepository.findByUserIdAndEncryptedPwd(userId, password);
+//
+//        String result = userEntity.getUserId();
+//
+//        // String result = userRepository.findByUserIdAndPassword(userId, password).getUserId();
+//
+//        return result;
+//    }
 }

@@ -19,8 +19,8 @@ import java.util.List;
 
 @Controller
 @Slf4j
-@RequestMapping("/user")
-@CrossOrigin("http://localhost:3000")
+@RequestMapping("/")
+@CrossOrigin(origins = "*", exposedHeaders = "*")
 public class EnterController {
 
     private EnterService enterService;

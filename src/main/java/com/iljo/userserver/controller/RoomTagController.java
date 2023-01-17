@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user/{userId}/user_room_tag")
-@CrossOrigin("http://localhost:3000")
+@RequestMapping("/{userId}/user_room_tag")
+@CrossOrigin(origins = "*")
 public class RoomTagController {
 
     private RoomTagService roomTagService;

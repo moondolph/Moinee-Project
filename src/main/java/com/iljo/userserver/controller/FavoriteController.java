@@ -1,8 +1,9 @@
 package com.iljo.userserver.controller;
 
 import com.iljo.userserver.dto.FavoriteID;
-import com.iljo.userserver.jpa.User_FavoriteEntity;
+import com.iljo.userserver.jpa.UserFavoriteEntity;
 import com.iljo.userserver.service.FavoriteService;
+import com.iljo.userserver.vo.RequestFavorite;
 import com.iljo.userserver.vo.ResponseFavorite;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -14,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user/{userId}/user_favorite")
-@CrossOrigin("http://localhost:3000")
+@RequestMapping("/")
+@CrossOrigin(origins = "*")
 public class FavoriteController {
 
     private FavoriteService favoriteService;
@@ -26,7 +27,7 @@ public class FavoriteController {
 
     // favorite 테이블에 입력하는 메소드.
     // 문자열의 리스트를 받아온 뒤, dto인 FavoriteID에 맵핑해서 리스트를 만들어 서비스로 넘겨준다.
-    @PostMapping("/")
+    @PostMapping("/{userId}/user_favorite")
     public ResponseEntity<String> addFavoriteList (
             @PathVariable("userId") String userId,
             @RequestBody List<String> favoriteList) {
@@ -46,11 +47,11 @@ public class FavoriteController {
     }
 
     // 해당하는 ID에 해당하는 Favorite을 모두 불러오는 메소드.
-    @GetMapping("/")
+    @GetMapping("/{userId}/user_favorite")
     public ResponseEntity<List<ResponseFavorite>> getFavoriteList (
             @PathVariable("userId") String userId) {
         // sql 문을 실행해서 저장된 값을 읽어온다.
-        List<User_FavoriteEntity> userFavoriteEntityList = favoriteService.getFavoriteByUserId(userId);
+        List<UserFavoriteEntity> userFavoriteEntityList = favoriteService.getFavoriteByUserId(userId);
 
         // 빈 VO리스트를 만든다.
         List<ResponseFavorite> result = new ArrayList<>();
@@ -64,13 +65,12 @@ public class FavoriteController {
     }
 
     // 입력받은 favorite을 삭제하는 메소드
-    @DeleteMapping("/{user_favorite}")
+    @DeleteMapping("/{userId}/user_favorite")
     public ResponseEntity<String> deleteFavorite(
             @PathVariable("userId") String userId,
-            @PathVariable("user_favorite") String favorite) {
-
+            @RequestBody RequestFavorite favorite) {
         // URI를 통해 받아온 userID 와 favorite을 ID 객체에 담아준다.
-        FavoriteID favoriteID = new FavoriteID(userId, favorite);
+        FavoriteID favoriteID = new FavoriteID(userId, favorite.getFavorite());
 
         // sql문 실행
         favoriteService.deleteFavorite(favoriteID);

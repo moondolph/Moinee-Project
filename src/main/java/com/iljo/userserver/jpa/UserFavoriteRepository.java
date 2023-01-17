@@ -6,9 +6,9 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 
-public interface User_FavoriteRepository extends CrudRepository<User_FavoriteEntity, FavoriteID> {
+public interface UserFavoriteRepository extends CrudRepository<UserFavoriteEntity, FavoriteID> {
 
-    List<User_FavoriteEntity> findAllByUserId(String userId);
+    List<UserFavoriteEntity> findAllByUserId(String userId);
 
 }
 

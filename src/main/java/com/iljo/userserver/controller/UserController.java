@@ -3,11 +3,17 @@ package com.iljo.userserver.controller;
 import com.iljo.userserver.dto.UserDto;
 import com.iljo.userserver.feign.RoomClient;
 import com.iljo.userserver.jpa.EnterEntity;
-import com.iljo.userserver.jpa.User_FavoriteEntity;
-import com.iljo.userserver.jpa.User_Follow_TagEntity;
+import com.iljo.userserver.jpa.UserFavoriteEntity;
+import com.iljo.userserver.jpa.UserFollowTagEntity;
 import com.iljo.userserver.jpa.User_Room_TagEntity;
 import com.iljo.userserver.service.*;
 import com.iljo.userserver.vo.*;
+import com.iljo.userserver.service.EnterService;
+import com.iljo.userserver.service.UserService;
+
+import com.iljo.userserver.vo.RequestUser;
+import com.iljo.userserver.vo.ResponseRoomId;
+import com.iljo.userserver.vo.ResponseUser;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -22,10 +28,12 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/")
 @Slf4j
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*", exposedHeaders = "*")
 //@CrossOrigin(origins = "127.0.0.1:8808")
 public class UserController {
 
@@ -36,6 +44,8 @@ public class UserController {
     FollowService followService;
     RoomTagService roomTagService;
 
+//    ResponseLogin responseLogin;
+
     @Autowired
     public UserController(UserService userService, RoomClient roomClient, EnterService enterService, FavoriteService favoriteService, FollowService followService, RoomTagService roomTagService) {
         this.userService = userService;
@@ -44,12 +54,13 @@ public class UserController {
         this.favoriteService = favoriteService;
         this.followService = followService;
         this.roomTagService = roomTagService;
+//        this.responseLogin = responseLogin;
     }
 
     /**
      * 회원가입을 위한 controller
      * */
-    @PostMapping("/")
+    @PostMapping("/users")
     @Transactional
     public ResponseEntity<ResponseUser> createUser(@RequestBody RequestUser user) {
         ModelMapper mapper = new ModelMapper();
@@ -118,6 +129,14 @@ public class UserController {
     /**
      * userId에 해당하는 회원정보를 불러오기 위한 controller
      * */
+
+//    @GetMapping("/auth")
+//    public ResponseEntity<ResponseLogin> getUser() {
+//        log.info(responseLogin.getToken(), responseLogin.getUserId());
+//    return ResponseEntity.status(HttpStatus.OK).body(responseLogin);
+//    }
+
+
     @GetMapping("/{userId}")
     public ResponseEntity<ResponseUser> getUser(@PathVariable("userId") String userId){
         ModelMapper mapper = new ModelMapper();
@@ -131,8 +150,8 @@ public class UserController {
             roomIdList.add(room);
         });
 
-        List<User_FavoriteEntity> userFavoriteEntities = favoriteService.getFavoriteByUserId(userId);
-        List<User_Follow_TagEntity> userFollowTagEntities = followService.getFollowByUserId(userId);
+        List<UserFavoriteEntity> userFavoriteEntities = favoriteService.getFavoriteByUserId(userId);
+        List<UserFollowTagEntity> userFollowTagEntities = followService.getFollowByUserId(userId);
         List<User_Room_TagEntity> userRoomTagEntities = roomTagService.getRoomTagByUserId(userId);
 
         List<ResponseFavorite> responseFavorites = new ArrayList<>();
@@ -205,18 +224,17 @@ public class UserController {
     /**
      * 로그인을 위한 controller
      * */
-    @PostMapping("/login")
-    @Transactional
-    public ResponseEntity<String> login(@RequestBody RequestUser user, String userId, String password){
-
-        userId = user.getUserId();
-        password = user.getEncryptedPwd();
-
-        String result = userService.login(userId, password);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(result);
-    }
-
+//    @PostMapping("/login")
+//    public ResponseEntity<RequestLogin> login(@RequestBody RequestLogin requestLogin){
+//
+////        userId = user.getUserId();
+////        password = user.getEncryptedPwd();
+////
+////        String result = userService.login(userId, password);
+////
+//       return ResponseEntity.status(HttpStatus.CREATED).body(requestLogin);
+//    }
+//
 
 
 }

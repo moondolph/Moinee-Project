@@ -1,23 +1,19 @@
 server:
-  port: 8808
+  port: 8001
 
 eureka:
-  instance:
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  instance :
+    instance-id : ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
     service-url:
-      defaultZone: http://127.0.0.1:8761/eureka
+      defaultZone: http://34.68.3.131:8761/eureka
     fetch-registry: true
     register-with-eureka: true
 
 spring:
   application:
     name: user
-  #  rabbitmq :
-  #    host : 127.0.0.1
-  #    port : 5672
-  #    username : guest
-  #    password : guest
+
 #  h2 :
 #    console :
 #      #      enabled : true
@@ -53,10 +49,11 @@ spring:
       credentials:
 #        location: file:///${user.home}/Desktop/key/student-project-2022-368005-54dd6b18c177.json
         location: classpath:student-project-2022-368005-e4a467c21c2c.json
-#logging:
-#  level:
-#    org:
-#      hibernate: info
+
+
+token :
+  expiration_time : 3600000
+  secret: "iljos"
 
 
 
