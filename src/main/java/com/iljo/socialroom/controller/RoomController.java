@@ -25,7 +25,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/socialRoom")
 @Slf4j
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class RoomController {
 
 
