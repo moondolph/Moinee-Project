@@ -1,4 +1,4 @@
-# 🎊Moinee-Project (ppt로 보기(권장): [모이니(MOINEE).pdf](https://github.com/moondolph/Moinee-Project/files/10610508/MOINEE.pdf))
+# 🎊Moinee-Project (ppt(다운): [모이니(MOINEE).pdf](https://github.com/moondolph/Moinee-Project/files/10610508/MOINEE.pdf))
 <img src = "https://user-images.githubusercontent.com/108520929/216804641-e9ec6b6e-ef51-413a-b0ba-c21c6da215db.jpg" width="100%" height="500">
 
 ## ※목차
