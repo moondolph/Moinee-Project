@@ -1,0 +1,85 @@
+server:
+  port: 8000
+
+internal.lb.uri: http://34.68.3.131
+eureka:
+  instance :
+    instance-id : ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://34.68.3.131:8761/eureka
+
+spring:
+  application:
+    name: lijo-apigateway-service
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+      globalcors:
+        cors-configurations:
+          '[/**]':
+              allowedOrigins: 'http://localhost:3000, http://34.170.157.103:3000'
+              allow-credentials: true
+              allowedHeaders: '*'
+              allowedMethods:
+                - PUT
+                - GET
+                - POST
+                - DELETE
+                - OPTIONS
+      routes:
+        - id: user
+          uri: ${internal.lb.uri}:8001
+#          uri: lb://USER
+          predicates:
+            - Path=/user/login
+            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie
+#            - RewritePath=/user/(?<segment>.*), /$\{segment}
+#           만약에 login 시 post not supported가 되면 다음과 같이 RewritePath를 반드시 넣어줘야 한다.
+            - RewritePath=/user/(?<segment>.*), /$\{segment}
+        - id: user
+#          uri: lb://USER
+          uri: ${internal.lb.uri}:8001
+          predicates:
+            - Path=/user/users
+#            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user/(?<segment>.*), /$\{segment}
+
+        - id: user
+          uri: ${internal.lb.uri}:8001
+#          uri: lb://USER
+          predicates:
+            - Path=/user/**
+#            - Method=GET,DELETE,PUT,POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - AuthorizationHeaderFilter
+            - RewritePath=/user/(?<segment>.*), /$\{segment}
+        - id: userEvaluation
+          uri: ${internal.lb.uri}:8003
+#          uri: lb://USEREVALUATION
+          predicates :
+            - Path=/userEvaluation/**
+          filters:
+            - AuthorizationHeaderFilter
+
+
+        - id: socialRoom
+          uri: ${internal.lb.uri}:8002
+#          uri: lb://SOCIALROOM
+          predicates:
+            - Path=/socialRoom/**
+          filters:
+            - AuthorizationHeaderFilter
+token :
+  expiration_time : 3600000
+  secret: "iljos"
+
+
