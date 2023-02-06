@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url("https://www-cdn.eumetsat.int/files/styles/16_9_large/s3/2022-07/clouds_sun-rays_aspot_AdobeStock.jpg?h=d1cb525d&itok=J7Cona2S");
+  width: 100%;
+  height: 100%;
+
+  background-color: rgb(255, 255, 255, 0.9);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
