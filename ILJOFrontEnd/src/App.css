@@ -1,0 +1,479 @@
+.cursor-pointer{
+  cursor:pointer;
+}
+
+.mt-10 {
+  margin-top: 100px;
+}
+
+.chart {
+  width: 1500px;
+  height: 650px;
+}
+
+.mt-20 {
+  margin-top: 200px;
+}
+
+.ms-20 {
+  margin-left: 200px;
+}
+
+.me-10 {
+  margin-right: 100px;
+}
+
+.me-8 {
+  margin-right: 80px;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.width-226{
+  width: 226px;
+}
+
+.width-326{
+  width: 326px;
+}
+
+.width-22{
+  width: 220px;
+}
+
+.Title-Article{
+  font-size: 200px;
+  color: #5bdeff;
+  text-shadow: #2b00ff 5px 5px 5px;
+}
+
+.main-bg {
+  background-image: url("https://img.freepik.com/free-photo/white-cloud-blue-sky-sea_74190-4488.jpg?w=2000");
+  width: 100%;
+  height: 100%;
+}
+
+.main-total{
+  margin-top: 300px;
+  margin-bottom: 300px;
+}
+
+.main-div{
+  background-color: rgb(255, 255, 255, 0.9);
+}
+
+.mainArticle{
+  background-color: rgb(255, 255, 255);
+  
+}
+
+.mainArticle-div {
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+}
+.main-text{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+      vertical-align: center;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.site-Title {
+  font-size: 25px;
+} 
+/* 성훈 CSS */
+.PageRoomContainer {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr, 1fr, 1fr; 
+  margin: auto; 
+  background-color: whitesmoke; 
+  padding: 10px; 
+}
+
+#InfoContainer1 {
+  padding: 10px;
+  /*margin-left: 35%;*/
+  display: flex; 
+  place-items: center;
+  justify-items: center;
+  justify-content: center;
+}
+
+#InfoContainer11 {
+  margin-left: 30%;
+  width:650px;
+  display: flex; 
+  place-items: center;
+  justify-content:space-between;
+  
+}
+
+
+
+
+
+#InfoContainer2 {
+  padding: 10px;
+  display: grid; 
+  grid-column-gap: 10px;
+  place-items: center;
+  justify-items: center;
+  justify-content: center;
+}
+
+
+.PointInfo {
+  width: 300px;
+  
+}
+
+/* ---------------이하 주용 css---------------*/
+.postmodal{
+  background : rgba(0,0,0,0.25);
+   /* position : fixed;    fixed 지워야 바로 밑에 뜸*/
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+}
+
+
+
+.page {         
+  /* position: absolute;       
+  left: 50%;                
+  top: 50%;                 
+	transform: translate(-50%, -50%);   */
+   
+  margin-top:70px;                 
+	width: 100%;              /*가로폭은 최대로*/
+	max-width: 750px;
+  padding: 10px 20px;       /*상하 좌우*/
+  
+
+  background-color: #CCE5FF;
+	
+  
+}
+
+.site-Title-footer {
+  font-size: 40px;
+}
+
+
+.left-text {
+  text-align: left;
+}
+
+.footerIntro{
+  display: flex;
+  list-style: none;
+}
+
+.footerContents{
+  width: 50%;
+  display: inline-block;
+  margin: 0 30px;
+}
+
+
+.footerContents-Contact-Us{
+  width: 20%;
+  display: inline-block;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.profile-text {
+  text-decoration: none;
+}
+
+.profile-size {
+  width: 250px;
+}
+
+.profile-right {
+  text-align: right;
+}
+
+.sortList-size {
+  width: 100px;
+  text-align: right;
+}
+
+.loginOptionWrap{
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 300px;
+  margin-top:30px;
+  font-size: 15px;
+  font-weight: bold;
+  color:azure;
+}
+
+
+.titleWrap {
+    margin-top: 30px;
+    font-size: 26px;
+	  font-weight: bold;
+	  color: #262626;
+    text-align: center;
+    border-radius: 10px;
+    border: 3px solid whitesmoke;
+  }
+
+.contentWrap {
+    margin-top: 40px;
+}
+
+.inputTitle {
+    font-size: 20px;
+	font-weight: 600;
+	color: #262626;
+  margin-top: 10px ;
+}
+
+.inputWrap {
+    display: flex;
+    
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 8px;
+    background-color: white;
+    border: 1px solid #e2e0e0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+#spinner {
+  animation: spin 2s linear infinite;
+}
+/* 아래는 위에서 설정한 기본 설정 */
+#spinner {
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  border: 15px solid rgba(163, 151, 198, 0.2);
+  border-top: 15px solid rgba(163, 151, 198, 1);
+  border-radius: 50%;
+}
+/* 아래는 기본 래퍼 설정 */
+#wrapper {
+  margin: 0 auto;
+  padding: 30px;
+  max-width: 1170px;
+}
+
+.location {
+  width:100%;
+}
+
+.date, .gender, .interest,  .capacity { /*여러 태그 선택할때는 ,로 */
+  margin: auto;
+}
+
+.form-control.height{
+  height:150px;
+}
+
+.inputWrap:focus-within {
+    border: 1px solid #9e30f4;
+}
+
+.input {
+    width:100%;
+    outline: #ef0000;
+	  border: #9e30f4;
+    height: 17px;
+    font-size: 14px;
+	  font-weight: 400;
+}
+
+.input::placeholder {
+    color: #262626;
+    text-align: center;
+}
+
+
+
+.bottomButton {
+    margin-top:10px;
+    width: 50%;
+	  height: 60px;
+    border: none;
+    font-weight: bold;
+    border-radius: 64px;
+    background-color: #e2e0e0;
+    color: #262626;
+    margin-bottom: 16px;
+    cursor: pointer;
+    
+}
+
+.bottomButton:disabled {
+    background-color: floralwhite;
+    color: #262626;
+}
+
+
+/* 하위 태그 좌우 정렬시키기 */
+.justifySpaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+/* 하위 태그 적당히 정렬시키기 */
+.justifySpaceAround {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* 메인화면 컨텐츠에 사용 */
+.unifyContentPicture {
+    width: 165px;
+    height: 220px;
+    object-fit: cover;
+}
+.mainContentMaxWidth {
+  max-width: 220px;
+}
+
+/* 프로필 사진 규격맞추기 */
+.unifyProfilePicture {
+  width: 40px;
+  height: 40px;
+  border-radius: 25px;
+  object-fit: cover;
+}
+
+/* 간략 페이지 사진 규격맞추기 */
+.unifySimplePicture {
+  width: 165px;
+    height: 220px;
+    object-fit: cover;
+}
+
+/* mypage01 별점 css */
+.starpoint_wrap{display:inline-block;}
+.starpoint_box{position:relative;background:url(https://ido-archive.github.io/svc/etc/element/img/sp_star.png) 0 0 no-repeat;font-size:0;}
+.starpoint_box .starpoint_bg{display:block;position:absolute;top:0;left:0;height:18px;background:url(https://ido-archive.github.io/svc/etc/element/img/sp_star.png) 0 -20px no-repeat;pointer-events:none;}
+.starpoint_box .label_star{display:inline-block;width:10px;height:18px;box-sizing:border-box;}
+.starpoint_box .star_radio{opacity:0;width:0;height:0;position:absolute;}
+.starpoint_box .star_radio:nth-of-type(1):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(1):checked ~ .starpoint_bg{width:10%;}
+.starpoint_box .star_radio:nth-of-type(2):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(2):checked ~ .starpoint_bg{width:20%;}
+.starpoint_box .star_radio:nth-of-type(3):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(3):checked ~ .starpoint_bg{width:30%;}
+.starpoint_box .star_radio:nth-of-type(4):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(4):checked ~ .starpoint_bg{width:40%;}
+.starpoint_box .star_radio:nth-of-type(5):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(5):checked ~ .starpoint_bg{width:50%;}
+.starpoint_box .star_radio:nth-of-type(6):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(6):checked ~ .starpoint_bg{width:60%;}
+.starpoint_box .star_radio:nth-of-type(7):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(7):checked ~ .starpoint_bg{width:70%;}
+.starpoint_box .star_radio:nth-of-type(8):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(8):checked ~ .starpoint_bg{width:80%;}
+.starpoint_box .star_radio:nth-of-type(9):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(9):checked ~ .starpoint_bg{width:90%;}
+.starpoint_box .star_radio:nth-of-type(10):hover ~ .starpoint_bg,
+.starpoint_box .star_radio:nth-of-type(10):checked ~ .starpoint_bg{width:100%;}
+
+.blind{position:absolute;clip:rect(0 0 0 0);margin:-1px;width:1px;height: 1px;overflow:hidden;}
+
+
+.floatLeft {
+  float: left;
+}
+
+/* 전체 목록에서 커서 올렸을 때 별도의 화면을 보여주기 위한 CSS */
+.pop-up-parent{position: relative;}
+.pop-up-child {
+  z-index: 1; position: absolute; top:0px; left: 195px; 
+  visibility: hidden; opacity: 0; transition: opacity 0.5s;}
+.pop-up-parent:hover .pop-up-child { visibility: visible; opacity: 1;}
+
+.simpleRoomSize {
+  width:700px;
+  height: 550px;
+  background-color: rgb(240, 240, 240);
+}
+
+.centerAlign {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.roomImage {
+  width: 90%;
+  max-width: 700px;
+}
+
+/* 댓글창에 커서 올리면 늘어나는 css */
+.commentInput {width: 90%; height: 0px; visibility: hidden; transition: height 0.5s; resize:both; transition: resize initial initial 0.5s;}
+.commentSection:hover .commentInput {visibility: visible; height: 150px; resize: none;}
+
+.commentUpdateSection {
+  width: 100%;
+  height: 130px;
+  resize: none;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.roomSideBar {
+  position: absolute;
+  top: 300px;
+  left: 11px; 
+}
+
